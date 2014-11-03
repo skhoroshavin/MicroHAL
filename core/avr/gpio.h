@@ -3,9 +3,46 @@
 
 #include <avr/io.h>
 
-inline void    avr_gpioB_write( uint8_t value ) { PORTB = value;   }
-inline uint8_t avr_gpioB_read()                 { return PINB;     }
-inline void    avr_gpioB_set( uint8_t value )   { PORTB |= value;  }
-inline void    avr_gpioB_clr( uint8_t value )   { PORTB &= ~value; }
+typedef uint8_t avr_gpio_t;
 
-void avr_gpioB_setup( uint8_t maskOut, uint8_t maskState );
+#define AVR_DECLARE_GPIO(NAME) \
+	inline void avr_gpio##NAME##_write( avr_gpio_t value ) { PORT##NAME = value; } \
+	inline avr_gpio_t avr_gpio##NAME##_read() { return PIN##NAME; } \
+	\
+	inline void avr_gpio##NAME##_set( avr_gpio_t value ) { PORT##NAME |= value; } \
+	inline void avr_gpio##NAME##_clr( avr_gpio_t value ) { PORT##NAME &= ~value; } \
+	inline void avr_gpio##NAME##_clr_set( avr_gpio_t c, avr_gpio_t s ) { PORT##NAME = (PORT##NAME & ~c) | s; } \
+	\
+	void avr_gpio##NAME##_setup( avr_gpio_t maskOut, avr_gpio_t maskState );
+
+#define AVR_IMPLEMENT_GPIO(NAME) \
+	void avr_gpio##NAME##_setup( avr_gpio_t maskOut, avr_gpio_t maskState ) \
+	{ \
+		PORT##NAME = maskState; \
+		DDR##NAME  = maskOut; \
+	}
+
+
+#ifdef PORTA
+AVR_DECLARE_GPIO(A)
+#endif // PORTA
+
+#ifdef PORTB
+AVR_DECLARE_GPIO(B)
+#endif // PORTB
+
+#ifdef PORTC
+AVR_DECLARE_GPIO(C)
+#endif // PORTC
+
+#ifdef PORTD
+AVR_DECLARE_GPIO(D)
+#endif // PORTD
+
+#ifdef PORTE
+AVR_DECLARE_GPIO(E)
+#endif // PORTE
+
+#ifdef PORTF
+AVR_DECLARE_GPIO(F)
+#endif // PORTF

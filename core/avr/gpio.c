@@ -1,8 +1,26 @@
 
 #include <core/avr/gpio.h>
 
-void avr_gpioB_setup( uint8_t maskOut, uint8_t maskState )
-{
-	PORTB = maskState;
-	DDRB  = maskOut;
-}
+#ifdef PORTA
+AVR_IMPLEMENT_GPIO(A)
+#endif // PORTA
+
+#ifdef PORTB
+AVR_IMPLEMENT_GPIO(B)
+#endif // PORTB
+
+#ifdef PORTC
+AVR_IMPLEMENT_GPIO(C)
+#endif // PORTC
+
+#ifdef PORTD
+AVR_IMPLEMENT_GPIO(D)
+#endif // PORTD
+
+#ifdef PORTE
+AVR_IMPLEMENT_GPIO(E)
+#endif // PORTE
+
+#ifdef PORTF
+AVR_IMPLEMENT_GPIO(F)
+#endif // PORTF
