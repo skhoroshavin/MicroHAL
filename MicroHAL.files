@@ -1,10 +1,12 @@
+TODO.txt
 core/gpio.h
 core/build.mk
-ports/avr/gpio.c
 ports/avr/gpio.h
+ports/avr/gpio.c
 ports/avr/basic_timer.h
+ports/avr/basic_timer.c
 ports/avr/platform.mk
-examples/arduino_blink/hal.c
 examples/arduino_blink/hal.h
+examples/arduino_blink/hal.c
 examples/arduino_blink/main.c
 examples/arduino_blink/Makefile

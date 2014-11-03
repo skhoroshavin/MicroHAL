@@ -14,10 +14,10 @@ typedef uint8_t avr_gpio_t;
 	inline void avr_gpio##NAME##_clr( avr_gpio_t value ) { PORT##NAME &= ~value; } \
 	inline void avr_gpio##NAME##_clr_set( avr_gpio_t c, avr_gpio_t s ) { PORT##NAME = (PORT##NAME & ~c) | s; } \
 	\
-	void avr_gpio##NAME##_setup( avr_gpio_t maskOut, avr_gpio_t maskState );
+	void avr_gpio##NAME##_init( avr_gpio_t maskOut, avr_gpio_t maskState );
 
 #define AVR_IMPLEMENT_GPIO(NAME) \
-	void avr_gpio##NAME##_setup( avr_gpio_t maskOut, avr_gpio_t maskState ) \
+	void avr_gpio##NAME##_init( avr_gpio_t maskOut, avr_gpio_t maskState ) \
 	{ \
 		PORT##NAME = maskState; \
 		DDR##NAME  = maskOut; \

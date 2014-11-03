@@ -1,0 +1,8 @@
+
+AVR:     Implement UART
+Example: Implement arduino_console
+AVR:     Better initialization code
+AVR:     Implement advanced timer
+AVR:     Implement signal capture and replay
+AVR:     Implement sleep modes and watchdog
+
