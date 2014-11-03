@@ -1,5 +1,5 @@
 
-#include <core/avr/gpio.h>
+#include <ports/avr/gpio.h>
 
 #ifdef PORTA
 AVR_IMPLEMENT_GPIO(A)

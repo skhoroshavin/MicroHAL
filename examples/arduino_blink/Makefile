@@ -1,10 +1,10 @@
 
 HALDIR  = ../..
 TARGET  = blink
-SOURCES = main.c hal.c core/avr/gpio.c
+SOURCES = main.c hal.c ports/avr/gpio.c
 
 MCU   = atmega328p
-include $(HALDIR)/core/avr/platform.mk
+include $(HALDIR)/ports/avr/platform.mk
 include $(HALDIR)/core/build.mk
 
 flash: build/$(TARGET)

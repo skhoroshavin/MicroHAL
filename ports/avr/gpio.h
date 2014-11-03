@@ -2,6 +2,7 @@
 #pragma once
 
 #include <avr/io.h>
+#include <core/gpio.h>
 
 typedef uint8_t avr_gpio_t;
 
