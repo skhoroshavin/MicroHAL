@@ -2,12 +2,13 @@
 #pragma once
 
 #include <avr/io.h>
+#include <core/timer.h>
 
-inline uint8_t avr_basic_timer_counter() { return TCNT0; }
-inline void    avr_basic_timer_set_counter( uint8_t value ) { TCNT0 = value; }
+#define avr_basic_timer_counter()          (TCNT0)
+#define avr_basic_timer_set_counter(VALUE) do { TCNT0 = (VALUE) } while(0)
 
-inline uint8_t avr_basic_timer_has_overflow() { return TIFR0 & (1 << TOV0); }
-inline void    avr_basic_timer_clear_overflow() { TIFR0 |= (1 << TOV0); }
+#define avr_basic_timer_has_overflow()   (TIFR0 & (1 << TOV0))
+#define avr_basic_timer_clear_overflow() do { TIFR0 |= (1 << TOV0); } while(0)
 
 typedef enum
 {

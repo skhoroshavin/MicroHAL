@@ -1,7 +1,5 @@
 
 #include <hal.h>
-#include <core/gpio.h>
-#include <core/timer.h>
 
 #define CPU_FREQ    16000000
 #define TIMER_FREQ  (CPU_FREQ/1024)
@@ -14,13 +12,13 @@ int main(void)
 
 	halInit();
 
-	while(1)
+	for(;;)
 	{
 		halProcess();
 
-		if( TIMER_HAS_OVERFLOW(MAIN_TIMER) )
+		if( timer_has_overflow(MAIN_TIMER) )
 		{
-			TIMER_CLEAR_OVERFLOW(MAIN_TIMER);
+			timer_clear_overflow(MAIN_TIMER);
 			++counter;
 		}
 
@@ -30,7 +28,7 @@ int main(void)
 			counter = 0;
 		}
 
-		GPIO_PIN_WRITE(LED,led_state);
+		gpio_write_pin(LED,led_state);
 	}
 
 	return 0;

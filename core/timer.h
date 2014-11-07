@@ -1,15 +1,31 @@
 
 #pragma once
 
-#define _TIMER_COUNTER(TIMER) TIMER##_counter()
-#define _TIMER_SET_COUNTER(TIMER,VALUE) TIMER##_set_counter(value)
+/***********************************************************************\
+ * Get timer counter                                                  *
+\***********************************************************************/
 
-#define _TIMER_HAS_OVERFLOW(TIMER) TIMER##_has_overflow()
-#define _TIMER_CLEAR_OVERFLOW(TIMER) TIMER##_clear_overflow()
+#define _timer_counter(TIMER) TIMER##_counter()
+#define timer_counter(TIMER) _timer_counter(TIMER)
 
-#define TIMER_COUNTER(TIMER) _TIMER_COUNTER(TIMER)
-#define TIMER_SET_COUNTER(TIMER,VALUE) _TIMER_SET_COUNTER(TIMER,VALUE)
+/***********************************************************************\
+ * Set timer counter                                                   *
+\***********************************************************************/
 
-#define TIMER_HAS_OVERFLOW(TIMER) _TIMER_HAS_OVERFLOW(TIMER)
-#define TIMER_CLEAR_OVERFLOW(TIMER) _TIMER_CLEAR_OVERFLOW(TIMER)
+#define _timer_set_counter(TIMER,VALUE) TIMER##_set_counter(value)
+#define timer_set_counter(TIMER,VALUE) _timer_set_counter(TIMER,VALUE)
+
+/***********************************************************************\
+ * Get timer overflow status                                           *
+\***********************************************************************/
+
+#define _timer_has_overflow(TIMER) TIMER##_has_overflow()
+#define timer_has_overflow(TIMER) _timer_has_overflow(TIMER)
+
+/***********************************************************************\
+ * Clear timer overflow status                                         *
+\***********************************************************************/
+
+#define _timer_clear_overflow(TIMER) TIMER##_clear_overflow()
+#define timer_clear_overflow(TIMER) _timer_clear_overflow(TIMER)
 

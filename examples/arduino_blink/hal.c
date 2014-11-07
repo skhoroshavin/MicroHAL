@@ -3,7 +3,8 @@
 
 void halInit()
 {
-	avr_gpioB_init( 0xff, 0x00 );
+	gpio_setup_pin( LED, AVR_GPIO_OUTPUT_LOW );
+
 	avr_basic_timer_init( AVR_BASIC_TIMER_CLK_1024 );
 }
 

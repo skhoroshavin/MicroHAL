@@ -12,4 +12,4 @@ include $(HALDIR)/ports/avr/platform.mk
 include $(HALDIR)/core/build.mk
 
 flash: build/$(TARGET)
-	sudo avrdude -c arduino -b 57600 -p m328p -P /dev/ttyUSB0 -u -U $<
+	avrdude -c arduino -b 57600 -p m328p -P /dev/ttyUSB0 -u -U $<
