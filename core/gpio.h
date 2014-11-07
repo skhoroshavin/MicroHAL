@@ -3,10 +3,12 @@
 
 #include <stdint.h>
 
-#define DEFINE_GPIO_PIN_OUT(NAME,GPIO,PIN) \
-	inline void NAME##_set() { GPIO##_set( (1<<PIN) ); } \
-	inline void NAME##_clr() { GPIO##_clr( (1<<PIN) ); } \
-	inline void NAME##_write( uint8_t value ) { if(value) NAME##_set(); else NAME##_clr(); }
+#define _GPIO_PIN_SET(PORT,PIN) PORT##_set( 1<<PIN )
+#define _GPIO_PIN_CLR(PORT,PIN) PORT##_clr( 1<<PIN )
+#define _GPIO_PIN_WRITE(PORT,PIN,VALUE) do { if(VALUE) PORT##_set(1<<PIN); else PORT##_clr(1<<PIN); } while(0)
+#define _GPIO_PIN_READ(PORT,PIN) ((PORT##_read() >> PIN) & 0x1)
 
-#define DEFINE_GPIO_PIN_IN(NAME,GPIO,PIN) \
-	inline uint8_t NAME##_read() { return (GPIO##_read() >> PIN) & 0x1; }
+#define GPIO_PIN_SET(PORT,PIN) _GPIO_PIN_SET(PORTPIN,VALUE)
+#define GPIO_PIN_CLR(PORT,PIN) _GPIO_PIN_CLR(PORTPIN,VALUE)
+#define GPIO_PIN_WRITE(PORTPIN,VALUE) _GPIO_PIN_WRITE(PORTPIN,VALUE)
+#define GPIO_PIN_READ (PORTPIN,VALUE) _GPIO_PIN_READ (PORTPIN,VALUE)

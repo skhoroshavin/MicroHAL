@@ -6,7 +6,7 @@
 inline uint8_t avr_basic_timer_counter() { return TCNT0; }
 inline void    avr_basic_timer_set_counter( uint8_t value ) { TCNT0 = value; }
 
-inline uint8_t avr_basic_timer_overflow() { return TIFR0 & (1 << TOV0); }
+inline uint8_t avr_basic_timer_has_overflow() { return TIFR0 & (1 << TOV0); }
 inline void    avr_basic_timer_clear_overflow() { TIFR0 |= (1 << TOV0); }
 
 typedef enum

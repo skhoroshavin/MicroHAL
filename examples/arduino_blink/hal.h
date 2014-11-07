@@ -4,7 +4,9 @@
 #include <ports/avr/gpio.h>
 #include <ports/avr/basic_timer.h>
 
-DEFINE_GPIO_PIN_OUT(LED, avr_gpioB, 5)
+#define LED avr_gpioB, 5
+
+#define MAIN_TIMER avr_basic_timer
 
 void halInit();
 void halProcess();

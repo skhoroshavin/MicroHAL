@@ -1,5 +1,7 @@
 
 #include <hal.h>
+#include <core/gpio.h>
+#include <core/timer.h>
 
 #define CPU_FREQ    16000000
 #define TIMER_FREQ  (CPU_FREQ/1024)
@@ -16,9 +18,9 @@ int main(void)
 	{
 		halProcess();
 
-		if( avr_basic_timer_overflow() )
+		if( TIMER_HAS_OVERFLOW(MAIN_TIMER) )
 		{
-			avr_basic_timer_clear_overflow();
+			TIMER_CLEAR_OVERFLOW(MAIN_TIMER);
 			++counter;
 		}
 
@@ -28,7 +30,7 @@ int main(void)
 			counter = 0;
 		}
 
-		LED_write( led_state );
+		GPIO_PIN_WRITE(LED,led_state);
 	}
 
 	return 0;

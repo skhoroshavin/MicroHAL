@@ -1,2 +1,6 @@
 *build
 /MicroHAL.creator.user
+/MicroHAL.config
+/MicroHAL.creator
+/MicroHAL.files
+/MicroHAL.includes
