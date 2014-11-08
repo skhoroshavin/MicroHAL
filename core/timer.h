@@ -29,3 +29,17 @@
 #define _timer_clear_overflow(TIMER) TIMER##_clear_overflow()
 #define timer_clear_overflow(TIMER) _timer_clear_overflow(TIMER)
 
+/***********************************************************************\
+ * Get timer top status                                           *
+\***********************************************************************/
+
+#define _timer_has_top(TIMER) TIMER##_has_top()
+#define timer_has_top(TIMER) _timer_has_top(TIMER)
+
+/***********************************************************************\
+ * Clear timer top status                                         *
+\***********************************************************************/
+
+#define _timer_clear_top(TIMER) TIMER##_clear_top()
+#define timer_clear_top(TIMER) _timer_clear_top(TIMER)
+

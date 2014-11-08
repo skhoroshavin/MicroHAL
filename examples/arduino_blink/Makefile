@@ -5,7 +5,8 @@ SOURCES = \
 	main.c \
 	hal.c \
 	ports/avr/gpio.c \
-	ports/avr/basic_timer.c
+	ports/avr/basic_timer.c \
+	ports/avr/advanced_timer.c
 
 MCU   = atmega328p
 include $(HALDIR)/ports/avr/platform.mk
