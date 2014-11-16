@@ -3,8 +3,7 @@ Directory structure
 ===================
 
 	core
-		Platform independent macros and functions, can be directly used
-		by any part of project
+		Platform independent macros and functions
 	ports
 		Platform dependent low-level drivers, used indirectly through
 		microhal.h by any part of project
@@ -40,6 +39,9 @@ Interfaces
 ==========
 
 	GPIO
+		gpio_init()       - initialize bus
+		gpio_write(value) - write value (for output bus)
+		gpio_read()       - read value (for input bus)
 
 	Timer
 

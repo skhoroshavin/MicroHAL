@@ -6,7 +6,7 @@
 #include <ports/avr/advanced_timer.h>
 #include <ports/avr/avr_uart.h>
 
-#define LED     avr_gpio_b, 5
+AVR_GPIO_OUTPUT(led, B,5,1, 0)
 
 #define MAIN_TIMER avr_advanced_timer
 

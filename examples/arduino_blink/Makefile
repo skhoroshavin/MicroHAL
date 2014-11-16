@@ -4,7 +4,6 @@ TARGET  = blink
 SOURCES = \
 	main.c \
 	microhal.c \
-	ports/avr/gpio.c \
 	ports/avr/basic_timer.c \
 	ports/avr/advanced_timer.c \
 	ports/avr/avr_uart.c

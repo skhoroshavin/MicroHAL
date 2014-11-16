@@ -3,7 +3,7 @@
 
 void halInit()
 {
-	gpio_setup_pin( LED, AVR_GPIO_OUTPUT_LOW );
+	led_init();
 
 	avr_advanced_timer_config_t timer_config =
 	{
@@ -14,7 +14,7 @@ void halInit()
 	};
 	avr_advanced_timer_setup( &timer_config );
 
-	avr_uart_init( 57600 );
+	avr_uart_init( 9600 );
 }
 
 void halProcess()
