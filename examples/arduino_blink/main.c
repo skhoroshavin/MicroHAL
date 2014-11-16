@@ -18,10 +18,21 @@ int main(void)
 		if( timer_has_top(MAIN_TIMER) )
 		{
 			timer_clear_top(MAIN_TIMER);
-			led_state = 1 - led_state;
-		}
 
-		gpio_write_pin(LED,led_state);
+			led_state = 1 - led_state;
+			if( led_state )
+			{
+				gpio_set_pin(LED);
+				while( !avr_uart_can_send() );
+				avr_uart_send( '1' );
+			}
+			else
+			{
+				gpio_clear_pin(LED);
+				while( !avr_uart_can_send() );
+				avr_uart_send( '0' );
+			}
+		}
 	}
 
 	return 0;

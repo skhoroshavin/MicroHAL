@@ -6,7 +6,8 @@ SOURCES = \
 	microhal.c \
 	ports/avr/gpio.c \
 	ports/avr/basic_timer.c \
-	ports/avr/advanced_timer.c
+	ports/avr/advanced_timer.c \
+	ports/avr/avr_uart.c
 
 MCU   = atmega328p
 include $(HALDIR)/ports/avr/build.mk

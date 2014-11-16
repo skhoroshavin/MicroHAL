@@ -13,6 +13,8 @@ void halInit()
 		.pwm_b  = AVR_TIMER_PWM_OFF
 	};
 	avr_advanced_timer_setup( &timer_config );
+
+	avr_uart_init( 57600 );
 }
 
 void halProcess()

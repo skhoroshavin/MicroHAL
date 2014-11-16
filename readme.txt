@@ -27,7 +27,8 @@ User project
 		Include core build.mk
 		Define flash target if necessary
 
-	Project must contain microhal.h, because it is included in driver implementations
+	Project must contain microhal.h, because it is included in driver
+	implementations
 
 	Driver usage:
 		Put driver configuration macros in microhal.h
