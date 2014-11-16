@@ -1,5 +1,5 @@
 
-#include <hal.h>
+#include "microhal.h"
 
 #define CPU_FREQ    16000000
 #define TIMER_FREQ  (CPU_FREQ/1024)
