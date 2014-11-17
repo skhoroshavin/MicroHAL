@@ -4,8 +4,6 @@ TARGET  = blink
 SOURCES = \
 	main.c \
 	microhal.c \
-	ports/avr/basic_timer.c \
-	ports/avr/advanced_timer.c \
 	ports/avr/avr_uart.c
 
 MCU   = atmega328p

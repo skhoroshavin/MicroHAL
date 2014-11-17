@@ -1,8 +1,22 @@
 
 #pragma once
 
-#include <avr/io.h>
-#include <ports/avr/timer_utils.h>
+#include <ports/avr/_avr_timer_utils.h>
+
+#define AVR_ADVANCED_TIMER_NORMAL(name,index,prescaler) \
+	enum { name##_freq = cpu_freq/prescaler }; \
+	inline void name##_init() \
+	{ \
+		TCCR0A = 0; \
+		TCCR0B = _AVR_TIMER_PRESCALER_BIT(prescaler); \
+	} \
+	inline uint16_t name##_value() { return TCNT; }
+
+
+
+
+
+
 
 #define avr_advanced_timer_counter()          (TCNT1)
 #define avr_advanced_timer_set_counter(VALUE) do { TCNT1 = (VALUE); } while(0)

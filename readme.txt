@@ -21,7 +21,7 @@ User project
 		Define HALDIR - path to MicroHAL
 		Define TARGET - binary name
 		Define SOURCES - list of used c files
-		Define platform specific macros (CPU, F_CPU, etc)
+		Define MCU - platform specific controller name
 		Include platform-specific build.mk
 		Include core build.mk
 		Define flash target if necessary
@@ -44,5 +44,11 @@ Interfaces
 		gpio_read()       - read value (for input bus)
 
 	Timer
+		timer_freq    - timer frequency
+		timer_init()  - initialize timer
+		timer_value() - timer current value
+
 
 	UART
+
+

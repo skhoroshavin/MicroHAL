@@ -1,23 +1,31 @@
 
 #include "microhal.h"
 
-#define CPU_FREQ    16000000
-#define TIMER_FREQ  (CPU_FREQ/1024)
+enum
+{
+	tick_period_ms   = 500,
+	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/1000
+};
+
+STATIC_ASSERT((sys_clock_period) < 0x10000, test);
 
 int main(void)
 {
-	uint8_t led_state = 0;
+	uint8_t  led_state   = 0;
+	uint8_t  last_tick   = 0;
+	uint16_t accumulator = 0;
 
 	halInit();
-	avr_advanced_timer_set_top(TIMER_FREQ);
 
 	for(;;)
 	{
-		halProcess();
+		uint8_t cur_tick = sys_clock_value();
+		accumulator += (uint8_t)(cur_tick - last_tick);
+		last_tick = cur_tick;
 
-		if( timer_has_top(MAIN_TIMER) )
+		if( accumulator > sys_clock_period )
 		{
-			timer_clear_top(MAIN_TIMER);
+			accumulator -= sys_clock_period;
 
 			led_state = 1 - led_state;
 			char c = led_state ? '1' : '0';
