@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <ports/avr/gpio.h>
+#include <ports/avr/avr_gpio.h>
 #include <ports/avr/basic_timer.h>
 #include <ports/avr/advanced_timer.h>
 #include <ports/avr/avr_uart.h>
