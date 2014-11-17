@@ -3,7 +3,6 @@ HALDIR  = ../..
 TARGET  = blink
 SOURCES = \
 	main.c \
-	microhal.c \
 	ports/avr/avr_uart.c
 
 MCU   = atmega328p

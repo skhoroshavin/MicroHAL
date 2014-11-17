@@ -48,7 +48,9 @@ Interfaces
 		timer_init()  - initialize timer
 		timer_value() - timer current value
 
-
 	UART
+		uart_init(baud)       - initialize UART
+		uart_send_byte(value) - send byte
+		uart_recv_byte()      - receive byte
 
 

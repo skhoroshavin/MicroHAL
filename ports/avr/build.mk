@@ -1,5 +1,5 @@
 
 CC = avr-gcc
 
-CCFLAGS = -mmcu=$(MCU) -std=c99 -flto -O3 -Wall -I$(HALDIR)
+CCFLAGS = -mmcu=$(MCU) -std=c99 -flto -O3 -Wall -I. -I$(HALDIR)
 LDFLAGS = -mmcu=$(MCU) -std=c99 -flto -O3
