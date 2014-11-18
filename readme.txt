@@ -18,11 +18,11 @@ User project
 ============
 
 	Makefile:
-		Define HALDIR - path to MicroHAL
-		Define TARGET - binary name
-		Define SOURCES - list of used c files
-		Define MCU - platform specific controller name
-		Include platform-specific build.mk
+		Define PLATFORM - platform name (AVR,STM32,NORDIC51,etc)
+		Define MCU      - controller name
+		Define HALDIR   - path to MicroHAL
+		Define TARGET   - binary name
+		Define SOURCES  - list of used c files
 		Include core build.mk
 		Define flash target if necessary
 

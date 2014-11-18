@@ -1,4 +1,10 @@
 
+ifeq ($(PLATFORM),AVR)
+include $(HALDIR)/core/avr/build.mk
+else
+$(error Unknown platform $(PLATFORM)!)
+endif
+
 OBJECTS = $(addprefix build/,$(SOURCES:.c=.o))
 
 all: build/$(TARGET)

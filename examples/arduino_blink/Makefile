@@ -1,12 +1,12 @@
 
-HALDIR  = ../..
-TARGET  = blink
-SOURCES = \
+PLATFORM = AVR
+MCU      = atmega328p
+HALDIR   = ../..
+TARGET   = blink
+SOURCES  = \
 	main.c \
 	ports/avr/avr_uart.c
 
-MCU   = atmega328p
-include $(HALDIR)/ports/avr/build.mk
 include $(HALDIR)/core/build.mk
 
 flash: build/$(TARGET)
