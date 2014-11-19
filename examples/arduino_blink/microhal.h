@@ -13,19 +13,19 @@ enum { cpu_freq = 16000000 };
  * GPIO                                                                *
 \***********************************************************************/
 
-#include <ports/avr/avr_gpio.h>
+#include <drivers/avr/avr_gpio.h>
 AVR_GPIO_OUTPUT(led, B,5,1, 0)
 
 /***********************************************************************\
  * Timers                                                              *
 \***********************************************************************/
 
-#include <ports/avr/avr_basic_timer.h>
+#include <drivers/avr/avr_basic_timer.h>
 AVR_BASIC_TIMER_NORMAL(sys_clock,1024)
 
 /***********************************************************************\
  * UART                                                                *
 \***********************************************************************/
 
-#include <ports/avr/avr_uart.h>
-AVR_UART(debug)
+#include <drivers/avr/avr_uart.h>
+AVR_UART(debug,0)

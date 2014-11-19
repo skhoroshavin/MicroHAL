@@ -3,9 +3,7 @@ PLATFORM = AVR
 MCU      = atmega328p
 HALDIR   = ../..
 TARGET   = blink
-SOURCES  = \
-	main.c \
-	ports/avr/avr_uart.c
+SOURCES  = main.c
 
 include $(HALDIR)/core/build.mk
 

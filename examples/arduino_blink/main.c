@@ -14,7 +14,8 @@ void send_msg( const char * pMessage )
 {
 	while( *pMessage )
 	{
-		debug_send_byte(*pMessage);
+		while( !debug_can_send() );
+		debug_send(*pMessage);
 		++pMessage;
 	}
 }
@@ -24,7 +25,9 @@ void send_msg_flash( const char * pMessage )
 	char c = flash_read_byte(pMessage);
 	while( c )
 	{
-		debug_send_byte( c );
+		while( !debug_can_send() );
+		debug_send( c );
+
 		++pMessage;
 		c = flash_read_byte(pMessage);
 	}

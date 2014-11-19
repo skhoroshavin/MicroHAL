@@ -3,13 +3,9 @@ Directory structure
 ===================
 
 	core
-		Platform independent macros and functions
-	ports
-		Platform dependent low-level drivers, used indirectly through
-		microhal.h by any part of project
+		Generic utilities and build scripts
 	drivers
-		Platform independent drivers, used indirectly through microhal.h
-		by any part of project
+		Device drivers, used indirectly through microhal.h by any part of project
 	examples
 		Working examples
 
@@ -49,8 +45,10 @@ Interfaces
 		timer_value() - timer current value
 
 	UART
-		uart_init(baud)       - initialize UART
-		uart_send_byte(value) - send byte
-		uart_recv_byte()      - receive byte
+		uart_init(baud)  - initialize UART
+		uart_can_send()  - check if UART is ready to send data
+		uart_can_recv()  - check if UART is ready to receive data
+		uart_send(value) - send 1 byte
+		uart_recv()      - receive 1 byte
 
 

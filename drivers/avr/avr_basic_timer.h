@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <ports/avr/_avr_timer_utils.h>
+#include <drivers/avr/_avr_timer_utils.h>
 
 #define AVR_BASIC_TIMER_NORMAL(name,prescaler) \
 	enum { name##_freq = cpu_freq/prescaler }; \
