@@ -2,10 +2,11 @@
 #include "microhal.h"
 #include <core/flash.h>
 #include <core/ring_buffer.h>
+#include <core/string_utils.h>
 
 enum
 {
-	tick_period_ms   = 2000,
+	tick_period_ms   = 100,
 	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/1000
 };
 
@@ -34,18 +35,20 @@ void send_msg_flash( const char * pMessage )
 	}
 }
 
-const char g_pMsgOn[]  FLASH = "LED is on!\n\r";
-const char g_pMsgOff[] FLASH = "LED is off!\n\r";
-const char g_pMsg[]    FLASH = "Received: ";
+const char g_pMsgOn[]      FLASH = "LED is on!\n\r";
+const char g_pMsgOff[]     FLASH = "LED is off!\n\r";
+const char g_pMsgCounter[] FLASH = "Counter: ";
+const char g_pMsgRecv[]    FLASH = "Received: ";
 
-ring_buffer_t buffer;
+DEFINE_FIXED_RING_BUFFER(buf16,uint8_t,4)
+buf16_t buffer;
 
 void process_uart()
 {
 	while( debug_can_recv() )
 	{
 		char c = debug_recv();
-		ring_buffer_push_back( &buffer, c );
+		buf16_push_front( &buffer, c );
 	}
 }
 
@@ -54,12 +57,14 @@ int main(void)
 	uint8_t  led_state   = 0;
 	uint8_t  last_tick   = 0;
 	uint16_t accumulator = 0;
+	uint16_t counter     = 0;
 	const char * pMsg = g_pMsgOff;
+	char     buf[32];
 
 	led_init();
 	sys_clock_init();
 	debug_init( 9600 );
-	ring_buffer_init( &buffer );
+	buf16_init( &buffer );
 
 	for(;;)
 	{
@@ -72,21 +77,26 @@ int main(void)
 		if( accumulator > sys_clock_period )
 		{
 			accumulator -= sys_clock_period;
+			++counter;
 
 			led_state = 1 - led_state;
 			pMsg = led_state ? g_pMsgOn : g_pMsgOff;
 
 			led_write( led_state );
-			send_msg_flash( pMsg );
+			//send_msg_flash( pMsg );
 
-			send_msg_flash( g_pMsg );
-			while( !ring_buffer_is_empty( &buffer ) )
-			{
-				while( !debug_can_send() );
-				debug_send( ring_buffer_front( &buffer ) );
-				ring_buffer_pop_front( &buffer );
-			}
+			send_msg_flash( g_pMsgCounter );
+			send_msg( uint32_to_string( counter, buf ) );
 			send_msg( "\n\r" );
+
+//			send_msg_flash( g_pMsgRecv );
+//			while( !buf16_is_empty( &buffer ) )
+//			{
+//				while( !debug_can_send() );
+//				debug_send( buf16_front( &buffer ) );
+//				buf16_pop_front( &buffer );
+//			}
+//			send_msg( "\n\r" );
 		}
 	}
 
