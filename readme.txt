@@ -51,4 +51,3 @@ Interfaces
 		uart_send(value) - send 1 byte
 		uart_recv()      - receive 1 byte
 
-

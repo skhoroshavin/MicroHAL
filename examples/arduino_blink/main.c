@@ -1,11 +1,12 @@
 
 #include "microhal.h"
 #include <core/flash.h>
+#include <core/ring_buffer.h>
 
 enum
 {
-	tick_period_ms   = 1000,
-	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/2000
+	tick_period_ms   = 2000,
+	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/1000
 };
 
 STATIC_ASSERT((sys_clock_period) < 0x10000, test);
@@ -35,6 +36,18 @@ void send_msg_flash( const char * pMessage )
 
 const char g_pMsgOn[]  FLASH = "LED is on!\n\r";
 const char g_pMsgOff[] FLASH = "LED is off!\n\r";
+const char g_pMsg[]    FLASH = "Received: ";
+
+ring_buffer_t buffer;
+
+void process_uart()
+{
+	while( debug_can_recv() )
+	{
+		char c = debug_recv();
+		ring_buffer_push_back( &buffer, c );
+	}
+}
 
 int main(void)
 {
@@ -46,9 +59,12 @@ int main(void)
 	led_init();
 	sys_clock_init();
 	debug_init( 9600 );
+	ring_buffer_init( &buffer );
 
 	for(;;)
 	{
+		process_uart();
+
 		uint8_t cur_tick = sys_clock_value();
 		accumulator += (uint8_t)(cur_tick - last_tick);
 		last_tick = cur_tick;
@@ -62,6 +78,15 @@ int main(void)
 
 			led_write( led_state );
 			send_msg_flash( pMsg );
+
+			send_msg_flash( g_pMsg );
+			while( !ring_buffer_is_empty( &buffer ) )
+			{
+				while( !debug_can_send() );
+				debug_send( ring_buffer_front( &buffer ) );
+				ring_buffer_pop_front( &buffer );
+			}
+			send_msg( "\n\r" );
 		}
 	}
 
