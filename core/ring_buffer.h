@@ -1,28 +1,51 @@
 
 #pragma once
 
-#define DEFINE_FIXED_RING_BUFFER(name,type,order) \
-	enum { name##_max_size = (1 << order)-1 }; \
-	typedef struct \
-	{ \
-		uint8_t begin; \
-		uint8_t end; \
-		type    data[name##_max_size]; \
-	} name##_t; \
-	inline void name##_init( name##_t * buf ) { buf->begin = buf->end = 0; } \
-	inline uint8_t name##_is_empty( name##_t * buf ) { return (buf->begin == buf->end); } \
-	inline uint8_t name##_size( name##_t * buf ) { return (buf->end - buf->begin) & name##_max_size; } \
-	inline type    name##_front( name##_t * buf ) { return buf->data[buf->begin]; } \
-	inline type    name##_back( name##_t * buf ) { return buf->data[(buf->end-1) & name##_max_size]; } \
-	inline void name##_push_front( name##_t * buf, type value ) \
-	{ \
-		buf->data[buf->begin] = value; \
-		--buf->begin; buf->begin = buf->begin & name##_max_size; \
-	} \
-	inline void name##_push_back( name##_t * buf, type value ) \
-	{ \
-		buf->data[buf->end] = value; \
-		++buf->end; buf->end = buf->end & name##_max_size; \
-	} \
-	inline void name##_pop_front( name##_t * buf ) { ++buf->begin; buf->begin = buf->begin & name##_max_size; } \
-	inline void name##_pop_back( name##_t * buf ) { --buf->end; buf->end = buf->end & name##_max_size; }
+#include <stdint.h>
+#include "pp_utils.h"
+
+/***********************************************************************\
+ * Ring buffer initialization                                          *
+\***********************************************************************/
+
+#define rb_init(rb)      do { (rb)->begin = (rb)->end = 0; } while(0)
+
+/***********************************************************************\
+ * Ring buffer queries                                                 *
+\***********************************************************************/
+
+#define rb_is_empty(rb)  ((rb)->begin == (rb)->end)
+#define rb_max_size(rb)  ARRAY_SIZE((rb)->data)
+#define rb_pos(rb,pos)   ((uint8_t)(pos) & rb_max_size(rb))
+#define rb_size(rb)      rb_pos(rb,(rb)->end - (rb)->begin)
+#define rb_front(rb)     ((rb)->data[(rb)->begin])
+#define rb_back(rb)      ((rb)->data[rb_pos(rb,(rb)->end - 1)])
+
+/***********************************************************************\
+ * Ring buffer modification                                            *
+\***********************************************************************/
+
+#define rb_push_front(rb,value) do { \
+		(rb)->begin = rb_pos(rb,(rb)->begin-1); \
+		(rb)->data[(rb)->begin] = value; \
+	} while(0)
+#define rb_push_back(rb,value) do { \
+		(rb)->data[(rb)->end] = value; \
+		(rb)->end = rb_pos(rb,(rb)->end+1); \
+	} while(0)
+
+#define rb_pop_front(rb) do { (rb)->begin = rb_pos(rb,(rb)->begin+1); } while(0)
+#define rb_pop_back(rb) do { (rb)->end= rb_pos(rb,(rb)->end-1); } while(0)
+
+/***********************************************************************\
+ * Ring buffer validation                                            *
+\***********************************************************************/
+
+#define rb_is_valid(rb) ( \
+	(rb_max_size(rb) == 0x3) || \
+	(rb_max_size(rb) == 0x7) || \
+	(rb_max_size(rb) == 0xf) || \
+	(rb_max_size(rb) == 0x1f) || \
+	(rb_max_size(rb) == 0x3f) || \
+	(rb_max_size(rb) == 0x7f) || \
+	(rb_max_size(rb) == 0xff) )
