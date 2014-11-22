@@ -13,7 +13,7 @@ inline uint32_t flash_read_dword( const void * pPtr ) { return pgm_read_dword(pP
 inline float    flash_read_float( const void * pPtr ) { return pgm_read_float(pPtr); }
 inline void *   flash_read_ptr( const void * pPtr )   { return pgm_read_ptr(pPtr);   }
 
-#else // AVR
+#else /* AVR */
 
 #define FLASH
 
@@ -23,4 +23,4 @@ inline uint32_t flash_read_dword( const void * pPtr ) { return *((uint32_t*)pPtr
 inline float    flash_read_float( const void * pPtr ) { return *((float*)pPtr); }
 inline void *   flash_read_ptr( const void * pPtr )   { return *((void**)pPtr);   }
 
-#endif // AVR
+#endif /* AVR */

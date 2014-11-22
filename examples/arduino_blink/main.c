@@ -86,7 +86,8 @@ int main(void)
 			//send_msg_flash( pMsg );
 
 			send_msg_flash( g_pMsgCounter );
-			send_msg( uint32_to_string( counter, buf ) );
+			*write_uint16( buf, counter ) = 0;
+			send_msg( buf );
 			send_msg( "\n\r" );
 
 //			send_msg_flash( g_pMsgRecv );
