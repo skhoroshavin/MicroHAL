@@ -44,17 +44,15 @@ struct
 {
 	uint8_t begin;
 	uint8_t end;
-	char    data[31];
+	char    data[32];
 } buffer;
-
-STATIC_ASSERT(rb_is_valid(&buffer),main);
 
 void process_uart()
 {
 	while( debug_can_recv() )
 	{
 		char c = debug_recv();
-		rb_push_front( &buffer, c );
+		rb_push_back( &buffer, c );
 	}
 }
 
