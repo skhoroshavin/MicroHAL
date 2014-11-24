@@ -1,8 +1,8 @@
 
 #include "microhal.h"
 #include <core/flash.h>
-#include <core/ring_buffer.h>
 #include <core/text_stream.h>
+#include <core/buffer.h>
 
 enum
 {
@@ -35,15 +35,14 @@ void send_msg_flash( const char * pMessage )
 	}
 }
 
-const char g_pMsgOn[]      FLASH = "LED is on!\n\r";
-const char g_pMsgOff[]     FLASH = "LED is off!\n\r";
-const char g_pMsgCounter[] FLASH = "Counter: ";
-const char g_pMsgRecv[]    FLASH = "Received: ";
+const char g_pMsgOn[]   FLASH = "LED is on!\n\r";
+const char g_pMsgOff[]  FLASH = "LED is off!\n\r";
+const char g_pMsgSize[] FLASH = "Size: ";
+const char g_pMsgRecv[] FLASH = "Message: ";
 
 struct
 {
-	uint8_t begin;
-	uint8_t end;
+	uint8_t size;
 	char    data[32];
 } buffer;
 
@@ -52,7 +51,7 @@ void process_uart()
 	while( debug_can_recv() )
 	{
 		char c = debug_recv();
-		rb_push_back( &buffer, c );
+		buf_push_back( &buffer, c );
 	}
 }
 
@@ -61,14 +60,13 @@ int main(void)
 	uint8_t  led_state   = 0;
 	uint8_t  last_tick   = 0;
 	uint16_t accumulator = 0;
-	uint16_t counter     = 0;
 	const char * pMsg = g_pMsgOff;
 	char     buf[32];
 
 	led_init();
 	sys_clock_init();
 	debug_init( 9600 );
-	rb_init( &buffer );
+	buf_init( &buffer );
 
 	for(;;)
 	{
@@ -81,7 +79,6 @@ int main(void)
 		if( accumulator > sys_clock_period )
 		{
 			accumulator -= sys_clock_period;
-			++counter;
 
 			led_state = 1 - led_state;
 			pMsg = led_state ? g_pMsgOn : g_pMsgOff;
@@ -89,18 +86,15 @@ int main(void)
 			led_write( led_state );
 			send_msg_flash( pMsg );
 
-			send_msg_flash( g_pMsgCounter );
-			*write_uint16( buf, counter ) = 0;
+			send_msg_flash( g_pMsgSize );
+			*write_uint16( buf, buf_size( &buffer ) ) = 0;
 			send_msg( buf );
 			send_msg( "\n\r" );
 
 			send_msg_flash( g_pMsgRecv );
-			while( !rb_is_empty( &buffer ) )
-			{
-				while( !debug_can_send() );
-				debug_send( rb_front( &buffer ) );
-				rb_pop_front( &buffer );
-			}
+			buf_push_back( &buffer, 0 );
+			send_msg( buffer.data );
+			buf_clear( &buffer );
 			send_msg( "\n\r" );
 		}
 	}

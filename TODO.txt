@@ -1,6 +1,5 @@
 
 Driver:  Implement console
-AVR:     Better initialization code
 Driver:  Implement signal capture and replay
 AVR:     Implement sleep modes and watchdog
-
+AVR:     Implement SPI

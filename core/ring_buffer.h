@@ -35,3 +35,4 @@
 
 #define rb_pop_front(rb) do { (rb)->begin = rb_pos(rb,(rb)->begin+1); } while(0)
 #define rb_pop_back(rb) do { (rb)->end= rb_pos(rb,(rb)->end-1); } while(0)
+#define rb_clear(rb) do { (rb)->begin = (rb)->end = 0; } while(0)
