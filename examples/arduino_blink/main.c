@@ -3,6 +3,7 @@
 #include <core/flash.h>
 #include <core/text_stream.h>
 #include <core/buffer.h>
+#include <core/buffered_output.h>
 
 enum
 {
@@ -12,28 +13,11 @@ enum
 
 STATIC_ASSERT(sys_clock_period < 0x10000, main);
 
-void send_msg( const char * pMessage )
+buffered_output_t out =
 {
-	while( *pMessage )
-	{
-		while( !debug_can_send() );
-		debug_send(*pMessage);
-		++pMessage;
-	}
-}
-
-void send_msg_flash( const char * pMessage )
-{
-	char c = flash_read_byte(pMessage);
-	while( c )
-	{
-		while( !debug_can_send() );
-		debug_send( c );
-
-		++pMessage;
-		c = flash_read_byte(pMessage);
-	}
-}
+	.send     = debug_send,
+	.can_send = debug_can_send
+};
 
 const char g_pMsgOn[]   FLASH = "LED is on!\n\r";
 const char g_pMsgOff[]  FLASH = "LED is off!\n\r";
@@ -43,7 +27,7 @@ const char g_pMsgRecv[] FLASH = "Message: ";
 struct
 {
 	uint8_t size;
-	char    data[32];
+	char    data[16];
 } buffer;
 
 void process_uart()
@@ -66,11 +50,13 @@ int main(void)
 	led_init();
 	sys_clock_init();
 	debug_init( 9600 );
+	output_init( &out );
 	buf_init( &buffer );
 
 	for(;;)
 	{
 		process_uart();
+		output_process( &out );
 
 		uint8_t cur_tick = sys_clock_value();
 		accumulator += (uint8_t)(cur_tick - last_tick);
@@ -84,18 +70,18 @@ int main(void)
 			pMsg = led_state ? g_pMsgOn : g_pMsgOff;
 
 			led_write( led_state );
-			send_msg_flash( pMsg );
+			output_send_flash_str( &out, pMsg );
 
-			send_msg_flash( g_pMsgSize );
+			output_send_flash_str( &out, g_pMsgSize );
 			*write_uint16( buf, buf_size( &buffer ) ) = 0;
-			send_msg( buf );
-			send_msg( "\n\r" );
+			output_send_mem_str( &out, buf );
+			output_send_mem_str( &out, "\n\r" );
 
-			send_msg_flash( g_pMsgRecv );
+			output_send_flash_str( &out, g_pMsgRecv );
 			buf_push_back( &buffer, 0 );
-			send_msg( buffer.data );
+			output_send_mem_str( &out, buffer.data );
 			buf_clear( &buffer );
-			send_msg( "\n\r" );
+			output_send_mem_str( &out, "\n\r" );
 		}
 	}
 
