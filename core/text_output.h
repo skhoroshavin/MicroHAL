@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <stdint.h>
+#include <core/ring_buffer.h>
 
 typedef enum
 {
@@ -20,9 +20,7 @@ typedef struct
 	void (*send)( uint8_t );
 	uint8_t (*can_send)();
 
-	uint8_t begin;
-	uint8_t end;
-	output_item_t data[16];
+	DECLARE_RING_BUFFER(buffer,output_item_t,16);
 } buffered_output_t;
 
 void output_init( buffered_output_t * out );

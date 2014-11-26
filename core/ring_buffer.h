@@ -2,7 +2,20 @@
 #pragma once
 
 #include <stdint.h>
-#include "pp_utils.h"
+#include <core/pp_utils.h>
+
+/***********************************************************************\
+ * Ring buffer declaration                                             *
+\***********************************************************************/
+
+#define DECLARE_RING_BUFFER(name,type,max_size) \
+	struct \
+	{ \
+		uint8_t begin; \
+		uint8_t end; \
+		type    data[max_size]; \
+		\
+	} name
 
 /***********************************************************************\
  * Ring buffer initialization                                          *
@@ -17,6 +30,7 @@
 #define rb_is_empty(rb)  ((rb)->begin == (rb)->end)
 #define rb_pos(rb,pos)   ((uint8_t)(pos) % ARRAY_SIZE((rb)->data))
 #define rb_size(rb)      rb_pos(rb,(rb)->end - (rb)->begin)
+#define rb_is_full(rb)   (rb_size(rb)+1 == ARRAY_SIZE((rb)->data))
 #define rb_front(rb)     ((rb)->data[(rb)->begin])
 #define rb_back(rb)      ((rb)->data[rb_pos(rb,(rb)->end - 1)])
 

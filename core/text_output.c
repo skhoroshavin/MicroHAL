@@ -5,16 +5,16 @@
 
 void output_init( buffered_output_t * out )
 {
-	rb_init( out );
+	rb_init( &out->buffer );
 }
 
 void output_process( buffered_output_t * out )
 {
-	if( rb_is_empty(out) ) return;
+	if( rb_is_empty(&out->buffer) ) return;
 	if( !out->can_send() ) return;
 
 	char tmp;
-	output_item_t * item = &rb_front(out);
+	output_item_t * item = &rb_front(&out->buffer);
 
 	switch( item->type )
 	{
@@ -22,7 +22,7 @@ void output_process( buffered_output_t * out )
 		tmp = *item->data;
 		if( !tmp )
 		{
-			rb_pop_front(out);
+			rb_pop_front(&out->buffer);
 			return;
 		}
 		++item->data;
@@ -33,7 +33,7 @@ void output_process( buffered_output_t * out )
 		tmp = flash_read_byte(item->data);
 		if( !tmp )
 		{
-			rb_pop_front(out);
+			rb_pop_front(&out->buffer);
 			return;
 		}
 		++item->data;
@@ -50,8 +50,8 @@ uint8_t output_send_mem_str( buffered_output_t * out, const char * msg )
 		.data = msg
 	};
 
-	uint8_t res = out->end;
-	rb_push_back( out, item );
+	uint8_t res = out->buffer.end;
+	rb_push_back( &out->buffer, item );
 	return res;
 }
 
@@ -63,8 +63,8 @@ uint8_t output_send_flash_str( buffered_output_t * out, const char * msg )
 		.data = msg
 	};
 
-	uint8_t res = out->end;
-	rb_push_back( out, item );
+	uint8_t res = out->buffer.end;
+	rb_push_back( &out->buffer, item );
 	return res;
 }
 

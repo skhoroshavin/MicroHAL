@@ -8,11 +8,20 @@
 
 enum
 {
-	tick_period_ms   = 4000,
+	tick_period_ms   = 500,
 	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/1000
 };
 
 STATIC_ASSERT(sys_clock_period < 0x10000, main);
+
+void process_input( uint8_t argc, const char * argv[] );
+
+buffered_input_t in =
+{
+	.recv     = debug_recv,
+	.can_recv = debug_can_recv,
+	.process  = process_input
+};
 
 buffered_output_t out =
 {
@@ -22,22 +31,23 @@ buffered_output_t out =
 
 const char g_pMsgOn[]   FLASH = "LED is on!\n\r";
 const char g_pMsgOff[]  FLASH = "LED is off!\n\r";
-const char g_pMsgSize[] FLASH = "Size: ";
-const char g_pMsgRecv[] FLASH = "Message: ";
+const char g_pMsgSize[] FLASH = "Arguments: ";
 const char g_pMgsEndl[] FLASH = "\n\r";
 
-struct
+void process_input( uint8_t argc, const char * argv[] )
 {
-	uint8_t size;
-	char    data[16];
-} buffer;
+	char buf[32];
+	uint8_t i;
 
-void process_uart()
-{
-	while( debug_can_recv() )
+	output_send_flash_str( &out, g_pMsgSize );
+	*write_uint16( buf, argc ) = 0;
+	output_send_mem_str( &out, buf );
+	output_send_flash_str( &out, g_pMgsEndl );
+
+	for( i = 0; i < argc; ++i )
 	{
-		char c = debug_recv();
-		buf_push_back( &buffer, c );
+		output_send_mem_str( &out, argv[i] );
+		output_send_flash_str( &out, g_pMgsEndl );
 	}
 }
 
@@ -47,17 +57,17 @@ int main(void)
 	uint8_t  last_tick   = 0;
 	uint16_t accumulator = 0;
 	const char * pMsg = g_pMsgOff;
-	char     buf[32];
 
 	led_init();
 	sys_clock_init();
+
 	debug_init( 9600 );
+	input_init( &in );
 	output_init( &out );
-	buf_init( &buffer );
 
 	for(;;)
 	{
-		process_uart();
+		input_process( &in );
 		output_process( &out );
 
 		uint8_t cur_tick = sys_clock_value();
@@ -73,17 +83,6 @@ int main(void)
 
 			led_write( led_state );
 			output_send_flash_str( &out, pMsg );
-
-			output_send_flash_str( &out, g_pMsgSize );
-			*write_uint16( buf, buf_size( &buffer ) ) = 0;
-			output_send_mem_str( &out, buf );
-			output_send_flash_str( &out, g_pMgsEndl );
-
-			output_send_flash_str( &out, g_pMsgRecv );
-			buf_push_back( &buffer, 0 );
-			output_send_mem_str( &out, buffer.data );
-			buf_clear( &buffer );
-			output_send_flash_str( &out, g_pMgsEndl );
 		}
 	}
 
