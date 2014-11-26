@@ -3,7 +3,11 @@ PLATFORM = AVR
 MCU      = atmega328p
 HALDIR   = ../..
 TARGET   = blink
-SOURCES  = main.c core/text_stream.c core/buffered_output.c
+
+SOURCES  = main.c \
+	core/int_to_string.c \
+	core/text_input.c \
+	core/text_output.c
 
 include $(HALDIR)/core/build.mk
 

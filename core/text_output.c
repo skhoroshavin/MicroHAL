@@ -1,5 +1,5 @@
 
-#include "buffered_output.h"
+#include "text_output.h"
 #include <core/ring_buffer.h>
 #include <core/flash.h>
 

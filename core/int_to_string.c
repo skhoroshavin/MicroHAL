@@ -1,5 +1,5 @@
 
-#include "text_stream.h"
+#include "int_to_string.h"
 
 /***********************************************************************\
  * 8-bit integer conversion                                           *

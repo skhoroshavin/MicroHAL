@@ -1,9 +1,10 @@
 
 #include "microhal.h"
 #include <core/flash.h>
-#include <core/text_stream.h>
+#include <core/int_to_string.h>
 #include <core/buffer.h>
-#include <core/buffered_output.h>
+#include <core/text_output.h>
+#include <core/text_input.h>
 
 enum
 {
@@ -23,6 +24,7 @@ const char g_pMsgOn[]   FLASH = "LED is on!\n\r";
 const char g_pMsgOff[]  FLASH = "LED is off!\n\r";
 const char g_pMsgSize[] FLASH = "Size: ";
 const char g_pMsgRecv[] FLASH = "Message: ";
+const char g_pMgsEndl[] FLASH = "\n\r";
 
 struct
 {
@@ -75,13 +77,13 @@ int main(void)
 			output_send_flash_str( &out, g_pMsgSize );
 			*write_uint16( buf, buf_size( &buffer ) ) = 0;
 			output_send_mem_str( &out, buf );
-			output_send_mem_str( &out, "\n\r" );
+			output_send_flash_str( &out, g_pMgsEndl );
 
 			output_send_flash_str( &out, g_pMsgRecv );
 			buf_push_back( &buffer, 0 );
 			output_send_mem_str( &out, buffer.data );
 			buf_clear( &buffer );
-			output_send_mem_str( &out, "\n\r" );
+			output_send_flash_str( &out, g_pMgsEndl );
 		}
 	}
 
