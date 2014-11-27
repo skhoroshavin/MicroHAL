@@ -6,6 +6,7 @@ TARGET   = blink
 
 SOURCES  = main.c \
 	core/int_to_string.c \
+	core/string_utils.c \
 	core/text_input.c \
 	core/text_output.c
 

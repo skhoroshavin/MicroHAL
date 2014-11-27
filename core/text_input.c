@@ -1,6 +1,7 @@
 
 #include "text_input.h"
 #include <core/buffer.h>
+#include <core/int_to_string.h>
 
 void input_init( buffered_input_t * in )
 {
@@ -22,7 +23,7 @@ void input_process( buffered_input_t * in )
 			if( buf_back( &in->data ) )
 				buf_push_back( &in->data, 0 );
 		}
-		else if( tmp == '\n' )
+		else if( (tmp == '\n') || (tmp == '\r') )
 		{
 			if( buf_is_empty( &in->data ) )
 				continue;
