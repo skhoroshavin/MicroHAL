@@ -17,6 +17,8 @@ STATIC_ASSERT(sys_clock_period < 0x10000, main);
 
 volatile uint16_t led_on = sys_clock_freq/2;
 
+extern inline uint8_t debug_recv();
+extern inline uint8_t debug_can_recv();
 void process_input( uint8_t argc, const char * argv[] );
 
 buffered_input_t in =
@@ -25,6 +27,9 @@ buffered_input_t in =
 	.can_recv = debug_can_recv,
 	.process  = process_input
 };
+
+extern inline void debug_send( uint8_t value );
+extern inline uint8_t debug_can_send();
 
 buffered_output_t out =
 {
