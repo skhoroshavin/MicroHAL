@@ -1,7 +1,8 @@
 
 #pragma once
 
-#include <core/linked_list.h>
+#include <stdint.h>
+#include <core/list.h>
 
 /**
  * @brief Pointer to task function
@@ -11,24 +12,42 @@
  */
 typedef unsigned (*task_t)(void*);
 
-typedef struct
+struct task_item_t
 {
-	linked_list_t queue;
-	unsigned      delay;
-	task_t        task;
-	void *        context;
-} tasklet_t;
+	list_t    timer_queue;
+	unsigned  delay;
+	task_t    task;
+	void *    context;
+};
+typedef struct task_item_t task_item_t;
 
-typedef struct
+#define DEFINE_TASK(name,handler,context_type) \
+	context_type name##_context; \
+	task_item_t name = { \
+		.delay = 1, \
+		.task  = (task_t)handler, \
+		.context = &name##_context \
+	};
+
+
+
+
+struct task_queue_t
 {
+	list_t timer_queue;
 
-} task_queue_t;
+};
+typedef struct task_queue_t task_queue_t;
 
 /**
  * @brief Initialize task queue
  * @param tq Task queue pointer
  */
 void task_queue_init( task_queue_t * tq );
+
+void task_queue_add_delayed( task_queue_t * tq, task_item_t * item, unsigned delay );
+
+inline void task_queue_add( task_queue_t * tq, task_item_t * item ) { task_queue_add_delayed( tq, item, 1 ); }
 
 /**
  * @brief Process task queue
@@ -37,13 +56,4 @@ void task_queue_init( task_queue_t * tq );
  * @return Number of ticks after which this function should be run again
  */
 unsigned task_queue_process( task_queue_t * tq, unsigned ticks );
-
-/**
- * @brief Add task to queue
- * @param tq Task queue pointer
- * @param task
- * @param context
- * @param delay
- */
-void task_queue_add( task_queue_t * tq, task_t task, void * context, unsigned delay );
 
