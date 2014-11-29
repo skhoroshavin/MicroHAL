@@ -5,6 +5,7 @@ HALDIR   = ../..
 TARGET   = blink
 
 SOURCES  = main.c \
+	core/task_queue.c \
 	core/int_to_string.c \
 	core/string_utils.c \
 	core/text_input.c \

@@ -1,5 +1,9 @@
 
-Driver:  Implement console
-Driver:  Implement signal capture and replay
-AVR:     Implement sleep modes and watchdog
-AVR:     Implement SPI
+Linked list
+Task queue
+Task scheduler
+Refactor text I/O
+Formatted text output
+Signal capture and replay
+AVR sleep modes and watchdog
+AVR SPI
