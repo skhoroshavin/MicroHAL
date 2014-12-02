@@ -88,6 +88,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Task item.  
+ <a href="structtask__item__t.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="task__queue_8h_source.html">task_queue.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for task_item_t:</div>
@@ -100,17 +103,22 @@ Collaboration diagram for task_item_t:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a918d0bb783e236480b6e0815cedfa9ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlist__t.html">list_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask__item__t.html#a918d0bb783e236480b6e0815cedfa9ea">timer_queue</a></td></tr>
+<tr class="memdesc:a918d0bb783e236480b6e0815cedfa9ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer queue pointer.  <a href="#a918d0bb783e236480b6e0815cedfa9ea">More...</a><br /></td></tr>
 <tr class="separator:a918d0bb783e236480b6e0815cedfa9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ddfb34676df70afcdf051ea2b802860"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask__item__t.html#a2ddfb34676df70afcdf051ea2b802860">delay</a></td></tr>
+<tr class="memdesc:a2ddfb34676df70afcdf051ea2b802860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay in ticks after which task should be started.  <a href="#a2ddfb34676df70afcdf051ea2b802860">More...</a><br /></td></tr>
 <tr class="separator:a2ddfb34676df70afcdf051ea2b802860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3b46869493e0666fe76110c66b71472"><td class="memItemLeft" align="right" valign="top"><a class="el" href="task__queue_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6">task_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask__item__t.html#aa3b46869493e0666fe76110c66b71472">task</a></td></tr>
+<tr class="memdesc:aa3b46869493e0666fe76110c66b71472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to task function.  <a href="#aa3b46869493e0666fe76110c66b71472">More...</a><br /></td></tr>
 <tr class="separator:aa3b46869493e0666fe76110c66b71472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4b427b66f9980dee21044069ac0dda3"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtask__item__t.html#ae4b427b66f9980dee21044069ac0dda3">context</a></td></tr>
+<tr class="memdesc:ae4b427b66f9980dee21044069ac0dda3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to task context.  <a href="#ae4b427b66f9980dee21044069ac0dda3">More...</a><br /></td></tr>
 <tr class="separator:ae4b427b66f9980dee21044069ac0dda3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00015">15</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<div class="textblock"><p>Task item. </p>
+
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00018">18</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="ae4b427b66f9980dee21044069ac0dda3"></a>
 <div class="memitem">
@@ -122,7 +130,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00020">20</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<p>Pointer to task context. </p>
+
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00023">23</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 
 </div>
 </div>
@@ -136,7 +146,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00018">18</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<p>Delay in ticks after which task should be started. </p>
+
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00021">21</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 
 </div>
 </div>
@@ -150,7 +162,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00019">19</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<p>Pointer to task function. </p>
+
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00022">22</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 
 </div>
 </div>
@@ -164,7 +178,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00017">17</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<p>Timer queue pointer. </p>
+
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00020">20</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 
 </div>
 </div>
@@ -174,7 +190,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 1 2014 10:11:35 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

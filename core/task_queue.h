@@ -12,12 +12,15 @@
  */
 typedef unsigned (*task_t)(void*);
 
+/**
+ * @brief Task item
+ */
 struct task_item_t
 {
-	list_t    timer_queue;
-	unsigned  delay;
-	task_t    task;
-	void *    context;
+	list_t    timer_queue; /**< @brief Timer queue pointer */
+	unsigned  delay;       /**< @brief Delay in ticks after which task should be started */
+	task_t    task;        /**< @brief Pointer to task function */
+	void *    context;     /**< @brief Pointer to task context */
 };
 typedef struct task_item_t task_item_t;
 
@@ -29,12 +32,12 @@ typedef struct task_item_t task_item_t;
 		.context = &name##_context \
 	};
 
-
-
-
+/**
+ * @brief Task queue
+ */
 struct task_queue_t
 {
-	list_t timer_queue;
+	list_t timer_queue; /**< Timer queue header */
 
 };
 typedef struct task_queue_t task_queue_t;
@@ -45,8 +48,19 @@ typedef struct task_queue_t task_queue_t;
  */
 void task_queue_init( task_queue_t * tq );
 
+/**
+ * @brief Add delayed task to queue
+ * @param tq Task queue pointer
+ * @param item Task item pointer
+ * @param delay Delay in ticks after which task should be started
+ */
 void task_queue_add_delayed( task_queue_t * tq, task_item_t * item, unsigned delay );
 
+/**
+ * @brief Add task to queue
+ * @param tq Task queue pointer
+ * @param item Task item pointer
+ */
 inline void task_queue_add( task_queue_t * tq, task_item_t * item ) { task_queue_add_delayed( tq, item, 1 ); }
 
 /**
