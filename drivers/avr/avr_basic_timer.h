@@ -10,4 +10,7 @@
 		TCCR0A = 0; \
 		TCCR0B = _AVR_TIMER_PRESCALER_BIT(prescaler); \
 	} \
-	inline uint8_t name##_value() { return TCNT0; }
+	inline uint8_t name##_value() { return TCNT0; } \
+	inline uint8_t name##_has_overflow() { return TIFR0 & (1 << TOV0); } \
+	inline void name##_clear_overflow() { TIFR0 = (1 << TOV0); }
+

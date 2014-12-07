@@ -19,16 +19,17 @@ struct task_item_t
 {
 	list_t    timer_queue; /**< @brief Timer queue pointer */
 	unsigned  delay;       /**< @brief Delay in ticks after which task should be started */
-	task_t    task;        /**< @brief Pointer to task function */
+	task_t    func;        /**< @brief Pointer to task function */
 	void *    context;     /**< @brief Pointer to task context */
 };
 typedef struct task_item_t task_item_t;
 
-#define DEFINE_TASK(name,handler,context_type) \
-	context_type name##_context; \
+#define DEFINE_TASK(name) \
+	name##_t name##_context; \
+	extern unsigned name##_handler( name##_t * context ); \
 	task_item_t name = { \
 		.delay = 1, \
-		.task  = (task_t)handler, \
+		.func  = (task_t)name##_handler, \
 		.context = &name##_context \
 	};
 

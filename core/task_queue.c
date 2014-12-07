@@ -23,13 +23,19 @@ unsigned task_queue_process( task_queue_t * tq, unsigned ticks )
 	{
 		task_item_t * task = list_item( pos, task_item_t, timer_queue );
 
-		if( task->delay > ticks ) task->delay -= ticks;
-		else task->delay = task->task( task->context );
+		if( task->delay > ticks )
+			task->delay -= ticks;
+		else
+			task->delay = task->func( task->context );
 
 		if( !task->delay )
+		{
 			list_remove( pos );
+			continue;
+		}
 
-		if( task->delay < min_delay ) min_delay = task->delay;
+		if( task->delay < min_delay )
+			min_delay = task->delay;
 	}
 
 	return min_delay;

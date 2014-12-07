@@ -6,16 +6,24 @@
 #include <core/string_utils.h>
 #include <core/text_output.h>
 #include <core/text_input.h>
+#include <core/task.h>
+#include <core/task_queue.h>
 
 enum
 {
-	tick_period_ms   = 1000,
-	sys_clock_period = (uint32_t)sys_clock_freq*tick_period_ms/1000
+	tick_period_ms = 1000,
+	blink_period   = (uint32_t)sys_clock_freq*tick_period_ms/1000
 };
 
-STATIC_ASSERT(sys_clock_period < 0x10000, main);
+STATIC_ASSERT(blink_period < 0x10000, main);
 
-volatile uint16_t led_on = sys_clock_freq/2;
+task_queue_t tq;
+
+BEGIN_CONTEXT(blink_t)
+	uint16_t led_on;
+	uint16_t led_off;
+END_CONTEXT(blink_t)
+DEFINE_TASK(blink)
 
 extern inline uint8_t debug_recv();
 extern inline uint8_t debug_can_recv();
@@ -61,15 +69,16 @@ void process_input( uint8_t argc, const char * argv[] )
 		}
 
 		if( str_equalF( argv[1], cmd_led_on ) )
-			led_on = sys_clock_period;
+			blink_context.led_on = blink_period;
 		else if( str_equalF( argv[1], cmd_led_off ) )
-			led_on = 0;
+			blink_context.led_on = 0;
 		else if( str_equalF( argv[1], cmd_led_blink ) )
-			led_on = sys_clock_period / 2;
+			blink_context.led_on = blink_period / 2;
 		else if( str_equalF( argv[1], cmd_led_flash ) )
-			led_on = sys_clock_period / 20;
+			blink_context.led_on = blink_period / 20;
 		else
 			output_send_flash_str( &out, usage_led );
+		blink_context.led_off = blink_period - blink_context.led_on;
 	}
 	else
 	{
@@ -79,10 +88,37 @@ void process_input( uint8_t argc, const char * argv[] )
 	}
 }
 
+unsigned blink_handler( blink_t * ctx )
+{
+	task_begin(ctx);
+
+	while(1)
+	{
+		if( ctx->led_on )
+		{
+			led_write( 1 );
+			task_delay( ctx, ctx->led_on );
+		}
+
+		if( ctx->led_off )
+		{
+			led_write( 0 );
+			task_delay( ctx, ctx->led_off );
+		}
+	}
+
+	task_end(ctx);
+}
+
 int main(void)
 {
-	uint8_t  last_tick   = 0;
-	uint16_t accumulator = 0;
+	uint8_t last_tick = sys_clock_value();
+
+	blink_context.led_on  = blink_period/2;
+	blink_context.led_off = blink_period/2;
+
+	task_queue_init( &tq );
+	task_queue_add( &tq, &blink );
 
 	led_init();
 	sys_clock_init();
@@ -93,13 +129,9 @@ int main(void)
 
 	for(;;)
 	{
-		uint8_t cur_tick = sys_clock_value();
-		accumulator += (uint8_t)(cur_tick - last_tick);
-		if( accumulator > sys_clock_period )
-			accumulator -= sys_clock_period;
-		last_tick = cur_tick;
-
-		led_write( accumulator < led_on );
+		uint8_t dt = sys_clock_value() - last_tick;
+		task_queue_process( &tq, dt );
+		last_tick += dt;
 
 		input_process( &in );
 		output_process( &out );
