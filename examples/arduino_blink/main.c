@@ -7,7 +7,7 @@
 #include <core/text_output.h>
 #include <core/text_input.h>
 #include <core/task.h>
-#include <core/task_queue.h>
+#include <core/task_table.h>
 
 enum
 {
@@ -17,13 +17,16 @@ enum
 
 STATIC_ASSERT(blink_period < 0x10000, main);
 
-task_queue_t tq;
-
 BEGIN_CONTEXT(blink_t)
 	uint16_t led_on;
 	uint16_t led_off;
 END_CONTEXT(blink_t)
-DEFINE_TASK(blink)
+
+blink_t blink_context =
+{
+	.led_on  = blink_period/2,
+	.led_off = blink_period/2
+};
 
 extern inline uint8_t debug_recv();
 extern inline uint8_t debug_can_recv();
@@ -110,15 +113,13 @@ unsigned blink_handler( blink_t * ctx )
 	task_end(ctx);
 }
 
+BEGIN_TASK_TABLE(tasks)
+	TASK_ENTRY(&blink_handler,&blink_context)
+END_TASK_TABLE()
+
 int main(void)
 {
 	uint8_t last_tick = sys_clock_value();
-
-	blink_context.led_on  = blink_period/2;
-	blink_context.led_off = blink_period/2;
-
-	task_queue_init( &tq );
-	task_queue_add( &tq, &blink );
 
 	led_init();
 	sys_clock_init();
@@ -130,7 +131,7 @@ int main(void)
 	for(;;)
 	{
 		uint8_t dt = sys_clock_value() - last_tick;
-		task_queue_process( &tq, dt );
+		task_table_process( tasks, dt );
 		last_tick += dt;
 
 		input_process( &in );
