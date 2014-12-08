@@ -13,7 +13,7 @@ uint8_t str_equal( const char * str1, const char * str2 )
 	return 0;
 }
 
-uint8_t str_equalF( const char * str1, const char * strF )
+uint8_t str_equalF( const char * str1, flash_str strF )
 {
 	while( *str1 == flash_read_byte(strF) )
 	{

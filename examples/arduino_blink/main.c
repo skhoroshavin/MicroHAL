@@ -48,21 +48,20 @@ buffered_output_t out =
 	.can_send = debug_can_send
 };
 
+FLASH_STR(unknown_cmd) = "Unknown command: ";
+FLASH_STR(endl)        = "\n\r";
+
+FLASH_STR(usage_led)   =
+		"Usage: led <parameter>\r\n"
+		"Valid parameters are: on, off, blink, flash\r\n";
+FLASH_STR(cmd_led) = "led";
+FLASH_STR(cmd_led_on) = "on";
+FLASH_STR(cmd_led_off) = "off";
+FLASH_STR(cmd_led_blink) = "blink";
+FLASH_STR(cmd_led_flash) = "flash";
+
 void process_input( uint8_t argc, const char * argv[] )
 {
-	static const char unknown_cmd[] FLASH = "Unknown command: ";
-	static const char endl[] FLASH = "\n\r";
-
-	static const char usage_led[] FLASH =
-			"Usage: led <parameter>\r\n"
-			"Valid parameters are: on, off, blink, flash\r\n";
-
-	static const char cmd_led[]       FLASH = "led";
-	static const char cmd_led_on[]    FLASH = "on";
-	static const char cmd_led_off[]   FLASH = "off";
-	static const char cmd_led_blink[] FLASH = "blink";
-	static const char cmd_led_flash[] FLASH = "flash";
-
 	if( str_equalF( argv[0], cmd_led ) )
 	{
 		if( argc < 2 )

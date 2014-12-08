@@ -1,6 +1,4 @@
 
-Linked list
-Task queue
 Task scheduler
 Refactor text I/O
 Formatted text output
