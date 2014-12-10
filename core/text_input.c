@@ -9,37 +9,32 @@ void input_init( buffered_input_t * in )
 	buf_init( &in->argv );
 }
 
-void input_process( buffered_input_t * in )
+uint8_t input_process_char( buffered_input_t * in, char c )
 {
-	while( in->can_recv() )
+	if( c == ' ' )
 	{
-		char tmp = in->recv();
+		if( buf_is_empty( &in->data ) )
+			return 0;
 
-		if( tmp == ' ' )
-		{
-			if( buf_is_empty( &in->data ) )
-				continue;
-
-			if( buf_back( &in->data ) )
-				buf_push_back( &in->data, 0 );
-		}
-		else if( (tmp == '\n') || (tmp == '\r') )
-		{
-			if( buf_is_empty( &in->data ) )
-				continue;
-
-			if( buf_back( &in->data ) )
-				buf_push_back( &in->data, 0 );
-
-			in->process( in->argv.size, in->argv.data );
-			buf_clear( &in->data );
-			buf_clear( &in->argv );
-		}
-		else
-		{
-			if( buf_is_empty( &in->data ) || !buf_back( &in->data ) )
-				buf_push_back( &in->argv, in->data.data + in->data.size );
-			buf_push_back( &in->data, tmp );
-		}
+		if( buf_back( &in->data ) )
+			buf_push_back( &in->data, 0 );
 	}
+	else if( (c == '\n') || (c == '\r') )
+	{
+		if( buf_is_empty( &in->data ) )
+			return 0;
+
+		if( buf_back( &in->data ) )
+			buf_push_back( &in->data, 0 );
+
+		return 1;
+	}
+	else
+	{
+		if( buf_is_empty( &in->data ) || !buf_back( &in->data ) )
+			buf_push_back( &in->argv, in->data.data + in->data.size );
+		buf_push_back( &in->data, c );
+	}
+
+	return 0;
 }

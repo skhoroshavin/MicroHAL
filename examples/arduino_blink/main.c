@@ -28,16 +28,7 @@ blink_t blink_context =
 	.led_off = blink_period/2
 };
 
-extern inline uint8_t debug_recv();
-extern inline uint8_t debug_can_recv();
-void process_input( uint8_t argc, const char * argv[] );
-
-buffered_input_t in =
-{
-	.recv     = debug_recv,
-	.can_recv = debug_can_recv,
-	.process  = process_input
-};
+buffered_input_t in;
 
 extern inline void debug_send( uint8_t value );
 extern inline uint8_t debug_can_send();
@@ -133,7 +124,7 @@ int main(void)
 		task_table_process( tasks, dt );
 		last_tick += dt;
 
-		input_process( &in );
+		input_process_stream( &in, debug, process_input );
 		output_process( &out );
 	}
 
