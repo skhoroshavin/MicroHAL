@@ -29,15 +29,7 @@ blink_t blink_context =
 };
 
 buffered_input_t in;
-
-extern inline void debug_send( uint8_t value );
-extern inline uint8_t debug_can_send();
-
-buffered_output_t out =
-{
-	.send     = debug_send,
-	.can_send = debug_can_send
-};
+buffered_output_t out;
 
 FLASH_STR(unknown_cmd) = "Unknown command: ";
 FLASH_STR(endl)        = "\n\r";
@@ -125,7 +117,7 @@ int main(void)
 		last_tick += dt;
 
 		input_process_stream( &in, debug, process_input );
-		output_process( &out );
+		output_process_stream( &out, debug );
 	}
 
 	return 0;

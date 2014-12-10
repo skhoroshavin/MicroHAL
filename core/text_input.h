@@ -3,10 +3,18 @@
 
 #include <core/buffer.h>
 
+#ifndef TEXT_INPUT_BUF_SIZE
+#define TEXT_INPUT_BUF_SIZE 32
+#endif /* TEXT_INPUT_BUF_SIZE */
+
+#ifndef TEXT_INPUT_MAX_PARAMS
+#define TEXT_INPUT_MAX_PARAMS 4
+#endif /* TEXT_INPUT_MAX_PARAMS */
+
 typedef struct
 {
-	DECLARE_BUFFER(data, char,        32);
-	DECLARE_BUFFER(argv, const char*,  8);
+	DECLARE_BUFFER(data, char,        TEXT_INPUT_BUF_SIZE);
+	DECLARE_BUFFER(argv, const char*, TEXT_INPUT_MAX_PARAMS);
 } buffered_input_t;
 
 void input_init( buffered_input_t * in );

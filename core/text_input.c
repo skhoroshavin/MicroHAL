@@ -25,7 +25,12 @@ uint8_t input_process_char( buffered_input_t * in, char c )
 			return 0;
 
 		if( buf_back( &in->data ) )
-			buf_push_back( &in->data, 0 );
+		{
+			if( buf_is_full( &in->data ) )
+				buf_back( &in->data ) = 0;
+			else
+				buf_push_back_unsafe( &in->data, 0 );
+		}
 
 		return 1;
 	}

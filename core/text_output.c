@@ -8,40 +8,6 @@ void output_init( buffered_output_t * out )
 	rb_init( &out->buffer );
 }
 
-void output_process( buffered_output_t * out )
-{
-	if( rb_is_empty(&out->buffer) ) return;
-	if( !out->can_send() ) return;
-
-	char tmp;
-	output_item_t * item = &rb_front(&out->buffer);
-
-	switch( item->type )
-	{
-	case OUTPUT_ITEM_MEM:
-		tmp = *item->data;
-		if( !tmp )
-		{
-			rb_pop_front(&out->buffer);
-			return;
-		}
-		++item->data;
-		out->send( tmp );
-		return;
-
-	case OUTPUT_ITEM_FLASH:
-		tmp = flash_read_byte(item->data);
-		if( !tmp )
-		{
-			rb_pop_front(&out->buffer);
-			return;
-		}
-		++item->data;
-		out->send( tmp );
-		return;
-	}
-}
-
 uint8_t output_send_mem_str( buffered_output_t * out, const char * msg )
 {
 	output_item_t item =
@@ -68,3 +34,35 @@ uint8_t output_send_flash_str( buffered_output_t * out, const char * msg )
 	return res;
 }
 
+uint8_t output_process_char( buffered_output_t * out )
+{
+	if( rb_is_empty(&out->buffer) ) return 0;
+
+	char tmp;
+	output_item_t * item = &rb_front(&out->buffer);
+
+	switch( item->type )
+	{
+	case OUTPUT_ITEM_MEM:
+		tmp = *item->data;
+		if( !tmp )
+		{
+			rb_pop_front(&out->buffer);
+			return 0;
+		}
+		++item->data;
+		return tmp;
+
+	case OUTPUT_ITEM_FLASH:
+		tmp = flash_read_byte(item->data);
+		if( !tmp )
+		{
+			rb_pop_front(&out->buffer);
+			return 0;
+		}
+		++item->data;
+		return tmp;
+	}
+
+	return 0;
+}
