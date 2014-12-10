@@ -17,7 +17,7 @@ typedef struct
 
 typedef struct
 {
-	DECLARE_RING_BUFFER(buffer,output_item_t,16);
+	DECLARE_RING_BUFFER(buffer,output_item_t,8);
 } buffered_output_t;
 
 void output_init( buffered_output_t * out );

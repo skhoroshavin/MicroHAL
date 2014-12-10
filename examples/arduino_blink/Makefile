@@ -15,5 +15,6 @@ SOURCES  = main.c \
 include $(HALDIR)/core/build.mk
 
 flash: build/$(TARGET)
-#	avr-size build/$(TARGET)
+#	avr-objdump -d build/$(TARGET)
+	avr-size build/$(TARGET)
 	avrdude -c arduino -b 57600 -p m328p -P /dev/ttyUSB0 -u -U $<

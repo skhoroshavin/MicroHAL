@@ -24,3 +24,19 @@ uint8_t str_equalF( const char * str1, flash_str strF )
 	return 0;
 }
 
+uint8_t str_findF( const char * str, flash_ptr strListF, uint8_t stride )
+{
+	uint8_t i = 0;
+	flash_str s = flash_read_ptr(strListF);
+	while( s )
+	{
+		if( str_equalF( str, s ) )
+			return i;
+
+		++i;
+		strListF = ((uint8_t*)strListF) + stride;
+		s = flash_read_ptr(strListF);
+	}
+
+	return -1;
+}

@@ -43,6 +43,21 @@ FLASH_STR(cmd_led_off) = "off";
 FLASH_STR(cmd_led_blink) = "blink";
 FLASH_STR(cmd_led_flash) = "flash";
 
+struct cmd_led_arg_t
+{
+	flash_str name;
+	uint16_t  period;
+};
+
+FLASH_DATA(struct cmd_led_arg_t,cmd_led_args) =
+{
+	{ cmd_led_on, blink_period },
+	{ cmd_led_off, 0 },
+	{ cmd_led_blink, blink_period/2 },
+	{ cmd_led_flash, blink_period/20 },
+	{ 0, 0 }
+};
+
 void process_input( uint8_t argc, const char * argv[] )
 {
 	if( str_equalF( argv[0], cmd_led ) )
@@ -53,17 +68,16 @@ void process_input( uint8_t argc, const char * argv[] )
 			return;
 		}
 
-		if( str_equalF( argv[1], cmd_led_on ) )
-			blink_context.led_on = blink_period;
-		else if( str_equalF( argv[1], cmd_led_off ) )
-			blink_context.led_on = 0;
-		else if( str_equalF( argv[1], cmd_led_blink ) )
-			blink_context.led_on = blink_period / 2;
-		else if( str_equalF( argv[1], cmd_led_flash ) )
-			blink_context.led_on = blink_period / 20;
+		uint8_t i = str_findF( argv[1], cmd_led_args, sizeof(struct cmd_led_arg_t) );
+		if( i < ARRAY_SIZE(cmd_led_args) )
+		{
+			blink_context.led_on = flash_read_word( &cmd_led_args[i].period );
+			blink_context.led_off = blink_period - blink_context.led_on;
+		}
 		else
+		{
 			output_send_flash_str( &out, usage_led );
-		blink_context.led_off = blink_period - blink_context.led_on;
+		}
 	}
 	else
 	{

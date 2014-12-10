@@ -9,6 +9,7 @@ typedef const void * flash_ptr;
 #include <avr/pgmspace.h>
 
 #define FLASH_STR(name) const char name[] PROGMEM
+#define FLASH_DATA(type,name) const type name[] PROGMEM
 
 inline uint8_t  flash_read_byte( flash_ptr pPtr )  { return pgm_read_byte(pPtr);  }
 inline uint16_t flash_read_word( flash_ptr pPtr )  { return pgm_read_word(pPtr);  }
@@ -19,6 +20,7 @@ inline void *   flash_read_ptr( flash_ptr pPtr )   { return pgm_read_ptr(pPtr); 
 #else /* AVR */
 
 #define FLASH_STR(name) const char name[]
+#define FLASH_DATA(type,name) const type name[]
 
 inline uint8_t  flash_read_byte( flash_ptr pPtr )  { return *((uint8_t*)pPtr);  }
 inline uint16_t flash_read_word( flash_ptr pPtr )  { return *((uint16_t*)pPtr);  }
