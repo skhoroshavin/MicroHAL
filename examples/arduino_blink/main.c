@@ -4,8 +4,7 @@
 #include <core/int_to_string.h>
 #include <core/buffer.h>
 #include <core/string_utils.h>
-#include <core/text_output.h>
-#include <core/text_input.h>
+#include <core/console.h>
 #include <core/task.h>
 #include <core/task_table.h>
 
@@ -27,9 +26,6 @@ blink_t blink_context =
 	.led_on  = blink_period/2,
 	.led_off = blink_period/2
 };
-
-buffered_input_t in;
-buffered_output_t out;
 
 FLASH_STR(unknown_cmd) = "Unknown command: ";
 FLASH_STR(endl)        = "\n\r";
@@ -58,13 +54,13 @@ FLASH_DATA(struct cmd_led_arg_t,cmd_led_args) =
 	{ 0, 0 }
 };
 
-void process_input( uint8_t argc, const char * argv[] )
+void console_on_command( uint8_t argc, const char * argv[] )
 {
 	if( str_equalF( argv[0], cmd_led ) )
 	{
 		if( argc < 2 )
 		{
-			output_send_flash_str( &out, usage_led );
+			console_print( usage_led );
 			return;
 		}
 
@@ -76,14 +72,14 @@ void process_input( uint8_t argc, const char * argv[] )
 		}
 		else
 		{
-			output_send_flash_str( &out, usage_led );
+			console_print( usage_led );
 		}
 	}
 	else
 	{
-		output_send_flash_str( &out, unknown_cmd );
-		output_send_mem_str( &out, argv[0] );
-		output_send_flash_str( &out, endl );
+		console_print( unknown_cmd );
+		output_send_mem_str( &_console_output, argv[0] );
+		console_print( endl );
 	}
 }
 
@@ -119,10 +115,7 @@ int main(void)
 
 	led_init();
 	sys_clock_init();
-
-	debug_init( 9600 );
-	input_init( &in );
-	output_init( &out );
+	console_init( 9600 );
 
 	for(;;)
 	{
@@ -130,8 +123,7 @@ int main(void)
 		task_table_process( tasks, dt );
 		last_tick += dt;
 
-		input_process_stream( &in, debug, process_input );
-		output_process_stream( &out, debug );
+		console_process();
 	}
 
 	return 0;

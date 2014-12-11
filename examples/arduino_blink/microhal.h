@@ -28,4 +28,4 @@ AVR_BASIC_TIMER_NORMAL(sys_clock,1024)
 \***********************************************************************/
 
 #include <drivers/avr/avr_uart.h>
-AVR_UART(debug,0)
+AVR_UART(uart_console,0)

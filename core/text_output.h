@@ -2,6 +2,7 @@
 #pragma once
 
 #include <core/ring_buffer.h>
+#include <core/flash.h>
 
 typedef enum
 {
@@ -22,7 +23,7 @@ typedef struct
 
 void output_init( buffered_output_t * out );
 uint8_t output_send_mem_str( buffered_output_t * out, const char * msg );
-uint8_t output_send_flash_str( buffered_output_t * out, const char * msg );
+uint8_t output_send_flash_str( buffered_output_t * out, flash_str msg );
 
 uint8_t output_process_char( buffered_output_t * out );
 
