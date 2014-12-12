@@ -26,7 +26,7 @@
 \***********************************************************************/
 
 #define buf_is_empty(buf) (!(buf)->size)
-#define buf_is_full(buf)  ((buf)->size == ARRAY_SIZE((buf)->data))
+#define buf_is_full(buf)  ((buf)->size == array_size((buf)->data))
 #define buf_size(buf)     ((buf)->size)
 #define buf_front(buf)    ((buf)->data[0])
 #define buf_back(buf)     ((buf)->data[(buf)->size-1])

@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <stddef.h>
+#include <core/pp_utils.h>
 
 /**
  * @brief Linked list control structure
@@ -18,14 +18,6 @@ typedef struct list_t list_t;
  * @param head Head of linked list
  */
 void list_init( list_t * head );
-
-/**
- * @brief Get pointer to parent structure of list
- * @param list Pointer to linked list structure
- * @param type Type of parent structure
- * @param member Name of parent structure member containing list
- */
-#define list_item(list, type, member) ((type*)((char*)(list)-offsetof(type,member)))
 
 /**
  * @brief Get linked list first element

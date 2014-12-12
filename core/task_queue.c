@@ -21,7 +21,7 @@ unsigned task_queue_process( task_queue_t * tq, unsigned ticks )
 		 pos != &tq->timer_queue;
 		 pos = pos->next )
 	{
-		task_item_t * task = list_item( pos, task_item_t, timer_queue );
+		task_item_t * task = container_of( pos, task_item_t, timer_queue );
 
 		if( task->delay > ticks )
 			task->delay -= ticks;

@@ -65,7 +65,7 @@ void console_on_command( uint8_t argc, const char * argv[] )
 		}
 
 		uint8_t i = str_findF( argv[1], cmd_led_args, sizeof(struct cmd_led_arg_t) );
-		if( i < ARRAY_SIZE(cmd_led_args) )
+		if( i < array_size(cmd_led_args) )
 		{
 			blink_context.led_on = flash_read_word( &cmd_led_args[i].period );
 			blink_context.led_off = blink_period - blink_context.led_on;
