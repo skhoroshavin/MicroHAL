@@ -16,12 +16,14 @@ enum
 
 STATIC_ASSERT(blink_period < 0x10000, main);
 
-BEGIN_CONTEXT(blink_t)
+struct blink_t
+{
+	task_context_t ctx;
 	uint16_t led_on;
 	uint16_t led_off;
-END_CONTEXT(blink_t)
+};
 
-blink_t blink_context =
+struct blink_t blink_context =
 {
 	.led_on  = blink_period/2,
 	.led_off = blink_period/2
@@ -83,26 +85,26 @@ void console_on_command( uint8_t argc, const char * argv[] )
 	}
 }
 
-unsigned blink_handler( blink_t * ctx )
+unsigned blink_handler( struct blink_t * data )
 {
-	task_begin(ctx);
+	task_begin(&data->ctx);
 
 	while(1)
 	{
-		if( ctx->led_on )
+		if( data->led_on )
 		{
 			led_write( 1 );
-			task_delay( ctx, ctx->led_on );
+			task_delay( &data->ctx, data->led_on );
 		}
 
-		if( ctx->led_off )
+		if( data->led_off )
 		{
 			led_write( 0 );
-			task_delay( ctx, ctx->led_off );
+			task_delay( &data->ctx, data->led_off );
 		}
 	}
 
-	task_end(ctx);
+	task_end(&data->ctx);
 }
 
 DEFINE_TASK(blink);

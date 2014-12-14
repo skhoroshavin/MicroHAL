@@ -25,8 +25,8 @@ struct task_item_t
 typedef struct task_item_t task_item_t;
 
 #define DEFINE_TASK(name) \
-	name##_t name##_context; \
-	extern unsigned name##_handler( name##_t * context ); \
+	struct name##_t name##_context; \
+	extern unsigned name##_handler( struct name##_t * context ); \
 	task_item_t name = { \
 		.delay = 1, \
 		.func  = (task_t)name##_handler, \

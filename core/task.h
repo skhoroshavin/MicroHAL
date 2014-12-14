@@ -3,104 +3,111 @@
 
 #include <stdint.h>
 
-/***********************************************************************\
- * Define task context                                                 *
-\***********************************************************************/
+/**
+ * @brief Task context
+ */
 
-#define BEGIN_CONTEXT(name) \
-	typedef struct \
-	{ \
-		unsigned __state;
+typedef unsigned task_context_t;
 
-#define END_CONTEXT(name) \
-	} name;
+/**
+ * @brief Initialize task
+ */
 
-/***********************************************************************\
- * Initialize task                                                     *
-\***********************************************************************/
+#define task_init(ctx) do { *(ctx) = 0; } while(0)
 
-#define task_init(ctx) do { (ctx)->__state = 0; } while(0)
-
-/***********************************************************************\
- * Begin task                                                          *
-\***********************************************************************/
+/**
+ * @brief Begin task
+ */
 
 #define task_begin(ctx) \
 	do { \
-		switch( (ctx)->__state ) \
+		switch( *(ctx) ) \
 		{ \
 		case 0:
 
-/***********************************************************************\
- * End task                                                            *
-\***********************************************************************/
+/**
+ * @brief End task
+ */
 
 #define task_end(ctx) \
 		} \
-		(ctx)->__state = 0; \
+		*(ctx) = 0; \
 		return 0; \
 	} while(0)
 
-/***********************************************************************\
- * Delay task                                                          *
-\***********************************************************************/
+/**
+ * @brief Delay task
+ */
 
 #define task_delay(ctx,value) \
 	do \
 	{ \
-		(ctx)->__state = __LINE__; \
+		*(ctx) = __LINE__; \
 		return (value) ? (value) : 1; \
 		case __LINE__:; \
 	} while(0)
 
-/***********************************************************************\
- * Yield task                                                          *
-\***********************************************************************/
+/**
+ * @brief Yield task
+ */
 
 #define task_yield(ctx) task_delay(ctx,1)
 
-/***********************************************************************\
- * Wait until condition                                                *
-\***********************************************************************/
+/**
+ * @brief Wait until condition becomes true
+ */
 
 #define task_wait_until(ctx,cond) \
 	do \
 	{ \
-		(ctx)->__state = __LINE__; \
+		*(ctx) = __LINE__; \
 		case __LINE__: \
 		if( !(cond) ) return 1; \
 	} while(0)
 
-/***********************************************************************\
- * Wait while                                                          *
-\***********************************************************************/
+/**
+ * @brief Wait while condition is true
+ */
 
 #define task_wait_while(ctx,cond) \
 	do \
 	{ \
-		(ctx)->__state = __LINE__; \
+		*(ctx) = __LINE__; \
 		case __LINE__: \
 		if( cond ) return 1; \
 	} while(0)
 
-/***********************************************************************\
- * Task restart                                                        *
-\***********************************************************************/
+/**
+ * @brief Wait until child task completes
+ */
+#define task_wait_task(ctx,task) \
+	do \
+	{ \
+		unsigned delay; \
+		*(ctx) = _LINE__; \
+		case __LINE__: \
+		delay = task; \
+		if( delay ) return delay; \
+	} while(0)
+
+/**
+ * @brief Restart task
+ */
 
 #define task_restart(ctx) \
 	do \
 	{ \
-		(ctx)->__state = 0; \
+		*(ctx) = 0; \
 		return 1; \
 	} while(0)
 
-/***********************************************************************\
- * Task exit                                                           *
-\***********************************************************************/
+/**
+ * @brief Exit task
+ */
 
 #define task_exit(ctx) \
 	do \
 	{ \
-		(ctx)->__state = 0; \
+		*(ctx) = 0; \
 		return 0; \
 	} while(0)
