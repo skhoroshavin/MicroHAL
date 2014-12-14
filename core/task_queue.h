@@ -31,7 +31,7 @@ typedef struct task_item_t task_item_t;
 		.delay = 1, \
 		.func  = (task_t)name##_handler, \
 		.context = &name##_context \
-	};
+	}
 
 /**
  * @brief Task queue

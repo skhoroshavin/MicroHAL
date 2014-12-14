@@ -6,7 +6,7 @@
 #include <core/string_utils.h>
 #include <core/console.h>
 #include <core/task.h>
-#include <core/task_table.h>
+#include <core/task_queue.h>
 
 enum
 {
@@ -105,9 +105,8 @@ unsigned blink_handler( blink_t * ctx )
 	task_end(ctx);
 }
 
-BEGIN_TASK_TABLE(tasks)
-	TASK_ENTRY(&blink_handler,&blink_context)
-END_TASK_TABLE()
+DEFINE_TASK(blink);
+task_queue_t tq;
 
 int main(void)
 {
@@ -117,10 +116,13 @@ int main(void)
 	sys_clock_init();
 	console_init( 9600 );
 
+	task_queue_init( &tq );
+	task_queue_add( &tq, &blink );
+
 	for(;;)
 	{
 		uint8_t dt = sys_clock_value() - last_tick;
-		task_table_process( tasks, dt );
+		task_queue_process( &tq, dt );
 		last_tick += dt;
 
 		console_process();
