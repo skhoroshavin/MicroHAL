@@ -5,7 +5,7 @@
 #include <core/buffer.h>
 #include <core/string_utils.h>
 #include <core/console.h>
-#include <core/task.h>
+#include <core/coroutine.h>
 #include <core/task_queue.h>
 
 enum
@@ -18,7 +18,7 @@ STATIC_ASSERT(blink_period < 0x10000, main);
 
 struct blink_t
 {
-	task_context_t ctx;
+	cr_context_t ctx;
 	uint16_t led_on;
 	uint16_t led_off;
 };
@@ -87,24 +87,24 @@ void console_on_command( uint8_t argc, const char * argv[] )
 
 unsigned blink_handler( struct blink_t * data )
 {
-	task_begin(&data->ctx);
+	cr_begin(&data->ctx);
 
 	while(1)
 	{
 		if( data->led_on )
 		{
 			led_write( 1 );
-			task_delay( &data->ctx, data->led_on );
+			cr_delay( &data->ctx, data->led_on );
 		}
 
 		if( data->led_off )
 		{
 			led_write( 0 );
-			task_delay( &data->ctx, data->led_off );
+			cr_delay( &data->ctx, data->led_off );
 		}
 	}
 
-	task_end(&data->ctx);
+	cr_end(&data->ctx);
 }
 
 DEFINE_TASK(blink);

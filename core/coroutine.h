@@ -4,42 +4,42 @@
 #include <stdint.h>
 
 /**
- * @brief Task context
+ * @brief Coroutine context
  */
 
-typedef unsigned task_context_t;
+typedef unsigned cr_context_t;
 
 /**
- * @brief Initialize task
+ * @brief Initialize coroutine
  */
 
-#define task_init(ctx) do { *(ctx) = 0; } while(0)
+#define cr_init(ctx) do { *(ctx) = 0; } while(0)
 
 /**
- * @brief Begin task
+ * @brief Begin coroutine
  */
 
-#define task_begin(ctx) \
+#define cr_begin(ctx) \
 	do { \
 		switch( *(ctx) ) \
 		{ \
 		case 0:
 
 /**
- * @brief End task
+ * @brief End coroutine
  */
 
-#define task_end(ctx) \
+#define cr_end(ctx) \
 		} \
 		*(ctx) = 0; \
 		return 0; \
 	} while(0)
 
 /**
- * @brief Delay task
+ * @brief Delay coroutine
  */
 
-#define task_delay(ctx,value) \
+#define cr_delay(ctx,value) \
 	do \
 	{ \
 		*(ctx) = __LINE__; \
@@ -48,16 +48,16 @@ typedef unsigned task_context_t;
 	} while(0)
 
 /**
- * @brief Yield task
+ * @brief Yield coroutine
  */
 
-#define task_yield(ctx) task_delay(ctx,1)
+#define cr_yield(ctx) cr_delay(ctx,1)
 
 /**
  * @brief Wait until condition becomes true
  */
 
-#define task_wait_until(ctx,cond) \
+#define cr_wait_until(ctx,cond) \
 	do \
 	{ \
 		*(ctx) = __LINE__; \
@@ -69,7 +69,7 @@ typedef unsigned task_context_t;
  * @brief Wait while condition is true
  */
 
-#define task_wait_while(ctx,cond) \
+#define cr_wait_while(ctx,cond) \
 	do \
 	{ \
 		*(ctx) = __LINE__; \
@@ -78,23 +78,23 @@ typedef unsigned task_context_t;
 	} while(0)
 
 /**
- * @brief Wait until child task completes
+ * @brief Wait until child coroutine completes
  */
-#define task_wait_task(ctx,task) \
+#define cr_wait_coroutine(ctx,coroutine) \
 	do \
 	{ \
 		unsigned delay; \
 		*(ctx) = _LINE__; \
 		case __LINE__: \
-		delay = task; \
+		delay = coroutine; \
 		if( delay ) return delay; \
 	} while(0)
 
 /**
- * @brief Restart task
+ * @brief Restart coroutine
  */
 
-#define task_restart(ctx) \
+#define cr_restart(ctx) \
 	do \
 	{ \
 		*(ctx) = 0; \
@@ -102,10 +102,10 @@ typedef unsigned task_context_t;
 	} while(0)
 
 /**
- * @brief Exit task
+ * @brief Exit coroutine
  */
 
-#define task_exit(ctx) \
+#define cr_exit(ctx) \
 	do \
 	{ \
 		*(ctx) = 0; \
