@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['task_5fqueue_5fadd',['task_queue_add',['../task__queue_8h.html#ae2964f009a57311b2a3f2589a5d8a8fe',1,'task_queue.h']]],
-  ['task_5fqueue_5fadd_5fdelayed',['task_queue_add_delayed',['../task__queue_8h.html#a5a2c7dd1d3b42b6ce3a6dec7f23cb236',1,'task_queue.h']]],
-  ['task_5fqueue_5finit',['task_queue_init',['../task__queue_8h.html#a9f0b69aa33ee110205c809fdf826fb45',1,'task_queue.h']]],
-  ['task_5fqueue_5fprocess',['task_queue_process',['../task__queue_8h.html#a33e582ad1236cc2007408f2490df16ff',1,'task_queue.h']]]
+  ['str_5fequal',['str_equal',['../string__utils_8h.html#af7e491c56b7cedf8cef2d1800d4faf93',1,'string_utils.h']]],
+  ['str_5fequalf',['str_equalF',['../string__utils_8h.html#af663ca51a99e79cca2d6e735679ccdb4',1,'string_utils.h']]],
+  ['str_5ffindf',['str_findF',['../string__utils_8h.html#a6b74c72bec9d053c2bf1f329066c5a0f',1,'string_utils.h']]]
 ];

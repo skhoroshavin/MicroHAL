@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">text_input.h File Reference</div>  </div>
@@ -99,6 +100,13 @@ Include dependency graph for text_input.h:</div>
 <map name="core_2text__input_8h" id="core_2text__input_8h">
 <area shape="rect" id="node2" href="buffer_8h.html" title="core/buffer.h" alt="" coords="45,80,140,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="95,155,202,181"/></map>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="text__input_8h__dep__incl.png" border="0" usemap="#core_2text__input_8hdep" alt=""/></div>
+<map name="core_2text__input_8hdep" id="core_2text__input_8hdep">
+<area shape="rect" id="node2" href="console_8h.html" title="core/console.h" alt="" coords="11,80,118,107"/></map>
+</div>
 </div>
 <p><a href="text__input_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -107,13 +115,96 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbuffered__input__t.html">buffered_input_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a2d8e551f8b4558fc69149bc2a8d961e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#a2d8e551f8b4558fc69149bc2a8d961e0">TEXT_INPUT_BUF_SIZE</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:a2d8e551f8b4558fc69149bc2a8d961e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0670bf07548c3663d79be2e2c32ad6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#a5f0670bf07548c3663d79be2e2c32ad6">TEXT_INPUT_MAX_PARAMS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a5f0670bf07548c3663d79be2e2c32ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a80a3f645c80c2b57218517bb88db0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#ab1a80a3f645c80c2b57218517bb88db0">input_process_stream</a>(in, stream, handler)</td></tr>
+<tr class="separator:ab1a80a3f645c80c2b57218517bb88db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4ecdc29a1b40b15207caee94f67a7031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#a4ecdc29a1b40b15207caee94f67a7031">input_init</a> (<a class="el" href="structbuffered__input__t.html">buffered_input_t</a> *in)</td></tr>
 <tr class="separator:a4ecdc29a1b40b15207caee94f67a7031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeedb1e674d965e8429720f0a38184f60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#aeedb1e674d965e8429720f0a38184f60">input_process</a> (<a class="el" href="structbuffered__input__t.html">buffered_input_t</a> *in)</td></tr>
-<tr class="separator:aeedb1e674d965e8429720f0a38184f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9dfef541290e558a7c8fa65a007440d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a> (<a class="el" href="structbuffered__input__t.html">buffered_input_t</a> *in, char c)</td></tr>
+<tr class="separator:ae9dfef541290e558a7c8fa65a007440d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ab1a80a3f645c80c2b57218517bb88db0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define input_process_stream</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">in, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">stream, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">handler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">while</span>( stream##_can_recv() ) \</div>
+<div class="line">    { \</div>
+<div class="line">        if( <a class="code" href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a>( (in), stream##_recv() ) ) \</div>
+<div class="line">        { \</div>
+<div class="line">            handler( (in)-&gt;argv.size, (in)-&gt;argv.data ); <a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">\</a></div>
+<div class="line"><a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">			buf_clear</a>( &amp;(in)-&gt;data ); <a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">\</a></div>
+<div class="line"><a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">			buf_clear</a>( &amp;(in)-&gt;argv ); \</div>
+<div class="line">        } \</div>
+<div class="line">    }</div>
+<div class="ttc" id="text__input_8h_html_ae9dfef541290e558a7c8fa65a007440d"><div class="ttname"><a href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a></div><div class="ttdeci">uint8_t input_process_char(buffered_input_t *in, char c)</div></div>
+<div class="ttc" id="buffer_8h_html_a99bfa87be609b103b9bba11b2106228f"><div class="ttname"><a href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">buf_clear</a></div><div class="ttdeci">#define buf_clear(buf)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00043">buffer.h:43</a></div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="text__input_8h_source.html#l00024">24</a> of file <a class="el" href="text__input_8h_source.html">text_input.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d8e551f8b4558fc69149bc2a8d961e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEXT_INPUT_BUF_SIZE&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="text__input_8h_source.html#l00007">7</a> of file <a class="el" href="text__input_8h_source.html">text_input.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f0670bf07548c3663d79be2e2c32ad6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEXT_INPUT_MAX_PARAMS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="text__input_8h_source.html#l00011">11</a> of file <a class="el" href="text__input_8h_source.html">text_input.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a4ecdc29a1b40b15207caee94f67a7031"></a>
 <div class="memitem">
@@ -131,16 +222,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeedb1e674d965e8429720f0a38184f60"></a>
+<a class="anchor" id="ae9dfef541290e558a7c8fa65a007440d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void input_process </td>
+          <td class="memname">uint8_t input_process_char </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structbuffered__input__t.html">buffered_input_t</a> *&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -150,7 +251,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

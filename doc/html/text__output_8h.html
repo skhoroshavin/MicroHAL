@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -93,12 +94,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="ring__buffer_8h_source.html">core/ring_buffer.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="flash_8h_source.html">core/flash.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for text_output.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="text__output_8h__incl.png" border="0" usemap="#core_2text__output_8h" alt=""/></div>
 <map name="core_2text__output_8h" id="core_2text__output_8h">
-<area shape="rect" id="node2" href="ring__buffer_8h.html" title="core/ring_buffer.h" alt="" coords="31,80,154,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="95,155,202,181"/></map>
+<area shape="rect" id="node2" href="ring__buffer_8h.html" title="core/ring_buffer.h" alt="" coords="31,80,154,107"/><area shape="rect" id="node6" href="flash_8h.html" title="core/flash.h" alt="" coords="178,80,269,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="95,155,202,181"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="text__output_8h__dep__incl.png" border="0" usemap="#core_2text__output_8hdep" alt=""/></div>
+<map name="core_2text__output_8hdep" id="core_2text__output_8hdep">
+<area shape="rect" id="node2" href="console_8h.html" title="core/console.h" alt="" coords="15,80,122,107"/></map>
 </div>
 </div>
 <p><a href="text__output_8h_source.html">Go to the source code of this file.</a></p>
@@ -109,6 +118,11 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbuffered__output__t.html">buffered_output_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0d036ee19d0487668c2bfde5dd6ebc9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#a0d036ee19d0487668c2bfde5dd6ebc9d">output_process_stream</a>(out, stream)</td></tr>
+<tr class="separator:a0d036ee19d0487668c2bfde5dd6ebc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -121,13 +135,49 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a9c474751f1db92a3df5d8d30935c469a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#a9c474751f1db92a3df5d8d30935c469a">output_init</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out)</td></tr>
 <tr class="separator:a9c474751f1db92a3df5d8d30935c469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f8f280202f9e8feca2f1c7cf5b0117a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#a4f8f280202f9e8feca2f1c7cf5b0117a">output_process</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out)</td></tr>
-<tr class="separator:a4f8f280202f9e8feca2f1c7cf5b0117a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfc3b7b3b91e059eb8fe02b0b8b78a56"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#acfc3b7b3b91e059eb8fe02b0b8b78a56">output_send_mem_str</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out, const char *msg)</td></tr>
 <tr class="separator:acfc3b7b3b91e059eb8fe02b0b8b78a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc530b50b468e2e1be7f33f9ba22db9d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#afc530b50b468e2e1be7f33f9ba22db9d">output_send_flash_str</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out, const char *msg)</td></tr>
-<tr class="separator:afc530b50b468e2e1be7f33f9ba22db9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5017c3b604bf2e36ba74c706759a1f35"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#a5017c3b604bf2e36ba74c706759a1f35">output_send_flash_str</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out, <a class="el" href="flash_8h.html#ae04b73ad57e9aa83320921f0d291eb05">flash_str</a> msg)</td></tr>
+<tr class="separator:a5017c3b604bf2e36ba74c706759a1f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f67ccda5b25b5510dd42c30c88f230b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="text__output_8h.html#a5f67ccda5b25b5510dd42c30c88f230b">output_process_char</a> (<a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *out)</td></tr>
+<tr class="separator:a5f67ccda5b25b5510dd42c30c88f230b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a0d036ee19d0487668c2bfde5dd6ebc9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define output_process_stream</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">out, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">stream&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> \</div>
+<div class="line">    { \</div>
+<div class="line">        char tmp; \</div>
+<div class="line">        while( stream##_can_send() &amp;&amp; (tmp = <a class="code" href="text__output_8h.html#a5f67ccda5b25b5510dd42c30c88f230b">output_process_char</a>( out )) ) \</div>
+<div class="line">            stream##_send( tmp ); \</div>
+<div class="line">    } <span class="keywordflow">while</span>(0)</div>
+<div class="ttc" id="text__output_8h_html_a5f67ccda5b25b5510dd42c30c88f230b"><div class="ttname"><a href="text__output_8h.html#a5f67ccda5b25b5510dd42c30c88f230b">output_process_char</a></div><div class="ttdeci">uint8_t output_process_char(buffered_output_t *out)</div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="text__output_8h_source.html#l00030">30</a> of file <a class="el" href="text__output_8h_source.html">text_output.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="a1351dd7ff4c7138d01c9466142f29353"></a>
 <div class="memitem">
@@ -145,7 +195,7 @@ Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="text__output_8h_source.html#l00006">6</a> of file <a class="el" href="text__output_8h_source.html">text_output.h</a>.</p>
+<p>Definition at line <a class="el" href="text__output_8h_source.html#l00007">7</a> of file <a class="el" href="text__output_8h_source.html">text_output.h</a>.</p>
 
 </div>
 </div>
@@ -166,12 +216,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4f8f280202f9e8feca2f1c7cf5b0117a"></a>
+<a class="anchor" id="a5f67ccda5b25b5510dd42c30c88f230b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void output_process </td>
+          <td class="memname">uint8_t output_process_char </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structbuffered__output__t.html">buffered_output_t</a> *&#160;</td>
           <td class="paramname"><em>out</em></td><td>)</td>
@@ -182,7 +232,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afc530b50b468e2e1be7f33f9ba22db9d"></a>
+<a class="anchor" id="a5017c3b604bf2e36ba74c706759a1f35"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -195,7 +245,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype"><a class="el" href="flash_8h.html#ae04b73ad57e9aa83320921f0d291eb05">flash_str</a>&#160;</td>
           <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
@@ -237,7 +287,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

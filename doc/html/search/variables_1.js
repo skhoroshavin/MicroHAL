@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['data',['data',['../structoutput__item__t.html#aeb460eb1926bee86638aa9cdc3b39d4a',1,'output_item_t']]],
-  ['delay',['delay',['../structtask__item__t.html#a2ddfb34676df70afcdf051ea2b802860',1,'task_item_t']]]
+  ['clock',['clock',['../structavr__advanced__timer__config__t.html#aee5e9da7401ee5fb7a121c08302a7abd',1,'avr_advanced_timer_config_t']]],
+  ['context',['context',['../structtask__item__t.html#ae4b427b66f9980dee21044069ac0dda3',1,'task_item_t']]]
 ];

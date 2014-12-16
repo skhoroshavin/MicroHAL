@@ -104,7 +104,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="ring__buffer_8h__dep__incl.png" border="0" usemap="#core_2ring__buffer_8hdep" alt=""/></div>
 <map name="core_2ring__buffer_8hdep" id="core_2ring__buffer_8hdep">
-<area shape="rect" id="node2" href="text__output_8h.html" title="core/text_output.h" alt="" coords="5,80,132,107"/></map>
+<area shape="rect" id="node2" href="text__output_8h.html" title="core/text_output.h" alt="" coords="5,80,132,107"/><area shape="rect" id="node3" href="console_8h.html" title="core/console.h" alt="" coords="15,155,122,181"/></map>
 </div>
 </div>
 <p><a href="ring__buffer_8h_source.html">Go to the source code of this file.</a></p>
@@ -117,11 +117,11 @@ Macros</h2></td></tr>
 <tr class="separator:aaf2b1b464b1920729bf6d941f9baa764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29f25492bff7f9b4bfd7aa37628ba3b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a29f25492bff7f9b4bfd7aa37628ba3b0">rb_is_empty</a>(rb)&#160;&#160;&#160;((rb)-&gt;begin == (rb)-&gt;end)</td></tr>
 <tr class="separator:a29f25492bff7f9b4bfd7aa37628ba3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c313bceba31cf5f33f4117c4e8911c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a8c313bceba31cf5f33f4117c4e8911c5">rb_pos</a>(rb, pos)&#160;&#160;&#160;((uint8_t)(pos) % <a class="el" href="pp__utils_8h.html#a25f003de16c08a4888b69f619d70f427">ARRAY_SIZE</a>((rb)-&gt;data))</td></tr>
+<tr class="memitem:a8c313bceba31cf5f33f4117c4e8911c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a8c313bceba31cf5f33f4117c4e8911c5">rb_pos</a>(rb, pos)&#160;&#160;&#160;((uint8_t)(pos) % <a class="el" href="pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba">array_size</a>((rb)-&gt;data))</td></tr>
 <tr class="separator:a8c313bceba31cf5f33f4117c4e8911c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25651ccfcae3b8e4097c9f99bac3b4c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">rb_size</a>(rb)&#160;&#160;&#160;<a class="el" href="ring__buffer_8h.html#a8c313bceba31cf5f33f4117c4e8911c5">rb_pos</a>(rb,(rb)-&gt;end - (rb)-&gt;begin)</td></tr>
 <tr class="separator:a25651ccfcae3b8e4097c9f99bac3b4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c3ed41be1dd45ac3adcb1508d7db409"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a2c3ed41be1dd45ac3adcb1508d7db409">rb_is_full</a>(rb)&#160;&#160;&#160;(<a class="el" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">rb_size</a>(rb)+1 == <a class="el" href="pp__utils_8h.html#a25f003de16c08a4888b69f619d70f427">ARRAY_SIZE</a>((rb)-&gt;data))</td></tr>
+<tr class="memitem:a2c3ed41be1dd45ac3adcb1508d7db409"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#a2c3ed41be1dd45ac3adcb1508d7db409">rb_is_full</a>(rb)&#160;&#160;&#160;(<a class="el" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">rb_size</a>(rb)+1 == <a class="el" href="pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba">array_size</a>((rb)-&gt;data))</td></tr>
 <tr class="separator:a2c3ed41be1dd45ac3adcb1508d7db409"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc8ae2308d5635aaba57e0b8c239f7b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ring__buffer_8h.html#afc8ae2308d5635aaba57e0b8c239f7b3">rb_front</a>(rb)&#160;&#160;&#160;((rb)-&gt;data[(rb)-&gt;begin])</td></tr>
 <tr class="separator:afc8ae2308d5635aaba57e0b8c239f7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,7 +279,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">rb</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">rb_size</a>(rb)+1 == <a class="el" href="pp__utils_8h.html#a25f003de16c08a4888b69f619d70f427">ARRAY_SIZE</a>((rb)-&gt;data))</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">rb_size</a>(rb)+1 == <a class="el" href="pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba">array_size</a>((rb)-&gt;data))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -343,7 +343,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((uint8_t)(pos) % <a class="el" href="pp__utils_8h.html#a25f003de16c08a4888b69f619d70f427">ARRAY_SIZE</a>((rb)-&gt;data))</td>
+          <td></td><td>&#160;&#160;&#160;((uint8_t)(pos) % <a class="el" href="pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba">array_size</a>((rb)-&gt;data))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -439,7 +439,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

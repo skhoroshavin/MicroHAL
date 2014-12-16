@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['can_5frecv',['can_recv',['../structbuffered__input__t.html#a7fc40b3053f44ccda2adc68abe3b7edf',1,'buffered_input_t']]],
-  ['can_5fsend',['can_send',['../structbuffered__output__t.html#a9f25333b4419191668e638751934f2c5',1,'buffered_output_t']]],
-  ['clock',['clock',['../structavr__advanced__timer__config__t.html#aee5e9da7401ee5fb7a121c08302a7abd',1,'avr_advanced_timer_config_t']]],
-  ['context',['context',['../structtask__item__t.html#ae4b427b66f9980dee21044069ac0dda3',1,'task_item_t']]]
+  ['_5fconsole_5finput',['_console_input',['../console_8h.html#a652381eb3bd0b2fc429610d9d2658557',1,'console.h']]],
+  ['_5fconsole_5foutput',['_console_output',['../console_8h.html#a1647c7b09b596007934b5303103cfba9',1,'console.h']]]
 ];

@@ -100,7 +100,7 @@ Include dependency graph for task_queue.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="task__queue_8h__incl.png" border="0" usemap="#core_2task__queue_8h" alt=""/></div>
 <map name="core_2task__queue_8h" id="core_2task__queue_8h">
-<area shape="rect" id="node3" href="list_8h.html" title="core/list.h" alt="" coords="95,80,173,107"/></map>
+<area shape="rect" id="node3" href="list_8h.html" title="core/list.h" alt="" coords="95,80,173,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="81,155,187,181"/></map>
 </div>
 </div>
 <p><a href="task__queue_8h_source.html">Go to the source code of this file.</a></p>
@@ -116,8 +116,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae06e6415eb3282e253e9569ac149497c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="task__queue_8h.html#ae06e6415eb3282e253e9569ac149497c">DEFINE_TASK</a>(name, handler, context_type)</td></tr>
-<tr class="separator:ae06e6415eb3282e253e9569ac149497c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f3c76a6617ed3b4807c85efb20aadd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="task__queue_8h.html#ae6f3c76a6617ed3b4807c85efb20aadd">DEFINE_TASK</a>(name)</td></tr>
+<tr class="separator:ae6f3c76a6617ed3b4807c85efb20aadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -141,7 +141,7 @@ Functions</h2></td></tr>
 <tr class="separator:a33e582ad1236cc2007408f2490df16ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ae06e6415eb3282e253e9569ac149497c"></a>
+<a class="anchor" id="ae6f3c76a6617ed3b4807c85efb20aadd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -149,33 +149,18 @@ Functions</h2></td></tr>
           <td class="memname">#define DEFINE_TASK</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">name, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname">name</td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">handler, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">context_type&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">context_type name##_context; \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">struct </span>name##_t name##_context; \</div>
+<div class="line">    extern <span class="keywordtype">unsigned</span> name##_handler( <span class="keyword">struct</span> name##_t * context ); \</div>
 <div class="line">    task_item_t name = { \</div>
 <div class="line">        .delay = 1, \</div>
-<div class="line">        .task  = (<a class="code" href="task__queue_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6">task_t</a>)handler, \</div>
+<div class="line">        .func  = (<a class="code" href="task__queue_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6">task_t</a>)name##_handler, \</div>
 <div class="line">        .context = &amp;name##_context \</div>
-<div class="line">    };</div>
+<div class="line">    }</div>
 <div class="ttc" id="task__queue_8h_html_aeab9d65f784d7629b2a5bdfde8a0f4a6"><div class="ttname"><a href="task__queue_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6">task_t</a></div><div class="ttdeci">unsigned(* task_t)(void *)</div><div class="ttdoc">Pointer to task function. </div><div class="ttdef"><b>Definition:</b> <a href="task__queue_8h_source.html#l00013">task_queue.h:13</a></div></div>
 </div><!-- fragment -->
 <p>Definition at line <a class="el" href="task__queue_8h_source.html#l00027">27</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
@@ -242,7 +227,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00064">64</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
+<p>Definition at line <a class="el" href="task__queue_8h_source.html#l00065">65</a> of file <a class="el" href="task__queue_8h_source.html">task_queue.h</a>.</p>
 
 </div>
 </div>
@@ -351,7 +336,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

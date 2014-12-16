@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['flash_5fread_5fbyte',['flash_read_byte',['../flash_8h.html#a58b4635d6c58d0bef1232f3977c64cd9',1,'flash.h']]],
-  ['flash_5fread_5fdword',['flash_read_dword',['../flash_8h.html#a91372d7a7d96ec4fd6522f361e6e1ccf',1,'flash.h']]],
-  ['flash_5fread_5ffloat',['flash_read_float',['../flash_8h.html#a770126a4a238ec6b143167342a6986dd',1,'flash.h']]],
-  ['flash_5fread_5fptr',['flash_read_ptr',['../flash_8h.html#adca58229a1bd4cd9a384086eb0923f8a',1,'flash.h']]],
-  ['flash_5fread_5fword',['flash_read_word',['../flash_8h.html#a2ae381a3f6c12bdbe1767b48be186a8c',1,'flash.h']]]
+  ['declare_5fbuffer',['DECLARE_BUFFER',['../structbuffered__input__t.html#a419decf2723447216bece78288ed2838',1,'buffered_input_t::DECLARE_BUFFER(data, char, TEXT_INPUT_BUF_SIZE)'],['../structbuffered__input__t.html#aa0f352ce781a358d9613e3cf3eb5f43c',1,'buffered_input_t::DECLARE_BUFFER(argv, const char *, TEXT_INPUT_MAX_PARAMS)']]],
+  ['declare_5fring_5fbuffer',['DECLARE_RING_BUFFER',['../structbuffered__output__t.html#af757f48f50fb2357c0e90c05d1e6806d',1,'buffered_output_t']]]
 ];

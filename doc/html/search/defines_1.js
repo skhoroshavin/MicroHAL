@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['array_5fsize',['ARRAY_SIZE',['../pp__utils_8h.html#a25f003de16c08a4888b69f619d70f427',1,'pp_utils.h']]],
+  ['array_5fsize',['array_size',['../pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba',1,'pp_utils.h']]],
   ['avr_5fadvanced_5ftimer_5fclear_5foverflow',['avr_advanced_timer_clear_overflow',['../avr__advanced__timer_8h.html#a0f5b3e49f5fde1591ddfd5d096b5c24b',1,'avr_advanced_timer.h']]],
   ['avr_5fadvanced_5ftimer_5fclear_5ftop',['avr_advanced_timer_clear_top',['../avr__advanced__timer_8h.html#a4f6e5b03d4916126ee2fb821a305ccab',1,'avr_advanced_timer.h']]],
   ['avr_5fadvanced_5ftimer_5fcounter',['avr_advanced_timer_counter',['../avr__advanced__timer_8h.html#af31ff6f5194405a362111731fe00c26d',1,'avr_advanced_timer.h']]],

@@ -118,9 +118,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">\***********************************************************************/</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a29f25492bff7f9b4bfd7aa37628ba3b0">   30</a></span>&#160;<span class="preprocessor">#define rb_is_empty(rb)  ((rb)-&gt;begin == (rb)-&gt;end)</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a8c313bceba31cf5f33f4117c4e8911c5">   31</a></span>&#160;<span class="preprocessor">#define rb_pos(rb,pos)   ((uint8_t)(pos) % ARRAY_SIZE((rb)-&gt;data))</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a8c313bceba31cf5f33f4117c4e8911c5">   31</a></span>&#160;<span class="preprocessor">#define rb_pos(rb,pos)   ((uint8_t)(pos) % array_size((rb)-&gt;data))</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a25651ccfcae3b8e4097c9f99bac3b4c6">   32</a></span>&#160;<span class="preprocessor">#define rb_size(rb)      rb_pos(rb,(rb)-&gt;end - (rb)-&gt;begin)</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a2c3ed41be1dd45ac3adcb1508d7db409">   33</a></span>&#160;<span class="preprocessor">#define rb_is_full(rb)   (rb_size(rb)+1 == ARRAY_SIZE((rb)-&gt;data))</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#a2c3ed41be1dd45ac3adcb1508d7db409">   33</a></span>&#160;<span class="preprocessor">#define rb_is_full(rb)   (rb_size(rb)+1 == array_size((rb)-&gt;data))</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#afc8ae2308d5635aaba57e0b8c239f7b3">   34</a></span>&#160;<span class="preprocessor">#define rb_front(rb)     ((rb)-&gt;data[(rb)-&gt;begin])</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="ring__buffer_8h.html#ab098b550a8c2ed2a4bb479bf038b5305">   35</a></span>&#160;<span class="preprocessor">#define rb_back(rb)      ((rb)-&gt;data[rb_pos(rb,(rb)-&gt;end - 1)])</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
@@ -144,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

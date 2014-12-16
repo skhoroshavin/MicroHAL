@@ -86,17 +86,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">list.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="pp__utils_8h_source.html">core/pp_utils.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for list.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="list_8h__incl.png" border="0" usemap="#core_2list_8h" alt=""/></div>
+<map name="core_2list_8h" id="core_2list_8h">
+<area shape="rect" id="node2" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="5,80,112,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -113,12 +114,6 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlist__t.html">list_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list control structure.  <a href="structlist__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a6477031fa853f18368963f655bbf1548"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a6477031fa853f18368963f655bbf1548">list_item</a>(list, type, member)&#160;&#160;&#160;((type*)((char*)(list)-offsetof(type,member)))</td></tr>
-<tr class="memdesc:a6477031fa853f18368963f655bbf1548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to parent structure of list.  <a href="#a6477031fa853f18368963f655bbf1548">More...</a><br /></td></tr>
-<tr class="separator:a6477031fa853f18368963f655bbf1548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -141,51 +136,6 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae242615bb0faa87bb4dfa37ef99364c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove item from linked list.  <a href="#ae242615bb0faa87bb4dfa37ef99364c8">More...</a><br /></td></tr>
 <tr class="separator:ae242615bb0faa87bb4dfa37ef99364c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a6477031fa853f18368963f655bbf1548"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define list_item</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">list, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">type, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">member&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((type*)((char*)(list)-offsetof(type,member)))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get pointer to parent structure of list. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>Pointer to linked list structure </td></tr>
-    <tr><td class="paramname">type</td><td>Type of parent structure </td></tr>
-    <tr><td class="paramname">member</td><td>Name of parent structure member containing list </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="list_8h_source.html#l00028">28</a> of file <a class="el" href="list_8h_source.html">list.h</a>.</p>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a429b512dbcf1975df4301a6956a645a6"></a>
 <div class="memitem">
@@ -218,7 +168,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Linked list last element </dd></dl>
 
-<p>Definition at line <a class="el" href="list_8h_source.html#l00042">42</a> of file <a class="el" href="list_8h_source.html">list.h</a>.</p>
+<p>Definition at line <a class="el" href="list_8h_source.html#l00034">34</a> of file <a class="el" href="list_8h_source.html">list.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +203,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Linked list first element </dd></dl>
 
-<p>Definition at line <a class="el" href="list_8h_source.html#l00035">35</a> of file <a class="el" href="list_8h_source.html">list.h</a>.</p>
+<p>Definition at line <a class="el" href="list_8h_source.html#l00027">27</a> of file <a class="el" href="list_8h_source.html">list.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +328,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 2 2014 22:26:31 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Dec 17 2014 00:02:45 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

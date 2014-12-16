@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['declare_5fbuffer',['DECLARE_BUFFER',['../structbuffered__input__t.html#a6cbac8d8ea99799869fac399ddfa3ef8',1,'buffered_input_t::DECLARE_BUFFER(data, char, 32)'],['../structbuffered__input__t.html#a7956eda3fcdc93187af90797715a355a',1,'buffered_input_t::DECLARE_BUFFER(argv, const char *, 8)']]],
-  ['declare_5fring_5fbuffer',['DECLARE_RING_BUFFER',['../structbuffered__output__t.html#a4dfefd3844be5ef90993b255e5fc77c2',1,'buffered_output_t']]]
+  ['console_5finit',['console_init',['../console_8h.html#aa0e434ab4665aee6fdf4564a0e66a14f',1,'console.h']]],
+  ['console_5fon_5fcommand',['console_on_command',['../console_8h.html#a9f2198b65b87ac3a461fa32c94af38b2',1,'console.h']]],
+  ['console_5fprocess',['console_process',['../console_8h.html#acf2680923e2eb3e55ba85b3f592150a0',1,'console.h']]]
 ];

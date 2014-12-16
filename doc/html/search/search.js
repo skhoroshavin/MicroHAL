@@ -9,13 +9,13 @@ var indexSectionsWithContent =
 {
   0: "_abcdefilmnoprstw",
   1: "ablot",
-  2: "_abfilprst",
-  3: "adfilostw",
-  4: "cdmnprst",
-  5: "at",
+  2: "_abcfilprst",
+  3: "acdfilostw",
+  4: "_cdfmnpt",
+  5: "acft",
   6: "ao",
   7: "_ao",
-  8: "_abcdeflmrst"
+  8: "_abcdefimorst"
 };
 
 var indexSectionNames =
