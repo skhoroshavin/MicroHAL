@@ -1,7 +1,9 @@
 
-Task scheduler
+Interrupts!
+Implement more timers
+AVR SPI
+Separate virtual timer and task system?
 Refactor text I/O
 Formatted text output
 Signal capture and replay
 AVR sleep modes and watchdog
-AVR SPI
