@@ -6,12 +6,13 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
+typedef uint8_t irq_state_t;
+
 #define irq_enable() sei()
 #define irq_disable() cli()
 
-#define enable_critical() uint8_t _sreg
-#define enter_critical() do { _sreg = SREG; cli(); } while(0)
-#define leave_critical() do { SREG = _sreg; } while(0)
+inline irq_state_t irq_store_and_disable() { irq_state_t result = SREG; cli(); return result; }
+inline void irq_restore( irq_state_t state ) { SREG = state; }
 
 #define wait_for_irq() sleep_cpu()
 
@@ -28,19 +29,16 @@
 #define irq_disable()
 
 /**
- * @brief Enable critical sections in this block of code
+ * @brief Disable hardware IRQ returning previous state
+ * @return Previous IRQ state
  */
-#define enable_critical()
+inline irq_state_t irq_store_and_disable() { return 0; }
 
 /**
- * @brief Enter cricial section
+ * @brief Restore hardware IRQ state
+ * @param state Hardware IRQ state to be restored
  */
-#define enter_critical()
-
-/**
- * @brief Leave critical section
- */
-#define leave_critical()
+inline void irq_restore( irq_state_t state ) { }
 
 /**
  * @brief Wait for hardware IRQ

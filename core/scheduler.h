@@ -3,12 +3,13 @@
  * @file   scheduler.h
  * @brief  Simple task scheduler
  *
- * Task scheduler
+ * Task scheduler requirements:
+ *
  */
 
 #pragma once
 
-#include <core/list.h>
+#include "core_config.h"
 
 /**
  * @brief Tasklet function
@@ -20,10 +21,10 @@ typedef void (*tasklet_func_t)(void*);
  */
 struct tasklet_t
 {
-	struct list_t  list;  /**< @brief Linked list containing tasklets (internal) */
-	unsigned       delay; /**< @brief Tasklet delay in ticks or periods (internal) */
-	tasklet_func_t func;  /**< @brief Pointer to tasklet function */
-	void *         data;  /**< @brief Pointer to tasklet data */
+	struct tasklet_t * next;  /**< @brief Pointer to next tasklet in list (internal) */
+	unsigned           delay; /**< @brief Tasklet delay in ticks or periods (internal) */
+	tasklet_func_t     func;  /**< @brief Pointer to tasklet function */
+	void *             data;  /**< @brief Pointer to tasklet data */
 };
 
 /**
