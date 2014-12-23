@@ -1,8 +1,10 @@
 
 PLATFORM = AVR
 MCU      = atmega328p
-HALDIR   = ../..
+HALDIR   = ..
 TARGET   = blink
+
+INCLUDES = -Iarduino
 
 SOURCES  = main.c \
 	core/list.c \
@@ -11,6 +13,7 @@ SOURCES  = main.c \
 	core/string_utils.c \
 	core/text_input.c \
 	core/text_output.c \
+	core/scheduler.c \
 	core/console.c
 
 include $(HALDIR)/core/build.mk

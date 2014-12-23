@@ -14,11 +14,11 @@ build/$(TARGET): $(OBJECTS)
 
 build/%.o : %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(INCLUDES) $(CCFLAGS) -c $< -o $@
 
 build/%.o : $(HALDIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CCFLAGS) -c $< -o $@
+	$(CC) $(INCLUDES) $(CCFLAGS) -c $< -o $@
 
 clean:
 	rm -rvf build

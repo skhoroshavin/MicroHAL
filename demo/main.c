@@ -7,11 +7,12 @@
 #include <core/console.h>
 #include <core/coroutine.h>
 #include <core/task_queue.h>
+#include <core/scheduler.h>
 
 enum
 {
 	tick_period_ms = 1000,
-	blink_period   = (uint32_t)sys_clock_freq*tick_period_ms/1000
+	blink_period   = (uint32_t)sched_timer_freq*tick_period_ms/1000
 };
 
 STATIC_ASSERT(blink_period < 0x10000, main);
@@ -112,10 +113,10 @@ task_queue_t tq;
 
 int main(void)
 {
-	uint8_t last_tick = sys_clock_value();
+	uint8_t last_tick = sched_timer_value();
 
 	led_init();
-	sys_clock_init();
+	sched_init();
 	console_init( 9600 );
 
 	task_queue_init( &tq );
@@ -123,7 +124,7 @@ int main(void)
 
 	for(;;)
 	{
-		uint8_t dt = sys_clock_value() - last_tick;
+		uint8_t dt = sched_timer_value() - last_tick;
 		task_queue_process( &tq, dt );
 		last_tick += dt;
 
