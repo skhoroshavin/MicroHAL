@@ -123,10 +123,12 @@ int main(void)
 	task_queue_add( &tq, &blink );
 
 	for(;;)
-	{
+	{		
 		uint8_t dt = sched_timer_value() - last_tick;
 		task_queue_process( &tq, dt );
 		last_tick += dt;
+
+		sched_process();
 
 		console_process();
 	}
