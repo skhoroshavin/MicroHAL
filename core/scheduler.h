@@ -28,6 +28,17 @@ struct tasklet_t
 };
 
 /**
+ * @brief Tasklet data initializer
+ */
+#define TASKLET(FUNC,DATA) \
+	{ \
+		.next  = 0, \
+		.delay = 0, \
+		.func  = (tasklet_func_t)(FUNC), \
+		.data  = &(DATA) \
+	}
+
+/**
  * @brief Initialize task scheduler
  */
 void sched_init();
