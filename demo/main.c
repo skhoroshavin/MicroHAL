@@ -5,8 +5,6 @@
 #include <core/buffer.h>
 #include <core/string_utils.h>
 #include <core/console.h>
-#include <core/coroutine.h>
-#include <core/task_queue.h>
 #include <core/scheduler.h>
 
 enum
@@ -19,16 +17,19 @@ STATIC_ASSERT(blink_period < 0x10000, main);
 
 struct blink_t
 {
-	cr_context_t ctx;
 	uint16_t led_on;
 	uint16_t led_off;
+	uint8_t  state;
 };
+void blink_handler( struct blink_t * data );
 
 struct blink_t blink_context =
 {
+	.state   = 0,
 	.led_on  = blink_period/2,
 	.led_off = blink_period/2
 };
+DEFINE_TASKLET( blink, blink_handler, &blink_context );
 
 FLASH_STR(unknown_cmd) = "Unknown command: ";
 FLASH_STR(endl)        = "\n\r";
@@ -86,50 +87,33 @@ void console_on_command( uint8_t argc, const char * argv[] )
 	}
 }
 
-unsigned blink_handler( struct blink_t * data )
+void blink_handler( struct blink_t * data )
 {
-	cr_begin(&data->ctx);
-
-	while(1)
+	if( data->state )
 	{
-		if( data->led_on )
-		{
-			led_write( 1 );
-			cr_delay( &data->ctx, data->led_on );
-		}
-
-		if( data->led_off )
-		{
-			led_write( 0 );
-			cr_delay( &data->ctx, data->led_off );
-		}
+		data->state = 0;
+		led_write( 0 );
+		sched_short( &blink, data->led_off );
 	}
-
-	cr_end(&data->ctx);
+	else
+	{
+		data->state = 1;
+		led_write( 1 );
+		sched_short( &blink, data->led_on );
+	}
 }
-
-DEFINE_TASK(blink);
-task_queue_t tq;
 
 int main(void)
 {
-	uint8_t last_tick = sched_timer_value();
-
 	led_init();
 	sched_init();
 	console_init( 9600 );
 
-	task_queue_init( &tq );
-	task_queue_add( &tq, &blink );
+	sched_immediate( &blink );
 
 	for(;;)
 	{		
-		uint8_t dt = sched_timer_value() - last_tick;
-		task_queue_process( &tq, dt );
-		last_tick += dt;
-
 		sched_process();
-
 		console_process();
 	}
 

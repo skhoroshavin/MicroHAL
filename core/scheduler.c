@@ -8,7 +8,7 @@ static struct tasklet_t * _tasklets_near      = 0;
 static struct tasklet_t * _tasklets_short     = 0;
 static struct tasklet_t * _tasklets_long      = 0;
 
-static sched_timer_value_t _last_tick;
+static volatile sched_timer_value_t _last_tick;
 
 #define _sched_add(head,tasklet) \
 	do { \
@@ -87,7 +87,7 @@ void sched_init()
 
 void sched_process()
 {
-	while( _tasklets_immediate || _tasklets_near )
+	do
 	{
 		_sched_process_immediate();
 
@@ -102,6 +102,7 @@ void sched_process()
 		_sched_process_short( dt );
 		_sched_process_long( dt );
 	}
+	while( _tasklets_immediate || _tasklets_near );
 }
 
 void sched_immediate( struct tasklet_t * tasklet )

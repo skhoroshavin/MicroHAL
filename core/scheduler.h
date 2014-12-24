@@ -30,12 +30,13 @@ struct tasklet_t
 /**
  * @brief Tasklet data initializer
  */
-#define TASKLET(FUNC,DATA) \
+#define DEFINE_TASKLET(NAME,FUNC,DATA) \
+	struct tasklet_t NAME = \
 	{ \
 		.next  = 0, \
 		.delay = 0, \
 		.func  = (tasklet_func_t)(FUNC), \
-		.data  = &(DATA) \
+		.data  = (void*)(DATA) \
 	}
 
 /**
