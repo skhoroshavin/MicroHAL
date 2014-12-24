@@ -1,7 +1,7 @@
 
 PLATFORM = AVR
 MCU      = atmega328p
-HALDIR   = ..
+HALDIR   = ../src
 TARGET   = blink
 
 INCLUDES = -Iarduino
