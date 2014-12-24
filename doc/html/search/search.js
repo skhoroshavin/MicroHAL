@@ -7,15 +7,15 @@
 
 var indexSectionsWithContent =
 {
-  0: "_abcdefilmnoprstw",
+  0: "_abcdfilmnoprstw",
   1: "ablot",
   2: "_abcfilprst",
-  3: "acdfilostw",
+  3: "acdfilosw",
   4: "_cdfmnpt",
   5: "acft",
   6: "ao",
   7: "_ao",
-  8: "_abcdefimorst"
+  8: "_abcdfimorstw"
 };
 
 var indexSectionNames =

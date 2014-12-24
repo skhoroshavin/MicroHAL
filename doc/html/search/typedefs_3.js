@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['task_5ft',['task_t',['../task__queue_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6',1,'task_t():&#160;task_queue.h'],['../task__table_8h.html#aeab9d65f784d7629b2a5bdfde8a0f4a6',1,'task_t():&#160;task_table.h']]]
+  ['tasklet_5ffunc_5ft',['tasklet_func_t',['../scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884',1,'scheduler.h']]]
 ];

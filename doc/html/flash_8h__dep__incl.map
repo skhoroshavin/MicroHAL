@@ -1,5 +1,5 @@
-<map id="core/flash.h" name="core/flash.h">
-<area shape="rect" id="node2" href="$text__output_8h.html" title="core/text_output.h" alt="" coords="5,80,132,107"/>
-<area shape="rect" id="node4" href="$string__utils_8h.html" title="core/string_utils.h" alt="" coords="157,80,282,107"/>
-<area shape="rect" id="node3" href="$console_8h.html" title="core/console.h" alt="" coords="15,155,122,181"/>
+<map id="src/core/flash.h" name="src/core/flash.h">
+<area shape="rect" id="node2" href="$string__utils_8h.html" title="src/core/string_utils.h" alt="" coords="5,80,152,107"/>
+<area shape="rect" id="node3" href="$text__output_8h.html" title="src/core/text_output.h" alt="" coords="176,80,325,107"/>
+<area shape="rect" id="node4" href="$console_8h.html" title="src/core/console.h" alt="" coords="186,155,315,181"/>
 </map>
