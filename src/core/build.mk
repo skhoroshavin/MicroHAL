@@ -1,6 +1,6 @@
 
 ifeq ($(PLATFORM),AVR)
-include $(HALDIR)/core/avr/build.mk
+include $(OSDIR)/core/avr/build.mk
 else
 $(error Unknown platform $(PLATFORM)!)
 endif
@@ -16,7 +16,7 @@ build/%.o : %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(INCLUDES) $(CCFLAGS) -c $< -o $@
 
-build/%.o : $(HALDIR)/%.c
+build/%.o : $(OSDIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(INCLUDES) $(CCFLAGS) -c $< -o $@
 

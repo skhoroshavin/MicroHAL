@@ -32,4 +32,4 @@ AVR_BASIC_TIMER_NORMAL(sched_timer,1024)
 \***********************************************************************/
 
 #include <drivers/avr/avr_uart.h>
-AVR_UART(uart_console,0)
+AVR_UART(console_uart,0)

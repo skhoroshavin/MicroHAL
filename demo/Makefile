@@ -1,21 +1,22 @@
 
 PLATFORM = AVR
 MCU      = atmega328p
-HALDIR   = ../src
+OSDIR   = ../src
 TARGET   = blink
 
 INCLUDES = -Iarduino
 
 SOURCES  = main.c \
+	arduino/hal.c \
 	core/list.c \
 	core/int_to_string.c \
 	core/string_utils.c \
 	core/text_input.c \
 	core/text_output.c \
-	core/scheduler.c \
-	core/console.c
+	system/console.c \
+	system/scheduler.c
 
-include $(HALDIR)/core/build.mk
+include $(OSDIR)/core/build.mk
 
 flash: build/$(TARGET)
 #	avr-objdump -d build/$(TARGET)

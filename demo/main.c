@@ -3,8 +3,8 @@
 #include <core/int_to_string.h>
 #include <core/buffer.h>
 #include <core/string_utils.h>
-#include <core/console.h>
-#include <core/scheduler.h>
+#include <system/console.h>
+#include <system/scheduler.h>
 
 enum
 {

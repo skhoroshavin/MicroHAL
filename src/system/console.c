@@ -8,11 +8,11 @@ void console_init( uint32_t baud )
 {
 	input_init( &_console_input );
 	output_init( &_console_output );
-	uart_console_init( baud );
+	console_uart_init( baud );
 }
 
 void console_process()
 {
-	input_process_stream( &_console_input, uart_console, console_on_command );
-	output_process_stream( &_console_output, uart_console );
+	input_process_stream( &_console_input, console_uart, console_on_command );
+	output_process_stream( &_console_output, console_uart );
 }

@@ -4,6 +4,7 @@ Directory structure
 
 	src         - Main source tree
 		core    - Generic utilities and build scripts
+		system  - Operating system, depends on core and hal.h, used by any part of project except core
 		drivers - Device drivers, used indirectly through hal.h by any part of project
 	demo        - Demo project
 		arduino - Arduino HAL for demo project
@@ -14,7 +15,7 @@ User project
 	Makefile:
 		Define PLATFORM - platform name (AVR,STM32,NORDIC51,etc)
 		Define MCU      - controller name
-		Define HALDIR   - path to MicroHAL
+		Define OSDIR    - path to MicroOS
 		Define TARGET   - binary name
 		Define SOURCES  - list of used c files
 		Include core build.mk
@@ -59,10 +60,9 @@ Scheduler
 	Period  - maximum time between timer interrupts
 
 	Tasklet queues:
-		0: Immediate   - 0 wait time
-		1: Low-latency - within timer interrupt latency, time stored in timer ticks
-		2: Short       - within timer period, time stored in timer ticks
-		3: Long        - longer than timer period, time stored in timer periods
+		0: Immediate - within timer interrupt latency, time stored in timer ticks
+		1: Short     - within timer period, time stored in timer ticks
+		2: Long      - longer than timer period, time stored in timer periods
 
 	Schedule task:
 		if( delay == 0 )
