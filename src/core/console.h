@@ -4,6 +4,8 @@
 #include <core/text_input.h>
 #include <core/text_output.h>
 
+#include "hal.h"
+
 extern buffered_input_t  _console_input;
 extern buffered_output_t _console_output;
 

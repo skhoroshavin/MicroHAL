@@ -1,6 +1,5 @@
 
 #include "console.h"
-#include "microhal.h"
 
 buffered_input_t  _console_input;
 buffered_output_t _console_output;

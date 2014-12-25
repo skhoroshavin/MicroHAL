@@ -2,13 +2,11 @@
 Directory structure
 ===================
 
-	core
-		Generic utilities and build scripts
-	drivers
-		Device drivers, used indirectly through microhal.h by any part of project
-	examples
-		Working examples
-
+	src         - Main source tree
+		core    - Generic utilities and build scripts
+		drivers - Device drivers, used indirectly through hal.h by any part of project
+	demo        - Demo project
+		arduino - Arduino HAL for demo project
 
 User project
 ============
@@ -22,12 +20,12 @@ User project
 		Include core build.mk
 		Define flash target if necessary
 
-	Project must contain microhal.h, because it is included in driver
+	Project must contain hal.h, because it is included in driver
 	implementations
 
 	Driver usage:
-		Put driver configuration macros in microhal.h
-		Include driver.h in microhal.h after these macros
+		Put driver configuration macros in hal.h
+		Include driver.h in hal.h after these macros
 		Include driver.c in makefile source list
 
 

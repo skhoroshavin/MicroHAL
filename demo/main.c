@@ -1,5 +1,4 @@
 
-#include "microhal.h"
 #include <core/flash.h>
 #include <core/int_to_string.h>
 #include <core/buffer.h>

@@ -1,33 +1,24 @@
 
 #include "scheduler.h"
-#include "microhal.h"
 #include <core/interrupts.h>
 
 enum tasklet_queue_t
 {
 	TASKLET_QUEUE_IMMEDIATE,
-	TASKLET_QUEUE_NEAR,
 	TASKLET_QUEUE_SHORT,
 	TASKLET_QUEUE_LONG,
 
 	TASKLET_QUEUE_COUNT
 };
 
-static struct tasklet_t * _tasklets[TASKLET_QUEUE_COUNT] = { 0, 0, 0, 0 };
-static volatile sched_timer_value_t _last_tick;
+static struct tasklet_t * volatile _tasklets[TASKLET_QUEUE_COUNT] = { 0, 0, 0 };
+static sched_timer_value_t volatile _last_tick;
 
 static void _sched_add( enum tasklet_queue_t tq, struct tasklet_t * tasklet )
 {
 	tasklet->next = _tasklets[tq];
 	_tasklets[tq] = tasklet;
 }
-
-#define _sched_add_atomic(tq,tasklet) \
-	do { \
-		irq_state_t irq_state = irq_store_and_disable(); \
-		_sched_add(tq,tasklet); \
-		irq_restore( irq_state ); \
-	} while(0)
 
 static void _sched_process_queue( enum tasklet_queue_t tq, unsigned dt )
 {
@@ -44,14 +35,10 @@ static void _sched_process_queue( enum tasklet_queue_t tq, unsigned dt )
 			if( tasklet->delay > sched_latency )
 				_sched_add( TASKLET_QUEUE_SHORT, tasklet );
 			else
-				_sched_add( TASKLET_QUEUE_NEAR, tasklet );
+				_sched_add( TASKLET_QUEUE_IMMEDIATE, tasklet );
 		}
 		else
-		{
-			irq_enable();
 			tasklet->func( tasklet->data );
-			irq_disable();
-		}
 
 		tasklet = next;
 	}
@@ -78,22 +65,22 @@ void sched_process()
 		for( tq = 0; tq < TASKLET_QUEUE_COUNT; ++tq )
 			_sched_process_queue( tq, dt );
 	}
-	while( _tasklets[TASKLET_QUEUE_IMMEDIATE] || _tasklets[TASKLET_QUEUE_NEAR] );
+	while( _tasklets[TASKLET_QUEUE_IMMEDIATE] );
 }
 
 void sched_immediate( struct tasklet_t * tasklet )
 {
-	_sched_add_atomic( TASKLET_QUEUE_IMMEDIATE, tasklet );
+	_sched_add( TASKLET_QUEUE_IMMEDIATE, tasklet );
 }
 
 void sched_short( struct tasklet_t * tasklet, unsigned ticks )
 {
 	tasklet->delay = ticks;
-	_sched_add_atomic( TASKLET_QUEUE_SHORT, tasklet );
+	_sched_add( TASKLET_QUEUE_SHORT, tasklet );
 }
 
 void sched_long( struct tasklet_t * tasklet, unsigned periods )
 {
 	tasklet->delay = periods;
-	_sched_add_atomic( TASKLET_QUEUE_LONG, tasklet );
+	_sched_add( TASKLET_QUEUE_LONG, tasklet );
 }

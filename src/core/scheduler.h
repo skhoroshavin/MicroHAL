@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "core_config.h"
+#include "hal.h"
 
 /**
  * @brief Tasklet function
