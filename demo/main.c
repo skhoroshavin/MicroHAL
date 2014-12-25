@@ -112,7 +112,7 @@ int main(void)
 	sched_immediate( &blink );
 
 	for(;;)
-	{		
+	{
 		sched_process();
 		console_process();
 	}
