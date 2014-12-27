@@ -2,15 +2,6 @@
 #include "scheduler.h"
 #include <core/interrupts.h>
 
-enum tasklet_queue_t
-{
-	TASKLET_QUEUE_IMMEDIATE,
-	TASKLET_QUEUE_SHORT,
-	TASKLET_QUEUE_LONG,
-
-	TASKLET_QUEUE_COUNT
-};
-
 static struct tasklet_t * volatile _tasklets[TASKLET_QUEUE_COUNT] = { 0, 0, 0 };
 static sched_timer_value_t volatile _last_tick;
 
@@ -35,7 +26,7 @@ static void _sched_process_queue( enum tasklet_queue_t tq, unsigned dt )
 			if( tasklet->delay > sched_latency )
 				_sched_add( TASKLET_QUEUE_SHORT, tasklet );
 			else
-				_sched_add( TASKLET_QUEUE_IMMEDIATE, tasklet );
+				_sched_add( TASKLET_QUEUE_NOW, tasklet );
 		}
 		else
 			tasklet->func( tasklet->data );
@@ -65,22 +56,20 @@ void sched_process()
 		for( tq = 0; tq < TASKLET_QUEUE_COUNT; ++tq )
 			_sched_process_queue( tq, dt );
 	}
-	while( _tasklets[TASKLET_QUEUE_IMMEDIATE] );
+	while( _tasklets[TASKLET_QUEUE_NOW] );
 }
 
-void sched_immediate( struct tasklet_t * tasklet )
+void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_t tq, unsigned delay )
 {
-	_sched_add( TASKLET_QUEUE_IMMEDIATE, tasklet );
+	tasklet->delay = delay;
+	_sched_add( tq, tasklet );
 }
 
-void sched_short( struct tasklet_t * tasklet, unsigned ticks )
+void sched_delay_ms( struct tasklet_t * tasklet, unsigned ms )
 {
-	tasklet->delay = ticks;
-	_sched_add( TASKLET_QUEUE_SHORT, tasklet );
-}
-
-void sched_long( struct tasklet_t * tasklet, unsigned periods )
-{
-	tasklet->delay = periods;
-	_sched_add( TASKLET_QUEUE_LONG, tasklet );
+	unsigned ticks = ms*sched_timer_freq/1000;
+	if( ticks > sched_latency )
+		sched_tasklet( tasklet, TASKLET_QUEUE_SHORT, ticks );
+	else
+		sched_tasklet( tasklet, TASKLET_QUEUE_NOW, ticks );
 }

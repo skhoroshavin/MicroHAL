@@ -12,6 +12,18 @@
 #include "hal.h"
 
 /**
+ * @brief Tasklet queue identifiers
+ */
+enum tasklet_queue_t
+{
+	TASKLET_QUEUE_NOW,   /**< Execution within sched_latency time */
+	TASKLET_QUEUE_SHORT, /**< Execution within sched_period time */
+	TASKLET_QUEUE_LONG,  /**< Execution after sched_period time */
+
+	TASKLET_QUEUE_COUNT
+};
+
+/**
  * @brief Tasklet function
  */
 typedef void (*tasklet_func_t)(void*);
@@ -50,21 +62,25 @@ void sched_init();
 void sched_process();
 
 /**
+ * @brief Schedule tasklet
+ * @param tasklet Tasklet to be executed
+ * @param tq Tasklet queue identifier
+ * @param delay Execution delay
+ */
+void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_t tq, unsigned delay );
+
+/**
  * @brief Schedule tasklet for immediate execution
  * @param tasklet Tasklet to be executed
  */
-void sched_immediate( struct tasklet_t * tasklet );
+inline void sched_now( struct tasklet_t * tasklet )
+{
+	sched_tasklet( tasklet, TASKLET_QUEUE_NOW, 0 );
+}
 
 /**
- * @brief Schedule tasklet for execution in short amount of time
+ * @brief Schedule tasklet for delayed execution
  * @param tasklet Tasklet to be executed
- * @param ticks Number of scheduler ticks
+ * @param ms Execution delay in milliseconds
  */
-void sched_short( struct tasklet_t * tasklet, unsigned ticks );
-
-/**
- * @brief Schedule tasklet for execution after long amount of time
- * @param tasklet Tasklet to be executed
- * @param periods Number of scheduler periods
- */
-void sched_long( struct tasklet_t * tasklet, unsigned periods );
+void sched_delay_ms( struct tasklet_t * tasklet, unsigned ms );

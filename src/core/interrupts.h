@@ -14,7 +14,7 @@ typedef uint8_t irq_state_t;
 inline irq_state_t irq_store_and_disable() { irq_state_t result = SREG; cli(); return result; }
 inline void irq_restore( irq_state_t state ) { SREG = state; }
 
-#define wait_for_irq() sleep_cpu()
+#define wait_for_irq() do { sei(); sleep_cpu(); } while(0)
 
 #else
 
