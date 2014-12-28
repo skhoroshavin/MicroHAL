@@ -1,7 +1,7 @@
 
 #include "text_input.h"
-#include <core/buffer.h>
-#include <core/int_to_string.h>
+#include <utils/buffer.h>
+#include <utils/int_to_string.h>
 
 void input_init( buffered_input_t * in )
 {

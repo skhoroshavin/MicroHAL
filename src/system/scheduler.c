@@ -1,6 +1,6 @@
 
 #include "scheduler.h"
-#include <core/interrupts.h>
+#include <platform/interrupts.h>
 
 struct tasklet_queue_t
 {
@@ -54,7 +54,7 @@ void sched_init()
 {
 	sched_timer_init();
 	_last_tick = sched_timer_value();
-	sched_compare_enable();
+	sched_compare_enable_irq();
 }
 
 void sched_process()
@@ -76,15 +76,13 @@ void sched_process()
 
 	if(_tasklets[TASKLET_QUEUE_SHORT].head )
 	{
-		sched_timer_value_t next_tick = _last_tick + 24;//_tasklets[TASKLET_QUEUE_SHORT].delay;
+		sched_timer_value_t next_tick = _last_tick + _tasklets[TASKLET_QUEUE_SHORT].delay;
 		next_tick %= sched_period;
 		sched_compare_set_value( next_tick );
 
 		dbg_write( 1 );
 		wait_for_irq();
 		dbg_write( 0 );
-
-		sched_compare_clear();
 	}
 }
 

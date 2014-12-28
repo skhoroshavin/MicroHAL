@@ -2,7 +2,7 @@
 #pragma once
 
 #include <stdint.h>
-#include <core/pp_utils.h>
+#include <utils/pp_utils.h>
 
 /***********************************************************************\
  * Ring buffer declaration                                             *

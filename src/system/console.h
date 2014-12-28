@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include <core/text_input.h>
-#include <core/text_output.h>
+#include <utils/text_input.h>
+#include <utils/text_output.h>
 
 #include "hal.h"
 

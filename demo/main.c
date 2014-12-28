@@ -1,8 +1,6 @@
 
-#include <core/flash.h>
-#include <core/int_to_string.h>
-#include <core/buffer.h>
-#include <core/string_utils.h>
+#include <platform/flash.h>
+#include <utils/string_utils.h>
 #include <system/console.h>
 #include <system/scheduler.h>
 

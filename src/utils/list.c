@@ -1,5 +1,5 @@
 
-#include <core/list.h>
+#include <utils/list.h>
 
 void list_init( list_t * head )
 {

@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include <core/buffer.h>
+#include <utils/buffer.h>
 
 #ifndef TEXT_INPUT_BUF_SIZE
 #define TEXT_INPUT_BUF_SIZE 32

@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include <core/ring_buffer.h>
-#include <core/flash.h>
+#include <platform/flash.h>
+#include <utils/ring_buffer.h>
 
 typedef enum
 {

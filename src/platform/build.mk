@@ -1,6 +1,6 @@
 
 ifeq ($(PLATFORM),AVR)
-include $(OSDIR)/core/avr/build.mk
+include $(OSDIR)/platform/avr/build.mk
 else
 $(error Unknown platform $(PLATFORM)!)
 endif

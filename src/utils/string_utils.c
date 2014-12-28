@@ -1,6 +1,6 @@
 
-#include <core/string_utils.h>
-#include <core/flash.h>
+#include <platform/flash.h>
+#include <utils/string_utils.h>
 
 uint8_t str_equal( const char * str1, const char * str2 )
 {
