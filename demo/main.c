@@ -90,13 +90,13 @@ void blink_handler( struct blink_t * data )
 	{
 		data->state = 0;
 		led_write( 0 );
-		sched_tasklet( &blink, TASKLET_QUEUE_SHORT, data->led_off );
+		sched_delay( &blink, data->led_off );
 	}
 	else
 	{
 		data->state = 1;
 		led_write( 1 );
-		sched_tasklet( &blink, TASKLET_QUEUE_SHORT, data->led_on );
+		sched_delay( &blink, data->led_on );
 	}
 }
 
@@ -108,7 +108,7 @@ int main(void)
 	sched_init();
 	console_init( 9600 );
 
-	sched_now( &blink );
+	sched_tasklet( &blink );
 
 	for(;;)
 	{

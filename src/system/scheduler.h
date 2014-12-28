@@ -12,18 +12,6 @@
 #include "hal.h"
 
 /**
- * @brief Tasklet queue index identifiers
- */
-enum tasklet_queue_index_t
-{
-	TASKLET_QUEUE_NOW,   /**< Execution within sched_latency time */
-	TASKLET_QUEUE_SHORT, /**< Execution within sched_period time */
-	TASKLET_QUEUE_LONG,  /**< Execution after sched_period time */
-
-	TASKLET_QUEUE_COUNT
-};
-
-/**
  * @brief Tasklet function
  */
 typedef void (*tasklet_func_t)(void*);
@@ -62,25 +50,15 @@ void sched_init();
 void sched_process();
 
 /**
- * @brief Schedule tasklet
- * @param tasklet Tasklet to be executed
- * @param tq Tasklet queue identifier
- * @param delay Execution delay
- */
-void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_index_t tq, unsigned delay );
-
-/**
- * @brief Schedule tasklet for immediate execution
+ * @brief Schedule tasklet for execution
+ * @param tq Tasklet queue ID (0 - immediate, 1 - delayed execution)
  * @param tasklet Tasklet to be executed
  */
-inline void sched_now( struct tasklet_t * tasklet )
-{
-	sched_tasklet( tasklet, TASKLET_QUEUE_NOW, 0 );
-}
+void sched_tasklet( struct tasklet_t * tasklet );
 
 /**
  * @brief Schedule tasklet for delayed execution
  * @param tasklet Tasklet to be executed
- * @param ms Execution delay in milliseconds
+ * @param ticks Execution delay in ticks
  */
-void sched_delay_ms( struct tasklet_t * tasklet, unsigned ms );
+inline void sched_delay( struct tasklet_t * tasklet, unsigned ticks ) { tasklet->delay = ticks; sched_tasklet( tasklet ); }

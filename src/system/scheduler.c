@@ -8,9 +8,8 @@ struct tasklet_queue_t
 	unsigned           delay;
 };
 
-static struct tasklet_queue_t _tasklets[TASKLET_QUEUE_COUNT] =
+struct tasklet_queue_t _tasklets[2] =
 {
-	{ .head = 0, .delay = -1 },
 	{ .head = 0, .delay = -1 },
 	{ .head = 0, .delay = -1 }
 };
@@ -21,16 +20,7 @@ void sched_compare_irq()
 
 }
 
-static void _sched_add( enum tasklet_queue_index_t tq, struct tasklet_t * tasklet )
-{
-	tasklet->next = _tasklets[tq].head;
-	_tasklets[tq].head = tasklet;
-
-	if( tasklet->delay < _tasklets[tq].delay )
-		_tasklets[tq].delay = tasklet->delay;
-}
-
-static void _sched_process_queue( enum tasklet_queue_index_t tq, unsigned dt )
+static void _sched_process_queue( uint8_t tq, unsigned dt )
 {
 	struct tasklet_t * tasklet = _tasklets[tq].head;
 	_tasklets[tq].head = 0;
@@ -43,10 +33,7 @@ static void _sched_process_queue( enum tasklet_queue_index_t tq, unsigned dt )
 		if( tasklet->delay > dt )
 		{
 			tasklet->delay -= dt;
-			if( tasklet->delay > sched_latency )
-				_sched_add( TASKLET_QUEUE_SHORT, tasklet );
-			else
-				_sched_add( TASKLET_QUEUE_NOW, tasklet );
+			sched_tasklet( tasklet );
 		}
 		else
 			tasklet->func( tasklet->data );
@@ -64,44 +51,39 @@ void sched_init()
 
 void sched_process()
 {
-	sched_timer_value_t tick, dt;
-	enum tasklet_queue_index_t tq;
+	sched_timer_value_t cur_tick, next_tick, dt;
+	uint8_t tq;
 
-	do
-	{
-		tick = sched_timer_value();
-		dt = tick - _last_tick;
-		dt %= sched_period;
-		_last_tick = tick;
+	cur_tick = sched_timer_value();
+	dt = cur_tick - _last_tick;
+	dt %= sched_period;
+	_last_tick = cur_tick;
 
-		for( tq = 0; tq < TASKLET_QUEUE_COUNT; ++tq )
-			_sched_process_queue( tq, dt );
-	}
-	while( _tasklets[TASKLET_QUEUE_NOW].head );
+	for( tq = 0; tq < 2; ++tq )
+		_sched_process_queue( tq, dt );
 
-	if(_tasklets[TASKLET_QUEUE_SHORT].head )
-	{
-		sched_timer_value_t next_tick = _last_tick + _tasklets[TASKLET_QUEUE_SHORT].delay;
-		next_tick %= sched_period;
-		sched_compare_set_value( next_tick );
+	if( _tasklets[0].head )
+		return;
 
-		dbg_write( 1 );
-		wait_for_irq();
-		dbg_write( 0 );
-	}
-}
-
-void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_index_t tq, unsigned delay )
-{
-	tasklet->delay = delay;
-	_sched_add( tq, tasklet );
-}
-
-void sched_delay_ms( struct tasklet_t * tasklet, unsigned ms )
-{
-	unsigned ticks = ms*sched_timer_freq/1000;
-	if( ticks > sched_latency )
-		sched_tasklet( tasklet, TASKLET_QUEUE_SHORT, ticks );
+	if( _tasklets[1].delay < sched_period/2 )
+		dt = _tasklets[1].delay;
 	else
-		sched_tasklet( tasklet, TASKLET_QUEUE_NOW, ticks );
+		dt = sched_period/2;
+
+	next_tick = cur_tick + dt;
+	next_tick %= sched_period;
+	sched_compare_set_value( next_tick );
+
+	wait_for_irq();
+}
+
+void sched_tasklet( struct tasklet_t * tasklet )
+{
+	uint8_t tq = tasklet->delay > sched_latency ? 1 : 0;
+
+	tasklet->next = _tasklets[tq].head;
+	_tasklets[tq].head = tasklet;
+
+	if( tasklet->delay < _tasklets[tq].delay )
+		_tasklets[tq].delay = tasklet->delay;
 }
