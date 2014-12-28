@@ -2,7 +2,7 @@
 PLATFORM = AVR
 MCU      = atmega328p
 OSDIR   = ../src
-TARGET   = blink
+TARGET   = demo
 
 INCLUDES = -Iarduino
 

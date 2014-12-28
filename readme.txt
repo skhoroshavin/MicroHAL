@@ -2,12 +2,13 @@
 Directory structure
 ===================
 
-	src         - Main source tree
-		core    - Generic utilities and build scripts
-		system  - Operating system, depends on core and hal.h, used by any part of project except core
-		drivers - Device drivers, used indirectly through hal.h by any part of project
-	demo        - Demo project
-		arduino - Arduino HAL for demo project
+	src          - Main source tree
+		platform - Platform dependent functions and build scripts
+		utils    - Generic utilities
+		drivers  - Device drivers, used indirectly through hal.h by any part of project
+		system   - Operating system, depends on platform, utils and hal.h
+	demo         - Demo project
+		arduino  - Arduino HAL for demo project
 
 User project
 ============
@@ -39,11 +40,19 @@ Interfaces
 		gpio_read()       - read value (for input bus)
 
 	Timer
-		timer_freq      - timer frequency
-		timer_init()    - initialize timer
-		timer_value()   - timer current value
-		timer_top()     - timer top value
-		timer_set_top() - set timer top value
+		timer_freq             - timer frequency
+		timer_init()           - initialize timer
+		timer_start()          - start timer
+		timer_stop()           - stop timer
+		timer_value()          - timer current value
+		timer_set_value(value) - set timer current value
+
+	Timer compare
+		compare_value()
+		compare_set_value()
+		compare_irq_enable()
+		compare_irq_disable()
+		compare_irq()
 
 	UART
 		uart_init(baud)  - initialize UART
@@ -51,58 +60,3 @@ Interfaces
 		uart_can_recv()  - check if UART is ready to receive data
 		uart_send(value) - send 1 byte
 		uart_recv()      - receive 1 byte
-
-Scheduler
-=========
-
-	Tick    - time between timer ticks
-	Latency - maximum time between timer
-	Period  - maximum time between timer interrupts
-
-	Tasklet queues:
-		0: Immediate - within timer interrupt latency, time stored in timer ticks
-		1: Short     - within timer period, time stored in timer ticks
-		2: Long      - longer than timer period, time stored in timer periods
-
-	Schedule task:
-		if( delay == 0 )
-			queue_insert( 0, task )
-		else if( delay < latency )
-			queue_insert_ordered( 1, task, delay )
-		else if( delay < period )
-			queue_insert_ordered( 2, task, delay )
-		else
-			queue_insert_ordered( 3, task, delay/period )
-
-	Update time:
-		dt = timer - last_timer
-		last_timer += dt
-		if( dt )
-		{
-			for each task in 1
-				schedule_task( task, delay )
-			for each task in 2
-				schedule_task( task, delay )
-			for each task in 3
-				schedule_task( task, delay*period )
-		}
-
-	Idle (tickless):
-		if( has_tasklets(2) )
-		{
-			timer_compare += nearest_time(2)
-			wait_for_irq();
-		}
-		else if( has_tasklets(3) )
-		{
-			timer_compare += nearest_time(3)
-			wait_for_irq();
-		}
-		else
-			deep_sleep();
-
-	Idle (ticked):
-		if( has_tasklets(2) || has_tasklets(3) )
-			wait_for_irq();
-		else
-			deep_sleep();

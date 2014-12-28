@@ -16,6 +16,11 @@ static struct tasklet_queue_t _tasklets[TASKLET_QUEUE_COUNT] =
 };
 static sched_timer_value_t _last_tick;
 
+void sched_compare_irq()
+{
+
+}
+
 static void _sched_add( enum tasklet_queue_index_t tq, struct tasklet_t * tasklet )
 {
 	tasklet->next = _tasklets[tq].head;
@@ -52,9 +57,9 @@ static void _sched_process_queue( enum tasklet_queue_index_t tq, unsigned dt )
 
 void sched_init()
 {
-	sched_timer_init();
 	_last_tick = sched_timer_value();
-	sched_compare_enable_irq();
+	sched_compare_irq_enable();
+	sched_timer_start();
 }
 
 void sched_process()

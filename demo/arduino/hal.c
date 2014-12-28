@@ -1,5 +1,4 @@
 
 #include "hal.h"
 
-IMPLEMENT_AVR_BASIC_TIMER(sched_timer)
-
+IMPLEMENT_TIMER_COMP(sched_compare,0,A)
