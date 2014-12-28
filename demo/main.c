@@ -105,6 +105,8 @@ void blink_handler( struct blink_t * data )
 int main(void)
 {
 	led_init();
+	dbg_init();
+
 	sched_init();
 	console_init( 9600 );
 

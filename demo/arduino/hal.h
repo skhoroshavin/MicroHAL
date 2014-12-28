@@ -19,13 +19,14 @@ enum
 
 #include <drivers/avr/avr_gpio.h>
 AVR_GPIO_OUTPUT(led, B,5,1, 0)
+AVR_GPIO_OUTPUT(dbg, B,4,1, 0)
 
 /***********************************************************************\
  * Timers                                                              *
 \***********************************************************************/
 
 #include <drivers/avr/avr_basic_timer.h>
-AVR_BASIC_TIMER_NORMAL(sched_timer,1024)
+AVR_BASIC_TIMER(sched_timer,sched_compare,sched_compare_b,1024)
 
 /***********************************************************************\
  * UART                                                                *

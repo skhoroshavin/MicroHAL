@@ -106,21 +106,3 @@ Scheduler
 			wait_for_irq();
 		else
 			deep_sleep();
-
-	Schedule:
-		while(1)
-		{
-			update_time()
-
-			while( has_tasklets(0) )
-			{
-				process_tasklets(0)
-
-				if( !has_tasklets(0) && has_tasklets(1) )
-					wait_for_tasklets(1)
-
-				update_time()
-			}
-
-			idle();
-		}

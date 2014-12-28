@@ -12,9 +12,9 @@
 #include "hal.h"
 
 /**
- * @brief Tasklet queue identifiers
+ * @brief Tasklet queue index identifiers
  */
-enum tasklet_queue_t
+enum tasklet_queue_index_t
 {
 	TASKLET_QUEUE_NOW,   /**< Execution within sched_latency time */
 	TASKLET_QUEUE_SHORT, /**< Execution within sched_period time */
@@ -67,7 +67,7 @@ void sched_process();
  * @param tq Tasklet queue identifier
  * @param delay Execution delay
  */
-void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_t tq, unsigned delay );
+void sched_tasklet( struct tasklet_t * tasklet, enum tasklet_queue_index_t tq, unsigned delay );
 
 /**
  * @brief Schedule tasklet for immediate execution
