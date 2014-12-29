@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>MicroHAL: src/core/text_input.h File Reference</title>
+<title>MicroHAL: src/utils/text_input.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1d5fd9c88c88cfd279935060fba1b0ce.html">src</a></li><li class="navelem"><a class="el" href="dir_b4ab740c418704e2a5c4edf8bf799a2a.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -92,20 +92,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">text_input.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="buffer_8h_source.html">core/buffer.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="buffer_8h_source.html">utils/buffer.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for text_input.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="text__input_8h__incl.png" border="0" usemap="#src_2core_2text__input_8h" alt=""/></div>
-<map name="src_2core_2text__input_8h" id="src_2core_2text__input_8h">
-<area shape="rect" id="node2" href="buffer_8h.html" title="core/buffer.h" alt="" coords="45,80,140,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="95,155,202,181"/></map>
+<div class="center"><img src="text__input_8h__incl.png" border="0" usemap="#src_2utils_2text__input_8h" alt=""/></div>
+<map name="src_2utils_2text__input_8h" id="src_2utils_2text__input_8h">
+<area shape="rect" id="node2" href="buffer_8h.html" title="utils/buffer.h" alt="" coords="45,80,140,107"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="95,155,202,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="text__input_8h__dep__incl.png" border="0" usemap="#src_2core_2text__input_8hdep" alt=""/></div>
-<map name="src_2core_2text__input_8hdep" id="src_2core_2text__input_8hdep">
-<area shape="rect" id="node2" href="console_8h.html" title="src/core/console.h" alt="" coords="11,80,141,107"/></map>
+<div class="center"><img src="text__input_8h__dep__incl.png" border="0" usemap="#src_2utils_2text__input_8hdep" alt=""/></div>
+<map name="src_2utils_2text__input_8hdep" id="src_2utils_2text__input_8hdep">
+<area shape="rect" id="node2" href="console_8h.html" title="src/system/console.h" alt="" coords="5,80,152,107"/></map>
 </div>
 </div>
 <p><a href="text__input_8h_source.html">Go to the source code of this file.</a></p>
@@ -166,12 +166,11 @@ Functions</h2></td></tr>
 <div class="line">        if( <a class="code" href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a>( (in), stream##_recv() ) ) \</div>
 <div class="line">        { \</div>
 <div class="line">            handler( (in)-&gt;argv.size, (in)-&gt;argv.data ); <a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">\</a></div>
-<div class="line"><a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">			buf_clear</a>( &amp;(in)-&gt;<a class="code" href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">data</a> ); <a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">\</a></div>
+<div class="line"><a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">			buf_clear</a>( &amp;(in)-&gt;data ); <a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">\</a></div>
 <div class="line"><a class="code" href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">			buf_clear</a>( &amp;(in)-&gt;argv ); \</div>
 <div class="line">        } \</div>
 <div class="line">    }</div>
 <div class="ttc" id="text__input_8h_html_ae9dfef541290e558a7c8fa65a007440d"><div class="ttname"><a href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a></div><div class="ttdeci">uint8_t input_process_char(buffered_input_t *in, char c)</div></div>
-<div class="ttc" id="structtasklet__t_html_a03b08560118e3d23205cb2c734a4a3ba"><div class="ttname"><a href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">tasklet_t::data</a></div><div class="ttdeci">void * data</div><div class="ttdoc">Pointer to tasklet data. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00027">scheduler.h:27</a></div></div>
 <div class="ttc" id="buffer_8h_html_a99bfa87be609b103b9bba11b2106228f"><div class="ttname"><a href="buffer_8h.html#a99bfa87be609b103b9bba11b2106228f">buf_clear</a></div><div class="ttdeci">#define buf_clear(buf)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00043">buffer.h:43</a></div></div>
 </div><!-- fragment -->
 <p>Definition at line <a class="el" href="text__input_8h_source.html#l00024">24</a> of file <a class="el" href="text__input_8h_source.html">text_input.h</a>.</p>
@@ -252,7 +251,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 25 2014 00:19:36 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

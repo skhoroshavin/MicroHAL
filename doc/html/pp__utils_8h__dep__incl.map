@@ -1,8 +1,8 @@
-<map id="src/core/pp_utils.h" name="src/core/pp_utils.h">
-<area shape="rect" id="node2" href="$buffer_8h.html" title="src/core/buffer.h" alt="" coords="5,80,123,107"/>
-<area shape="rect" id="node5" href="$list_8h.html" title="src/core/list.h" alt="" coords="147,80,248,107"/>
-<area shape="rect" id="node6" href="$ring__buffer_8h.html" title="src/core/ring_buffer.h" alt="" coords="273,80,418,107"/>
-<area shape="rect" id="node3" href="$text__input_8h.html" title="src/core/text_input.h" alt="" coords="21,155,163,181"/>
-<area shape="rect" id="node4" href="$console_8h.html" title="src/core/console.h" alt="" coords="139,229,269,256"/>
-<area shape="rect" id="node7" href="$text__output_8h.html" title="src/core/text_output.h" alt="" coords="243,155,392,181"/>
+<map id="src/utils/pp_utils.h" name="src/utils/pp_utils.h">
+<area shape="rect" id="node2" href="$avr__timer_8h.html" title="src/drivers/avr/avr\l_timer.h" alt="" coords="5,80,132,121"/>
+<area shape="rect" id="node3" href="$buffer_8h.html" title="src/utils/buffer.h" alt="" coords="156,87,272,114"/>
+<area shape="rect" id="node6" href="$ring__buffer_8h.html" title="src/utils/ring_buffer.h" alt="" coords="303,87,447,114"/>
+<area shape="rect" id="node4" href="$text__input_8h.html" title="src/utils/text_input.h" alt="" coords="141,169,281,196"/>
+<area shape="rect" id="node5" href="$console_8h.html" title="src/system/console.h" alt="" coords="222,244,369,271"/>
+<area shape="rect" id="node7" href="$text__output_8h.html" title="src/utils/text_output.h" alt="" coords="305,169,453,196"/>
 </map>

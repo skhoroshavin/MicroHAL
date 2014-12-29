@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>MicroHAL: src/core/scheduler.h File Reference</title>
+<title>MicroHAL: src/system/scheduler.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1d5fd9c88c88cfd279935060fba1b0ce.html">src</a></li><li class="navelem"><a class="el" href="dir_b4ab740c418704e2a5c4edf8bf799a2a.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d501334aeb1b78ad67cd3c72c37b1e87.html">system</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,12 +96,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Simple task scheduler.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;core_config.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;hal.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for scheduler.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="scheduler_8h__incl.png" border="0" usemap="#src_2core_2scheduler_8h" alt=""/></div>
-<map name="src_2core_2scheduler_8h" id="src_2core_2scheduler_8h">
+<div class="center"><img src="scheduler_8h__incl.png" border="0" usemap="#src_2system_2scheduler_8h" alt=""/></div>
+<map name="src_2system_2scheduler_8h" id="src_2system_2scheduler_8h">
 </map>
 </div>
 </div>
@@ -133,15 +133,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a3216aa036bdac2584c4a4c15b7f3387c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a3216aa036bdac2584c4a4c15b7f3387c">sched_process</a> ()</td></tr>
 <tr class="memdesc:a3216aa036bdac2584c4a4c15b7f3387c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process tasklets.  <a href="#a3216aa036bdac2584c4a4c15b7f3387c">More...</a><br /></td></tr>
 <tr class="separator:a3216aa036bdac2584c4a4c15b7f3387c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01685ff6a1773e9470e96e8c7574f11a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a01685ff6a1773e9470e96e8c7574f11a">sched_immediate</a> (struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *tasklet)</td></tr>
-<tr class="memdesc:a01685ff6a1773e9470e96e8c7574f11a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule tasklet for immediate execution.  <a href="#a01685ff6a1773e9470e96e8c7574f11a">More...</a><br /></td></tr>
-<tr class="separator:a01685ff6a1773e9470e96e8c7574f11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f7ea287882134537a00d00c8440a07b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#a5f7ea287882134537a00d00c8440a07b">sched_short</a> (struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *tasklet, unsigned ticks)</td></tr>
-<tr class="memdesc:a5f7ea287882134537a00d00c8440a07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule tasklet for execution in short amount of time.  <a href="#a5f7ea287882134537a00d00c8440a07b">More...</a><br /></td></tr>
-<tr class="separator:a5f7ea287882134537a00d00c8440a07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2fa90908edb2982077c69ad8dedb219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#ae2fa90908edb2982077c69ad8dedb219">sched_long</a> (struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *tasklet, unsigned periods)</td></tr>
-<tr class="memdesc:ae2fa90908edb2982077c69ad8dedb219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule tasklet for execution after long amount of time.  <a href="#ae2fa90908edb2982077c69ad8dedb219">More...</a><br /></td></tr>
-<tr class="separator:ae2fa90908edb2982077c69ad8dedb219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9429b92ea8fe5bbcbf6704909942eba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#aa9429b92ea8fe5bbcbf6704909942eba">sched_tasklet</a> (struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *tasklet)</td></tr>
+<tr class="memdesc:aa9429b92ea8fe5bbcbf6704909942eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule tasklet for execution.  <a href="#aa9429b92ea8fe5bbcbf6704909942eba">More...</a><br /></td></tr>
+<tr class="separator:aa9429b92ea8fe5bbcbf6704909942eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaace7a2aeec6ff314b26b88ce0e3236e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8h.html#aaace7a2aeec6ff314b26b88ce0e3236e">sched_delay</a> (struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *tasklet, unsigned ticks)</td></tr>
+<tr class="memdesc:aaace7a2aeec6ff314b26b88ce0e3236e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedule tasklet for delayed execution.  <a href="#aaace7a2aeec6ff314b26b88ce0e3236e">More...</a><br /></td></tr>
+<tr class="separator:aaace7a2aeec6ff314b26b88ce0e3236e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple task scheduler. </p>
@@ -214,27 +211,48 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a01685ff6a1773e9470e96e8c7574f11a"></a>
+<a class="anchor" id="aaace7a2aeec6ff314b26b88ce0e3236e"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void sched_immediate </td>
+          <td class="memname">void sched_delay </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *&#160;</td>
-          <td class="paramname"><em>tasklet</em></td><td>)</td>
+          <td class="paramname"><em>tasklet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>ticks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Schedule tasklet for immediate execution. </p>
+<p>Schedule tasklet for delayed execution. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tasklet</td><td>Tasklet to be executed </td></tr>
+    <tr><td class="paramname">ticks</td><td>Execution delay in ticks </td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00064">64</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
 
 </div>
 </div>
@@ -255,41 +273,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae2fa90908edb2982077c69ad8dedb219"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void sched_long </td>
-          <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *&#160;</td>
-          <td class="paramname"><em>tasklet</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>periods</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Schedule tasklet for execution after long amount of time. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tasklet</td><td>Tasklet to be executed </td></tr>
-    <tr><td class="paramname">periods</td><td>Number of scheduler periods </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a3216aa036bdac2584c4a4c15b7f3387c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -307,35 +290,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5f7ea287882134537a00d00c8440a07b"></a>
+<a class="anchor" id="aa9429b92ea8fe5bbcbf6704909942eba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sched_short </td>
+          <td class="memname">void sched_tasklet </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structtasklet__t.html">tasklet_t</a> *&#160;</td>
-          <td class="paramname"><em>tasklet</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>tasklet</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>ticks</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Schedule tasklet for execution in short amount of time. </p>
+<p>Schedule tasklet for execution. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">tq</td><td>Tasklet queue ID (0 - immediate, 1 - delayed execution) </td></tr>
     <tr><td class="paramname">tasklet</td><td>Tasklet to be executed </td></tr>
-    <tr><td class="paramname">ticks</td><td>Number of scheduler ticks </td></tr>
   </table>
   </dd>
 </dl>
@@ -345,7 +318,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 25 2014 00:19:36 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

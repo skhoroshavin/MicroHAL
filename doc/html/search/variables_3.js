@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['func',['func',['../structtasklet__t.html#add8c559a8554f7dd166aa39f3b3e607d',1,'tasklet_t']]]
+  ['next',['next',['../structtasklet__t.html#ab60a3e9a4191dcaad1bc5e14aa828cac',1,'tasklet_t::next()'],['../structlist__t.html#a33ebcd978a07c098034bbd2f7e99fd2d',1,'list_t::next()']]]
 ];

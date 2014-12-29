@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['input_5finit',['input_init',['../text__input_8h.html#a4ecdc29a1b40b15207caee94f67a7031',1,'text_input.h']]],
-  ['input_5fprocess_5fchar',['input_process_char',['../text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d',1,'text_input.h']]],
-  ['irq_5frestore',['irq_restore',['../interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38',1,'interrupts.h']]],
-  ['irq_5fstore_5fand_5fdisable',['irq_store_and_disable',['../interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c',1,'interrupts.h']]]
+  ['list_5fback',['list_back',['../list_8h.html#a429b512dbcf1975df4301a6956a645a6',1,'list.h']]],
+  ['list_5ffront',['list_front',['../list_8h.html#a1c462dede708f91cffc94047dea7a83d',1,'list.h']]],
+  ['list_5finit',['list_init',['../list_8h.html#aef87646181ea60db28018d222ca0ec2d',1,'list.h']]],
+  ['list_5fpush_5fback',['list_push_back',['../list_8h.html#a6502d67b5cb4c1eee680d05369109d98',1,'list.h']]],
+  ['list_5fpush_5ffront',['list_push_front',['../list_8h.html#a664ba2c7265377e250591499ea66c5e8',1,'list.h']]],
+  ['list_5fremove',['list_remove',['../list_8h.html#ae242615bb0faa87bb4dfa37ef99364c8',1,'list.h']]]
 ];

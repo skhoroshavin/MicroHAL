@@ -1,4 +1,4 @@
-<map id="src/core/buffer.h" name="src/core/buffer.h">
-<area shape="rect" id="node2" href="$text__input_8h.html" title="src/core/text_input.h" alt="" coords="5,80,147,107"/>
-<area shape="rect" id="node3" href="$console_8h.html" title="src/core/console.h" alt="" coords="11,155,141,181"/>
+<map id="src/utils/buffer.h" name="src/utils/buffer.h">
+<area shape="rect" id="node2" href="$text__input_8h.html" title="src/utils/text_input.h" alt="" coords="9,80,149,107"/>
+<area shape="rect" id="node3" href="$console_8h.html" title="src/system/console.h" alt="" coords="5,155,152,181"/>
 </map>

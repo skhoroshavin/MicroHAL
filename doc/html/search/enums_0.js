@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['avr_5fadvanced_5ftimer_5fmode_5ft',['avr_advanced_timer_mode_t',['../avr__advanced__timer_8h.html#a0a5e3fe3a676004d2cebd0255311d897',1,'avr_advanced_timer.h']]]
+  ['output_5fitem_5ftype_5ft',['output_item_type_t',['../text__output_8h.html#a1351dd7ff4c7138d01c9466142f29353',1,'text_output.h']]]
 ];

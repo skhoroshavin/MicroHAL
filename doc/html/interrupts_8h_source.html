@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>MicroHAL: src/core/interrupts.h Source File</title>
+<title>MicroHAL: src/platform/interrupts.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1d5fd9c88c88cfd279935060fba1b0ce.html">src</a></li><li class="navelem"><a class="el" href="dir_b4ab740c418704e2a5c4edf8bf799a2a.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_4b68c2fef3e151b6b93d5e93b14f1857.html">platform</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -104,27 +104,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">inline</span> irq_state_t <a class="code" href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">irq_store_and_disable</a>() { irq_state_t result = SREG; cli(); <span class="keywordflow">return</span> result; }</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">irq_restore</a>( irq_state_t state ) { SREG = state; }</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define wait_for_irq() sleep_cpu()</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a6a0439b28db6fee1e7eb3d1b56d3294a">   24</a></span>&#160;<span class="preprocessor">#define irq_enable()</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="interrupts_8h.html#acd9ccf0612b51a0f07d76826341e469b">   29</a></span>&#160;<span class="preprocessor">#define irq_disable()</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">   35</a></span>&#160;<span class="keyword">inline</span> irq_state_t <a class="code" href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">irq_store_and_disable</a>() { <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define wait_for_irq() \</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">    do { \</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">        sleep_enable(); \</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">        sei(); \</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">        sleep_cpu(); \</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">        sleep_disable(); \</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    } while(0)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a6a0439b28db6fee1e7eb3d1b56d3294a">   30</a></span>&#160;<span class="preprocessor">#define irq_enable()</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="interrupts_8h.html#acd9ccf0612b51a0f07d76826341e469b">   35</a></span>&#160;<span class="preprocessor">#define irq_disable()</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">   41</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">irq_restore</a>( irq_state_t state ) { }</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">   41</a></span>&#160;<span class="keyword">inline</span> irq_state_t <a class="code" href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">irq_store_and_disable</a>() { <span class="keywordflow">return</span> 0; }</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a39e99879c7fec196394975e83cc4241b">   46</a></span>&#160;<span class="preprocessor">#define wait_for_irq()</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="interrupts_8h_html_a556e2b6d74cc0c0b3c8a503f4098847c"><div class="ttname"><a href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">irq_store_and_disable</a></div><div class="ttdeci">irq_state_t irq_store_and_disable()</div><div class="ttdoc">Disable hardware IRQ returning previous state. </div><div class="ttdef"><b>Definition:</b> <a href="interrupts_8h_source.html#l00035">interrupts.h:35</a></div></div>
-<div class="ttc" id="interrupts_8h_html_a9cf4f6d3dba112eb2cbfed9378e3bf38"><div class="ttname"><a href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">irq_restore</a></div><div class="ttdeci">void irq_restore(irq_state_t state)</div><div class="ttdoc">Restore hardware IRQ state. </div><div class="ttdef"><b>Definition:</b> <a href="interrupts_8h_source.html#l00041">interrupts.h:41</a></div></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">   47</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">irq_restore</a>( irq_state_t state ) { }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="interrupts_8h.html#a39e99879c7fec196394975e83cc4241b">   52</a></span>&#160;<span class="preprocessor">#define wait_for_irq()</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="interrupts_8h_html_a556e2b6d74cc0c0b3c8a503f4098847c"><div class="ttname"><a href="interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c">irq_store_and_disable</a></div><div class="ttdeci">irq_state_t irq_store_and_disable()</div><div class="ttdoc">Disable hardware IRQ returning previous state. </div><div class="ttdef"><b>Definition:</b> <a href="interrupts_8h_source.html#l00041">interrupts.h:41</a></div></div>
+<div class="ttc" id="interrupts_8h_html_a9cf4f6d3dba112eb2cbfed9378e3bf38"><div class="ttname"><a href="interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38">irq_restore</a></div><div class="ttdeci">void irq_restore(irq_state_t state)</div><div class="ttdoc">Restore hardware IRQ state. </div><div class="ttdef"><b>Definition:</b> <a href="interrupts_8h_source.html#l00047">interrupts.h:47</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 25 2014 00:19:36 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

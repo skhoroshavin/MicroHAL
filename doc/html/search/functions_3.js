@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['flash_5fread_5fbyte',['flash_read_byte',['../flash_8h.html#adc8dbe49e8ffa527f32c0609fdb9dcd5',1,'flash.h']]],
-  ['flash_5fread_5fdword',['flash_read_dword',['../flash_8h.html#a8d577664f050f6526947dcdb416f32f4',1,'flash.h']]],
-  ['flash_5fread_5ffloat',['flash_read_float',['../flash_8h.html#a4cf6b6d9889a4c41d93af6ef0c74439f',1,'flash.h']]],
-  ['flash_5fread_5fptr',['flash_read_ptr',['../flash_8h.html#ae2cf37273f1ca361fa1801baae727d4c',1,'flash.h']]],
-  ['flash_5fread_5fword',['flash_read_word',['../flash_8h.html#aa4ea352f90371b9759f4bf8992a0efd4',1,'flash.h']]]
+  ['input_5finit',['input_init',['../text__input_8h.html#a4ecdc29a1b40b15207caee94f67a7031',1,'text_input.h']]],
+  ['input_5fprocess_5fchar',['input_process_char',['../text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d',1,'text_input.h']]],
+  ['irq_5frestore',['irq_restore',['../interrupts_8h.html#a9cf4f6d3dba112eb2cbfed9378e3bf38',1,'interrupts.h']]],
+  ['irq_5fstore_5fand_5fdisable',['irq_store_and_disable',['../interrupts_8h.html#a556e2b6d74cc0c0b3c8a503f4098847c',1,'interrupts.h']]]
 ];

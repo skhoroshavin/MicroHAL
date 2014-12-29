@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['bit_5futils_2eh',['bit_utils.h',['../bit__utils_8h.html',1,'']]],
-  ['buffer_2eh',['buffer.h',['../buffer_8h.html',1,'']]]
+  ['console_2eh',['console.h',['../console_8h.html',1,'']]],
+  ['coroutine_2eh',['coroutine.h',['../coroutine_8h.html',1,'']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>MicroHAL: src/core/text_input.h Source File</title>
+<title>MicroHAL: src/utils/text_input.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1d5fd9c88c88cfd279935060fba1b0ce.html">src</a></li><li class="navelem"><a class="el" href="dir_b4ab740c418704e2a5c4edf8bf799a2a.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="text__input_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="buffer_8h.html">core/buffer.h</a>&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="buffer_8h.html">utils/buffer.h</a>&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef TEXT_INPUT_BUF_SIZE</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="text__input_8h.html#a2d8e551f8b4558fc69149bc2a8d961e0">    7</a></span>&#160;<span class="preprocessor">#define TEXT_INPUT_BUF_SIZE 32</span></div>
@@ -103,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structbuffered__input__t.html">   14</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="buffer_8h.html#adb2276a2b9e765720cb9105126011ccb">DECLARE_BUFFER</a>(<a class="code" href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">data</a>, <span class="keywordtype">char</span>,        <a class="code" href="text__input_8h.html#a2d8e551f8b4558fc69149bc2a8d961e0">TEXT_INPUT_BUF_SIZE</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="buffer_8h.html#adb2276a2b9e765720cb9105126011ccb">DECLARE_BUFFER</a>(data, <span class="keywordtype">char</span>,        <a class="code" href="text__input_8h.html#a2d8e551f8b4558fc69149bc2a8d961e0">TEXT_INPUT_BUF_SIZE</a>);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="buffer_8h.html#adb2276a2b9e765720cb9105126011ccb">DECLARE_BUFFER</a>(argv, <span class="keyword">const</span> <span class="keywordtype">char</span>*, <a class="code" href="text__input_8h.html#a5f0670bf07548c3663d79be2e2c32ad6">TEXT_INPUT_MAX_PARAMS</a>);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <a class="code" href="structbuffered__input__t.html">buffered_input_t</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
@@ -123,7 +123,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    }</span></div>
 <div class="ttc" id="text__input_8h_html_ae9dfef541290e558a7c8fa65a007440d"><div class="ttname"><a href="text__input_8h.html#ae9dfef541290e558a7c8fa65a007440d">input_process_char</a></div><div class="ttdeci">uint8_t input_process_char(buffered_input_t *in, char c)</div></div>
 <div class="ttc" id="text__input_8h_html_a2d8e551f8b4558fc69149bc2a8d961e0"><div class="ttname"><a href="text__input_8h.html#a2d8e551f8b4558fc69149bc2a8d961e0">TEXT_INPUT_BUF_SIZE</a></div><div class="ttdeci">#define TEXT_INPUT_BUF_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="text__input_8h_source.html#l00007">text_input.h:7</a></div></div>
-<div class="ttc" id="structtasklet__t_html_a03b08560118e3d23205cb2c734a4a3ba"><div class="ttname"><a href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">tasklet_t::data</a></div><div class="ttdeci">void * data</div><div class="ttdoc">Pointer to tasklet data. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00027">scheduler.h:27</a></div></div>
 <div class="ttc" id="buffer_8h_html_adb2276a2b9e765720cb9105126011ccb"><div class="ttname"><a href="buffer_8h.html#adb2276a2b9e765720cb9105126011ccb">DECLARE_BUFFER</a></div><div class="ttdeci">#define DECLARE_BUFFER(name, type, max_size)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8h_source.html#l00011">buffer.h:11</a></div></div>
 <div class="ttc" id="buffer_8h_html"><div class="ttname"><a href="buffer_8h.html">buffer.h</a></div></div>
 <div class="ttc" id="text__input_8h_html_a5f0670bf07548c3663d79be2e2c32ad6"><div class="ttname"><a href="text__input_8h.html#a5f0670bf07548c3663d79be2e2c32ad6">TEXT_INPUT_MAX_PARAMS</a></div><div class="ttdeci">#define TEXT_INPUT_MAX_PARAMS</div><div class="ttdef"><b>Definition:</b> <a href="text__input_8h_source.html#l00011">text_input.h:11</a></div></div>
@@ -132,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 25 2014 00:19:36 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

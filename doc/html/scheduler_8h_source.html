@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>MicroHAL: src/core/scheduler.h Source File</title>
+<title>MicroHAL: src/system/scheduler.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1d5fd9c88c88cfd279935060fba1b0ce.html">src</a></li><li class="navelem"><a class="el" href="dir_b4ab740c418704e2a5c4edf8bf799a2a.html">core</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d501334aeb1b78ad67cd3c72c37b1e87.html">system</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="scheduler_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;core_config.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;hal.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">   17</a></span>&#160;<span class="keyword">typedef</span> void (*<a class="code" href="scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a>)(<span class="keywordtype">void</span>*);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
@@ -116,26 +116,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#a3216aa036bdac2584c4a4c15b7f3387c">sched_process</a>();</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#a01685ff6a1773e9470e96e8c7574f11a">sched_immediate</a>( <span class="keyword">struct</span> <a class="code" href="structtasklet__t.html">tasklet_t</a> * tasklet );</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#a5f7ea287882134537a00d00c8440a07b">sched_short</a>( <span class="keyword">struct</span> <a class="code" href="structtasklet__t.html">tasklet_t</a> * tasklet, <span class="keywordtype">unsigned</span> ticks );</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#ae2fa90908edb2982077c69ad8dedb219">sched_long</a>( <span class="keyword">struct</span> <a class="code" href="structtasklet__t.html">tasklet_t</a> * tasklet, <span class="keywordtype">unsigned</span> periods );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#aa9429b92ea8fe5bbcbf6704909942eba">sched_tasklet</a>( <span class="keyword">struct</span> <a class="code" href="structtasklet__t.html">tasklet_t</a> * tasklet );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="scheduler_8h.html#aaace7a2aeec6ff314b26b88ce0e3236e">   64</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="scheduler_8h.html#aaace7a2aeec6ff314b26b88ce0e3236e">sched_delay</a>( <span class="keyword">struct</span> <a class="code" href="structtasklet__t.html">tasklet_t</a> * tasklet, <span class="keywordtype">unsigned</span> ticks ) { tasklet-&gt;<a class="code" href="structtasklet__t.html#a877c75842ff778afbf230bf06290d3bf">delay</a> = ticks; <a class="code" href="scheduler_8h.html#aa9429b92ea8fe5bbcbf6704909942eba">sched_tasklet</a>( tasklet ); }</div>
 <div class="ttc" id="structtasklet__t_html_add8c559a8554f7dd166aa39f3b3e607d"><div class="ttname"><a href="structtasklet__t.html#add8c559a8554f7dd166aa39f3b3e607d">tasklet_t::func</a></div><div class="ttdeci">tasklet_func_t func</div><div class="ttdoc">Pointer to tasklet function. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00026">scheduler.h:26</a></div></div>
+<div class="ttc" id="scheduler_8h_html_aa9429b92ea8fe5bbcbf6704909942eba"><div class="ttname"><a href="scheduler_8h.html#aa9429b92ea8fe5bbcbf6704909942eba">sched_tasklet</a></div><div class="ttdeci">void sched_tasklet(struct tasklet_t *tasklet)</div><div class="ttdoc">Schedule tasklet for execution. </div></div>
 <div class="ttc" id="scheduler_8h_html_a66adad818d9b9fdcc2cb58ae6658b884"><div class="ttname"><a href="scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a></div><div class="ttdeci">void(* tasklet_func_t)(void *)</div><div class="ttdoc">Tasklet function. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00017">scheduler.h:17</a></div></div>
 <div class="ttc" id="scheduler_8h_html_a3216aa036bdac2584c4a4c15b7f3387c"><div class="ttname"><a href="scheduler_8h.html#a3216aa036bdac2584c4a4c15b7f3387c">sched_process</a></div><div class="ttdeci">void sched_process()</div><div class="ttdoc">Process tasklets. </div></div>
 <div class="ttc" id="structtasklet__t_html_a877c75842ff778afbf230bf06290d3bf"><div class="ttname"><a href="structtasklet__t.html#a877c75842ff778afbf230bf06290d3bf">tasklet_t::delay</a></div><div class="ttdeci">unsigned delay</div><div class="ttdoc">Tasklet delay in ticks or periods (internal) </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00025">scheduler.h:25</a></div></div>
 <div class="ttc" id="structtasklet__t_html_a03b08560118e3d23205cb2c734a4a3ba"><div class="ttname"><a href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">tasklet_t::data</a></div><div class="ttdeci">void * data</div><div class="ttdoc">Pointer to tasklet data. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00027">scheduler.h:27</a></div></div>
-<div class="ttc" id="scheduler_8h_html_ae2fa90908edb2982077c69ad8dedb219"><div class="ttname"><a href="scheduler_8h.html#ae2fa90908edb2982077c69ad8dedb219">sched_long</a></div><div class="ttdeci">void sched_long(struct tasklet_t *tasklet, unsigned periods)</div><div class="ttdoc">Schedule tasklet for execution after long amount of time. </div></div>
 <div class="ttc" id="structtasklet__t_html"><div class="ttname"><a href="structtasklet__t.html">tasklet_t</a></div><div class="ttdoc">Tasklet data structure. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00022">scheduler.h:22</a></div></div>
 <div class="ttc" id="structtasklet__t_html_ab60a3e9a4191dcaad1bc5e14aa828cac"><div class="ttname"><a href="structtasklet__t.html#ab60a3e9a4191dcaad1bc5e14aa828cac">tasklet_t::next</a></div><div class="ttdeci">struct tasklet_t * next</div><div class="ttdoc">Pointer to next tasklet in list (internal) </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00024">scheduler.h:24</a></div></div>
 <div class="ttc" id="scheduler_8h_html_a2901f6abe698f399022d2a6c6b164dc2"><div class="ttname"><a href="scheduler_8h.html#a2901f6abe698f399022d2a6c6b164dc2">sched_init</a></div><div class="ttdeci">void sched_init()</div><div class="ttdoc">Initialize task scheduler. </div></div>
-<div class="ttc" id="scheduler_8h_html_a5f7ea287882134537a00d00c8440a07b"><div class="ttname"><a href="scheduler_8h.html#a5f7ea287882134537a00d00c8440a07b">sched_short</a></div><div class="ttdeci">void sched_short(struct tasklet_t *tasklet, unsigned ticks)</div><div class="ttdoc">Schedule tasklet for execution in short amount of time. </div></div>
-<div class="ttc" id="scheduler_8h_html_a01685ff6a1773e9470e96e8c7574f11a"><div class="ttname"><a href="scheduler_8h.html#a01685ff6a1773e9470e96e8c7574f11a">sched_immediate</a></div><div class="ttdeci">void sched_immediate(struct tasklet_t *tasklet)</div><div class="ttdoc">Schedule tasklet for immediate execution. </div></div>
+<div class="ttc" id="scheduler_8h_html_aaace7a2aeec6ff314b26b88ce0e3236e"><div class="ttname"><a href="scheduler_8h.html#aaace7a2aeec6ff314b26b88ce0e3236e">sched_delay</a></div><div class="ttdeci">void sched_delay(struct tasklet_t *tasklet, unsigned ticks)</div><div class="ttdoc">Schedule tasklet for delayed execution. </div><div class="ttdef"><b>Definition:</b> <a href="scheduler_8h_source.html#l00064">scheduler.h:64</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 25 2014 00:19:36 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

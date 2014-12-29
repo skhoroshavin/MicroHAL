@@ -1,7 +1,6 @@
 var searchData=
 [
   ['cat',['CAT',['../pp__utils_8h.html#a9404439ed46dc67d489a7d4ec2853e8f',1,'pp_utils.h']]],
-  ['clock',['clock',['../structavr__advanced__timer__config__t.html#aee5e9da7401ee5fb7a121c08302a7abd',1,'avr_advanced_timer_config_t']]],
   ['console_2eh',['console.h',['../console_8h.html',1,'']]],
   ['console_5finit',['console_init',['../console_8h.html#aa0e434ab4665aee6fdf4564a0e66a14f',1,'console.h']]],
   ['console_5fon_5fcommand',['console_on_command',['../console_8h.html#a9f2198b65b87ac3a461fa32c94af38b2',1,'console.h']]],

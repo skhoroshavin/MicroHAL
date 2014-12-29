@@ -1,8 +1,8 @@
-<map id="src/core/console.h" name="src/core/console.h">
-<area shape="rect" id="node2" href="$text__input_8h.html" title="core/text_input.h" alt="" coords="5,80,124,107"/>
-<area shape="rect" id="node7" href="$text__output_8h.html" title="core/text_output.h" alt="" coords="148,80,275,107"/>
-<area shape="rect" id="node3" href="$buffer_8h.html" title="core/buffer.h" alt="" coords="17,155,112,181"/>
-<area shape="rect" id="node5" href="$pp__utils_8h.html" title="core/pp_utils.h" alt="" coords="225,229,331,256"/>
-<area shape="rect" id="node8" href="$ring__buffer_8h.html" title="core/ring_buffer.h" alt="" coords="251,155,374,181"/>
-<area shape="rect" id="node9" href="$flash_8h.html" title="core/flash.h" alt="" coords="137,155,227,181"/>
+<map id="src/system/console.h" name="src/system/console.h">
+<area shape="rect" id="node2" href="$text__input_8h.html" title="utils/text_input.h" alt="" coords="277,80,395,107"/>
+<area shape="rect" id="node7" href="$text__output_8h.html" title="utils/text_output.h" alt="" coords="126,80,253,107"/>
+<area shape="rect" id="node3" href="$buffer_8h.html" title="utils/buffer.h" alt="" coords="289,155,383,181"/>
+<area shape="rect" id="node5" href="$pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="243,229,349,256"/>
+<area shape="rect" id="node8" href="$flash_8h.html" title="platform/flash.h" alt="" coords="152,155,264,181"/>
+<area shape="rect" id="node9" href="$ring__buffer_8h.html" title="utils/ring_buffer.h" alt="" coords="5,155,128,181"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mode',['mode',['../structavr__advanced__timer__config__t.html#a0979b0a20f8260121a871c8a5293563d',1,'avr_advanced_timer_config_t']]]
+  ['prev',['prev',['../structlist__t.html#a54545fe2532b8eabd4a48b11503873c1',1,'list_t']]]
 ];
