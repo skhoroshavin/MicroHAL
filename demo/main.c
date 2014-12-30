@@ -3,6 +3,7 @@
 #include <utils/string_utils.h>
 #include <system/console.h>
 #include <system/scheduler.h>
+#include <system/soft_irq.h>
 
 enum
 {
@@ -100,6 +101,17 @@ void blink_handler( struct blink_t * data )
 	}
 }
 
+void soft_irq_call( uint8_t id )
+{
+
+}
+
+void soft_irq_idle()
+{
+	sched_process();
+	console_process();
+}
+
 int main(void)
 {
 	led_init();
@@ -110,11 +122,7 @@ int main(void)
 
 	sched_tasklet( &blink );
 
-	for(;;)
-	{
-		sched_process();
-		console_process();
-	}
+	soft_irq_run();
 
 	return 0;
 }

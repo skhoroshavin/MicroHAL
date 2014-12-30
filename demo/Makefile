@@ -12,6 +12,7 @@ SOURCES  = main.c \
 	utils/text_input.c \
 	utils/text_output.c \
 	system/console.c \
+	system/soft_irq.c \
 	system/scheduler.c
 
 include $(OSDIR)/platform/build.mk

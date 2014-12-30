@@ -60,3 +60,53 @@ Interfaces
 		uart_can_recv()  - check if UART is ready to receive data
 		uart_send(value) - send 1 byte
 		uart_recv()      - receive 1 byte
+
+
+System
+======
+
+	Soft IRQ
+		soft_irq_emit( id )
+			set irq active
+
+		soft_irq_call( id )
+			call irq
+
+		soft_irq_process()
+			for each irq
+				if active
+					clear active
+					soft_irq_call( irq )
+
+		soft_irq_idle()
+			if not have idle irq
+				wait for interrupt
+
+		soft_irq_run()
+			for(;;)
+			{
+				soft_irq_process()
+				soft_irq_idle()
+			}
+
+	Soft timer
+		soft_timer_start( id, delay )
+
+		soft_timer_irq()
+			calc dt
+			for each timer
+				if delay == 0 continue
+				if dt < delay delay -= dt continue
+				delay = 0
+				soft_irq_emit()
+
+		soft_timer_process()
+
+	Tasklet system
+		tasklet_start()
+			add tasklet
+			soft_irq_emit( tasklets )
+
+		tasklets_soft_irq()
+			while has tasklets
+				process
