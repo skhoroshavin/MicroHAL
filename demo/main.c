@@ -1,33 +1,20 @@
 
 #include <platform/flash.h>
 #include <utils/string_utils.h>
-#include <system/console.h>
-#include <system/tasklets.h>
 #include <system/soft_irq.h>
+#include <system/clock.h>
+#include <system/console.h>
 
 enum
 {
 	tick_period_ms = 1000,
-	blink_period   = (uint32_t)tasklets_timer_freq*tick_period_ms/1000
+	blink_period   = (uint32_t)clock_freq*tick_period_ms/1000
 };
 
 STATIC_ASSERT(blink_period < 0x10000, main);
 
-struct blink_t
-{
-	uint16_t led_on;
-	uint16_t led_off;
-	uint8_t  state;
-};
-void blink_handler( struct blink_t * data );
-
-struct blink_t blink_context =
-{
-	.state   = 0,
-	.led_on  = blink_period/2,
-	.led_off = blink_period/2
-};
-DEFINE_TASKLET( blink, blink_handler, &blink_context );
+volatile uint16_t led_on  = blink_period/2;
+volatile uint16_t led_off = blink_period/2;
 
 FLASH_STR(unknown_cmd) = "Unknown command: ";
 FLASH_STR(endl)        = "\n\r";
@@ -69,8 +56,8 @@ void console_on_command( uint8_t argc, const char * argv[] )
 		uint8_t i = str_findF( argv[1], cmd_led_args, sizeof(struct cmd_led_arg_t) );
 		if( i < array_size(cmd_led_args) )
 		{
-			blink_context.led_on = flash_read_word( &cmd_led_args[i].period );
-			blink_context.led_off = blink_period - blink_context.led_on;
+			led_on = flash_read_word( &cmd_led_args[i].period );
+			led_off = blink_period - led_on;
 		}
 		else
 		{
@@ -85,31 +72,37 @@ void console_on_command( uint8_t argc, const char * argv[] )
 	}
 }
 
-void blink_handler( struct blink_t * data )
-{
-	if( data->state )
-	{
-		data->state = 0;
-		led_write( 0 );
-		tasklets_delay( &blink, data->led_off );
-	}
-	else
-	{
-		data->state = 1;
-		led_write( 1 );
-		tasklets_delay( &blink, data->led_on );
-	}
-}
-
 void soft_irq_call( uint8_t id )
 {
-
+	switch( id )
+	{
+	case clock_soft_irq_id: clock_soft_irq(); return;
+	}
 }
 
 void soft_irq_idle()
 {
-	tasklets_process();
+	wait_for_irq();
+
 	console_process();
+}
+
+tick_t clock_timeout( tick_t dt )
+{
+	static uint8_t state = 0;
+
+	if( state )
+	{
+		state = 0;
+		led_write( 0 );
+		return led_off;
+	}
+	else
+	{
+		state = 1;
+		led_write( 1 );
+		return led_on;
+	}
 }
 
 int main(void)
@@ -117,10 +110,8 @@ int main(void)
 	led_init();
 	dbg_init();
 
-	tasklets_init();
+	clock_init();
 	console_init( 9600 );
-
-	tasklets_add( &blink );
 
 	soft_irq_run();
 

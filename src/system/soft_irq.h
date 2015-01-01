@@ -20,16 +20,21 @@ void soft_irq_call( uint8_t id );
 void soft_irq_idle();
 
 /**
- * @brief Mark software IRQ for execution (interrupt version)
+ * @brief Raise software IRQ (interrupt version)
  * @param id Software IRQ identifier
  */
-void soft_irq_emitI( uint8_t id );
+void soft_irq_raiseI( uint8_t id );
 
 /**
- * @brief Mark software IRQ for execution
+ * @brief Raise software IRQ
  * @param id Software IRQ identifier
  */
-void soft_irq_emit( uint8_t id );
+void soft_irq_raise( uint8_t id );
+
+/**
+ * @brief Process software IRQs
+ */
+void soft_irq_process();
 
 /**
  * @brief Run software IRQ system

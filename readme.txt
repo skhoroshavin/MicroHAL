@@ -41,6 +41,7 @@ Interfaces
 
 	Timer
 		timer_freq             - timer frequency
+		timer_value_t          - timer value type
 		timer_init()           - initialize timer
 		timer_start()          - start timer
 		timer_stop()           - stop timer
@@ -64,49 +65,48 @@ Interfaces
 
 System
 ======
+	Clock configuration
+		clock_freq - clock frequency
 
-	Soft IRQ
-		soft_irq_emit( id )
-			set irq active
+	Clock secondary configuration
+		clock_prescale - clock_timer_freq/clock_freq
 
-		soft_irq_call( id )
-			call irq
+	Clock (periodic)
+		clock_overflow_irq()
+			soft_irq_raiseI( clock_periodic )
 
-		soft_irq_process()
-			for each irq
-				if active
-					clear active
-					soft_irq_call( irq )
+		clock_soft_irq()
+			clock_timeout( dt )
 
-		soft_irq_idle()
-			if not have idle irq
-				wait for interrupt
+		clock_set_timeout( value )
 
-		soft_irq_run()
-			for(;;)
-			{
-				soft_irq_process()
-				soft_irq_idle()
-			}
+	Clock (tickless)
+		clock_compare_irq()
+			soft_irq_raiseI( clock )
 
-	Soft timer
-		soft_timer_start( id, delay )
-
-		soft_timer_irq()
+		clock_soft_irq()
 			calc dt
+			call clock_timeout( dt )
+			set next compare value
+
+		clock_set_timeout( value )
+
+
+
+	Static timers
+		volatile unsigned _delays[count];
+		extern FLASH(static_timer_func_t,_timers);
+
+		static_timers_process(dt)
+			min_delay = max_delay
 			for each timer
-				if delay == 0 continue
-				if dt < delay delay -= dt continue
-				delay = 0
-				soft_irq_emit()
-
-		soft_timer_process()
-
-	Tasklet system
-		tasklet_start()
-			add tasklet
-			soft_irq_emit( tasklets )
-
-		tasklets_soft_irq()
-			while has tasklets
-				process
+				if !delay
+					continue
+				if dt < delay
+					delay -= dt
+					min_delay = min( delay, min_delay )
+					continue
+				delay = timer_proc()
+				if delay
+					min_delay = min( delay, min_delay )
+			return min_delay
