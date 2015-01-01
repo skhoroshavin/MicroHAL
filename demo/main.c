@@ -7,8 +7,7 @@
 
 enum
 {
-	tick_period_ms = 1000,
-	blink_period   = (uint32_t)clock_freq*tick_period_ms/1000
+	blink_period = 1000
 };
 
 STATIC_ASSERT(blink_period < 0x10000, main);

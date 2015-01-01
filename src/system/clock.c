@@ -7,10 +7,11 @@
 enum
 {
 	clock_prescale         = clock_timer_freq/clock_freq,
-	clock_max_timer_period = (clock_timer_value_t)(-clock_prescale-1)
+	clock_max_timer_period = (clock_timer_value_t)(-8)
 };
 
-STATIC_ASSERT( clock_freq*clock_prescale == clock_timer_freq, clock );
+STATIC_ASSERT( (uint32_t)clock_freq*clock_prescale == clock_timer_freq, clock );
+STATIC_ASSERT( clock_prescale < 254,                                    clock );
 
 static clock_timer_value_t _last_timer      = 0;
 static clock_timer_value_t _timer_remainder = 0;
@@ -108,14 +109,23 @@ void clock_soft_irq()
 
 	if( clock_prescale > 1 )
 	{
-		ticks /= clock_prescale;
-		_timer_remainder += dt - ticks * clock_prescale;
+#if 0
+		ticks = dt / clock_prescale;
+		dt -= ticks * clock_prescale;
+#else
+		ticks = 0;
+		while( dt >= clock_prescale )
+		{
+			dt -= clock_prescale;
+			++ticks;
+		}
+#endif
+		_timer_remainder += dt;
 		if( _timer_remainder >= clock_prescale )
 		{
 			_timer_remainder -= clock_prescale;
 			++ticks;
 		}
-		clock_update( ticks );
 	}
 
 	clock_update( ticks );

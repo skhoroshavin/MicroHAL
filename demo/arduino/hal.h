@@ -27,12 +27,12 @@ enum
 \***********************************************************************/
 
 #include <drivers/avr/avr_timer.h>
-AVR_TIMER_8(clock_timer,1024,0)
+AVR_TIMER_8(clock_timer,64,0)
 AVR_TIMER_COMP_8(clock_compare,0,A)
 
 enum
 {
-	clock_freq = clock_timer_freq
+	clock_freq = 1000
 };
 
 /***********************************************************************\
