@@ -76,15 +76,18 @@ void soft_irq_call( uint8_t id )
 {
 	switch( id )
 	{
-	case clock_soft_irq_id: clock_soft_irq(); return;
+	case clock_soft_irq_id:
+		clock_soft_irq();
+		return;
+	case console_soft_irq_id:
+		console_process();
+		return;
 	}
 }
 
 void soft_irq_idle()
 {
 	wait_for_irq();
-
-	console_process();
 }
 
 tick_t clock_timeout( tick_t dt )

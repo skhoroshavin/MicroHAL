@@ -16,9 +16,8 @@ enum
 
 enum
 {
-	blink_soft_irq_id,
-	console_soft_irq_id,
 	clock_soft_irq_id,
+	console_soft_irq_id,
 
 	soft_irq_count
 };
