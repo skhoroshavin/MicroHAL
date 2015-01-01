@@ -33,6 +33,6 @@ enum
 	inline void name##_irq_disable() { TIMSK##timer &= (uint8_t)(~(1 << OCIE##timer##comp)); } \
 	void name##_irq();
 
-#define IMPLEMENT_TIMER_COMP(name,timer,comp) \
+#define AVR_IMPLEMENT_TIMER_COMP(name,timer,comp) \
 	ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); } \
 	void __attribute__ ((weak)) name##_irq() { }

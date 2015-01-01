@@ -1,5 +1,5 @@
 
-#include "scheduler.h"
+#include "tasklets.h"
 #include <platform/interrupts.h>
 
 struct tasklet_queue_t
@@ -13,9 +13,9 @@ struct tasklet_queue_t _tasklets[2] =
 	{ .head = 0, .delay = -1 },
 	{ .head = 0, .delay = -1 }
 };
-static sched_timer_value_t _last_tick;
+static tasklets_timer_value_t _last_tick;
 
-void sched_compare_irq()
+void tasklets_compare_irq()
 {
 
 }
@@ -33,7 +33,7 @@ static void _sched_process_queue( uint8_t tq, unsigned dt )
 		if( tasklet->delay > dt )
 		{
 			tasklet->delay -= dt;
-			sched_tasklet( tasklet );
+			tasklets_add( tasklet );
 		}
 		else
 			tasklet->func( tasklet->data );
@@ -42,19 +42,19 @@ static void _sched_process_queue( uint8_t tq, unsigned dt )
 	}
 }
 
-void sched_init()
+void tasklets_init()
 {
-	_last_tick = sched_timer_value();
-	sched_compare_irq_enable();
-	sched_timer_start();
+	_last_tick = tasklets_timer_value();
+	tasklets_compare_irq_enable();
+	tasklets_timer_start();
 }
 
-void sched_process()
+void tasklets_process()
 {
-	sched_timer_value_t cur_tick, next_tick, dt;
+	tasklets_timer_value_t cur_tick, next_tick, dt;
 	uint8_t tq;
 
-	cur_tick = sched_timer_value();
+	cur_tick = tasklets_timer_value();
 	dt = cur_tick - _last_tick;
 	dt %= sched_period;
 	_last_tick = cur_tick;
@@ -72,12 +72,12 @@ void sched_process()
 
 	next_tick = cur_tick + dt;
 	next_tick %= sched_period;
-	sched_compare_set_value( next_tick );
+	tasklets_compare_set_value( next_tick );
 
 	wait_for_irq();
 }
 
-void sched_tasklet( struct tasklet_t * tasklet )
+void tasklets_add( struct tasklet_t * tasklet )
 {
 	uint8_t tq = tasklet->delay > sched_latency ? 1 : 0;
 

@@ -2,13 +2,13 @@
 #include <platform/flash.h>
 #include <utils/string_utils.h>
 #include <system/console.h>
-#include <system/scheduler.h>
+#include <system/tasklets.h>
 #include <system/soft_irq.h>
 
 enum
 {
 	tick_period_ms = 1000,
-	blink_period   = (uint32_t)sched_timer_freq*tick_period_ms/1000
+	blink_period   = (uint32_t)tasklets_timer_freq*tick_period_ms/1000
 };
 
 STATIC_ASSERT(blink_period < 0x10000, main);
@@ -91,13 +91,13 @@ void blink_handler( struct blink_t * data )
 	{
 		data->state = 0;
 		led_write( 0 );
-		sched_delay( &blink, data->led_off );
+		tasklets_delay( &blink, data->led_off );
 	}
 	else
 	{
 		data->state = 1;
 		led_write( 1 );
-		sched_delay( &blink, data->led_on );
+		tasklets_delay( &blink, data->led_on );
 	}
 }
 
@@ -108,7 +108,7 @@ void soft_irq_call( uint8_t id )
 
 void soft_irq_idle()
 {
-	sched_process();
+	tasklets_process();
 	console_process();
 }
 
@@ -117,10 +117,10 @@ int main(void)
 	led_init();
 	dbg_init();
 
-	sched_init();
+	tasklets_init();
 	console_init( 9600 );
 
-	sched_tasklet( &blink );
+	tasklets_add( &blink );
 
 	soft_irq_run();
 

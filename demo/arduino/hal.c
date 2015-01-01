@@ -1,4 +1,4 @@
 
 #include "hal.h"
 
-IMPLEMENT_TIMER_COMP(sched_compare,0,A)
+AVR_IMPLEMENT_TIMER_COMP(tasklets_compare,0,A)

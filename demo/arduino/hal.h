@@ -26,8 +26,8 @@ AVR_GPIO_OUTPUT(dbg, B,4,1, 0)
 \***********************************************************************/
 
 #include <drivers/avr/avr_timer.h>
-AVR_TIMER_8(sched_timer,1024,0)
-AVR_TIMER_COMP_8(sched_compare,0,A)
+AVR_TIMER_8(tasklets_timer,1024,0)
+AVR_TIMER_COMP_8(tasklets_compare,0,A)
 
 /***********************************************************************\
  * UART                                                                *

@@ -1,10 +1,7 @@
 
 /**
- * @file   scheduler.h
- * @brief  Simple task scheduler
- *
- * Task scheduler requirements:
- *
+ * @file   tasklets.h
+ * @brief  Tasklets scheduler
  */
 
 #pragma once
@@ -42,23 +39,23 @@ struct tasklet_t
 /**
  * @brief Initialize task scheduler
  */
-void sched_init();
+void tasklets_init();
 
 /**
  * @brief Process tasklets
  */
-void sched_process();
+void tasklets_process();
 
 /**
  * @brief Schedule tasklet for execution
  * @param tq Tasklet queue ID (0 - immediate, 1 - delayed execution)
  * @param tasklet Tasklet to be executed
  */
-void sched_tasklet( struct tasklet_t * tasklet );
+void tasklets_add( struct tasklet_t * tasklet );
 
 /**
  * @brief Schedule tasklet for delayed execution
  * @param tasklet Tasklet to be executed
  * @param ticks Execution delay in ticks
  */
-inline void sched_delay( struct tasklet_t * tasklet, unsigned ticks ) { tasklet->delay = ticks; sched_tasklet( tasklet ); }
+inline void tasklets_delay( struct tasklet_t * tasklet, unsigned ticks ) { tasklet->delay = ticks; tasklets_add( tasklet ); }

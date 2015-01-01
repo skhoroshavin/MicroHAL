@@ -13,7 +13,7 @@ SOURCES  = main.c \
 	utils/text_output.c \
 	system/console.c \
 	system/soft_irq.c \
-	system/scheduler.c
+	system/tasklets.c
 
 include $(OSDIR)/platform/build.mk
 
