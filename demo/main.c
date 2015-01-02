@@ -87,6 +87,7 @@ void soft_irq_call( uint8_t id )
 void soft_irq_idle()
 {
 	wait_for_irq();
+	test_timer_process();
 }
 
 tick_t clock_timeout( tick_t dt )

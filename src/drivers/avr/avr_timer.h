@@ -19,12 +19,14 @@ enum
 #define AVR_TIMER_COMMON(name, timer, prescaler) \
 	enum { name##_prescaler_bit = _avr_timer_prescaler_bit_##prescaler }; \
 	inline void name##_start() { MASKED_WRITE( TCCR##timer##B, 0, 3, name##_prescaler_bit ); } \
-	inline void name##_stop()  { MASKED_WRITE( TCCR##timer##B, 0, 3, 0 ); }
+	inline void name##_stop()  { MASKED_WRITE( TCCR##timer##B, 0, 3, 0 ); } \
+	inline name##_t name##_value() { return TCNT##timer; } \
+	inline void name##_set_value( name##_t value ) { TCNT##timer = value; }
 
 
 #define AVR_BASIC_TIMER(name, prescaler) \
-	TIMER_COMMON(name, uint8_t, TCNT0, cpu_freq/prescaler, 256) \
-	AVR_TIMER_COMMON(name, 0, prescaler )
+	TIMER_COMMON(name, uint8_t, cpu_freq/prescaler, 256) \
+	AVR_TIMER_COMMON(name, 0, prescaler)
 
 #define AVR_ADVANCED_TIMER(name, timer, prescaler) \
 	TIMER_COMMON(name, uint16_t, TCNT##timer, cpu_freq/prescaler, 65536) \
