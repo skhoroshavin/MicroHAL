@@ -7,22 +7,22 @@
 enum
 {
 	clock_prescale         = clock_timer_freq/clock_freq,
-	clock_max_timer_period = (clock_timer_value_t)(-8)
+	clock_max_timer_period = clock_timer_period - 8
 };
 
 STATIC_ASSERT( (uint32_t)clock_freq*clock_prescale == clock_timer_freq, clock );
 STATIC_ASSERT( clock_prescale < 254,                                    clock );
 
-static clock_timer_value_t _last_timer      = 0;
-static clock_timer_value_t _timer_remainder = 0;
+static clock_timer_t _last_timer      = 0;
+static clock_timer_t _timer_remainder = 0;
 
 static tick_t _clock_value   = 0;
 static tick_t _clock_timeout = 0;
 static tick_t _last_timeout  = 0;
 
-static clock_timer_value_t clock_timer_elapsed()
+static clock_timer_t clock_timer_elapsed()
 {
-	clock_timer_value_t dt, cur_timer;
+	clock_timer_t dt, cur_timer;
 	cur_timer = clock_timer_value();
 	dt = cur_timer - _last_timer;
 	dt %= 256;
@@ -33,7 +33,7 @@ static clock_timer_value_t clock_timer_elapsed()
 
 static void clock_timer_rearm()
 {
-	clock_timer_value_t dt, next_timer;
+	clock_timer_t dt, next_timer;
 
 	if( !_clock_timeout )
 	{
@@ -104,7 +104,7 @@ void clock_set_timeout( tick_t timeout )
 
 void clock_soft_irq()
 {
-	clock_timer_value_t dt = clock_timer_elapsed();
+	clock_timer_t dt = clock_timer_elapsed();
 	tick_t ticks = dt;
 
 	if( clock_prescale > 1 )

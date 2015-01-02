@@ -1,4 +1,6 @@
 
 #include "hal.h"
 
-AVR_IMPLEMENT_TIMER_COMP(clock_compare,0,A)
+IMPLEMENT_AVR_TIMER_COMPARE(clock_compare,0,A)
+
+IMPLEMENT_SOFT_TIMER(test_timer)
