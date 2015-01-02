@@ -23,16 +23,15 @@ enum
 	inline name##_t name##_value() { return TCNT##timer; } \
 	inline void name##_set_value( name##_t value ) { TCNT##timer = value; }
 
-
 #define AVR_BASIC_TIMER(name, prescaler) \
 	TIMER_COMMON(name, uint8_t, cpu_freq/prescaler, 256) \
 	AVR_TIMER_COMMON(name, 0, prescaler)
 
 #define AVR_ADVANCED_TIMER(name, timer, prescaler) \
-	TIMER_COMMON(name, uint16_t, TCNT##timer, cpu_freq/prescaler, 65536) \
+	TIMER_COMMON(name, uint16_t, cpu_freq/prescaler, 65536) \
 	AVR_TIMER_COMMON(name, timer, prescaler)
 
-#define AVR_TIMER_COMPARE(name,type,timer,comp) \
+#define AVR_TIMER_COMPARE(name, type, timer, comp) \
 	inline type name##_value() { return OCR##timer##comp; } \
 	inline void name##_set_value( type value ) { OCR##timer##comp = value; } \
 	inline void name##_irq_enable() { TIMSK##timer |= (1 << OCIE##timer##comp); } \

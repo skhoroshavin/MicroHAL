@@ -56,15 +56,3 @@
 		_##name##_data = value; \
 		name##_init(); \
 	}
-
-
-/*
-timer_init()           - initialize timer
-
-Timer compare
-compare_value()
-compare_set_value()
-compare_irq_enable()
-compare_irq_disable()
-compare_irq()
-*/

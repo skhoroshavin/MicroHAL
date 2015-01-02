@@ -6,10 +6,22 @@
 
 #pragma once
 
+#include "hal.h"
+
 /**
  * @brief Clock tick type
  */
 typedef unsigned tick_t;
+
+/**
+ * @brief Convert milliseconds to ticks
+ */
+#define ms2ticks(ms) ((unsigned long long)clock_timer_freq*(ms)/1000)
+
+/**
+ * @brief Convert microseconds to ticks
+ */
+#define us2ticks(us) ((unsigned long long)clock_timer_freq*(us)/1000000)
 
 /**
  * @brief Clock timeout handler (user-defined function)

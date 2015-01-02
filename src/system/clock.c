@@ -1,20 +1,14 @@
 
 #include "clock.h"
-#include "hal.h"
 
 #include <system/soft_irq.h>
 
 enum
 {
-	clock_prescale         = clock_timer_freq/clock_freq,
 	clock_max_timer_period = clock_timer_period - 8
 };
 
-STATIC_ASSERT( (uint32_t)clock_freq*clock_prescale == clock_timer_freq, clock );
-STATIC_ASSERT( clock_prescale < 254,                                    clock );
-
 static clock_timer_t _last_timer      = 0;
-static clock_timer_t _timer_remainder = 0;
 
 static tick_t _clock_value   = 0;
 static tick_t _clock_timeout = 0;
@@ -41,10 +35,10 @@ static void clock_timer_rearm()
 		return;
 	}
 
-	if( _clock_timeout > clock_max_timer_period/clock_prescale )
+	if( _clock_timeout > clock_max_timer_period )
 		dt = clock_max_timer_period;
 	else
-		dt = _clock_timeout * clock_prescale;
+		dt = _clock_timeout;
 
 	next_timer = _last_timer + dt;
 	next_timer %= 256;
@@ -104,29 +98,5 @@ void clock_set_timeout( tick_t timeout )
 
 void clock_soft_irq()
 {
-	clock_timer_t dt = clock_timer_elapsed();
-	tick_t ticks = dt;
-
-	if( clock_prescale > 1 )
-	{
-#if 0
-		ticks = dt / clock_prescale;
-		dt -= ticks * clock_prescale;
-#else
-		ticks = 0;
-		while( dt >= clock_prescale )
-		{
-			dt -= clock_prescale;
-			++ticks;
-		}
-#endif
-		_timer_remainder += dt;
-		if( _timer_remainder >= clock_prescale )
-		{
-			_timer_remainder -= clock_prescale;
-			++ticks;
-		}
-	}
-
-	clock_update( ticks );
+	clock_update( clock_timer_elapsed() );
 }
