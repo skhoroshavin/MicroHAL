@@ -17,11 +17,6 @@ void clock_init()
 	clock_timer_start();
 }
 
-tick_t clock_value()
-{
-	return clock_timer_value();
-}
-
 void clock_set_timeout( tick_t timeout )
 {
 	if( timeout )

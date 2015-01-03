@@ -7,10 +7,10 @@
 
 enum
 {
-	blink_period = ms2ticks(1000/128)
+	blink_period = ms2ticks(1000)
 };
 
-STATIC_ASSERT(blink_period < 0x100, main);
+STATIC_ASSERT(blink_period < 0x10000, main);
 
 volatile uint16_t led_on  = blink_period/2;
 volatile uint16_t led_off = blink_period/2;
@@ -35,8 +35,8 @@ struct cmd_led_arg_t
 
 FLASH_DATA(struct cmd_led_arg_t,cmd_led_args) =
 {
-	{ cmd_led_on,  blink_period-1 },
-	{ cmd_led_off, 1 },
+	{ cmd_led_on,  blink_period },
+	{ cmd_led_off, 0 },
 	{ cmd_led_blink, blink_period/2 },
 	{ cmd_led_flash, blink_period/20 },
 	{ 0, 0 }
@@ -93,15 +93,15 @@ tick_t clock_timeout( tick_t dt )
 {
 	static uint8_t state = 0;
 
-	++state;
-
-	if( state < 128 )
+	if( state )
 	{
+		state = 0;
 		led_write( 0 );
 		return led_off;
 	}
 	else
 	{
+		state = 1;
 		led_write( 1 );
 		return led_on;
 	}
