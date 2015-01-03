@@ -11,7 +11,7 @@
 /**
  * @brief Clock tick type
  */
-typedef unsigned tick_t;
+typedef clock_timer_t tick_t;
 
 /**
  * @brief Convert milliseconds to ticks

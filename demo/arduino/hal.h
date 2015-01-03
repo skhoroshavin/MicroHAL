@@ -54,3 +54,10 @@ AVR_GPIO_OUTPUT(dbg, B,4,1, 0)
 
 #include <drivers/avr/avr_uart.h>
 AVR_UART(console_uart,0)
+
+/***********************************************************************\
+ * Functions                                                           *
+\***********************************************************************/
+
+void hal_init();
+void hal_process();

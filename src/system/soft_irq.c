@@ -46,12 +46,3 @@ void soft_irq_process()
 
 	soft_irq_idle();
 }
-
-void soft_irq_run()
-{
-	while(1)
-	{
-		irq_enable();
-		soft_irq_process();
-	}
-}

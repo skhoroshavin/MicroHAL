@@ -7,10 +7,10 @@
 
 enum
 {
-	blink_period = ms2ticks(1000)
+	blink_period = ms2ticks(1000/128)
 };
 
-STATIC_ASSERT(blink_period < 0x10000, main);
+STATIC_ASSERT(blink_period < 0x100, main);
 
 volatile uint16_t led_on  = blink_period/2;
 volatile uint16_t led_off = blink_period/2;
@@ -35,8 +35,8 @@ struct cmd_led_arg_t
 
 FLASH_DATA(struct cmd_led_arg_t,cmd_led_args) =
 {
-	{ cmd_led_on, blink_period },
-	{ cmd_led_off, 0 },
+	{ cmd_led_on,  blink_period-1 },
+	{ cmd_led_off, 1 },
 	{ cmd_led_blink, blink_period/2 },
 	{ cmd_led_flash, blink_period/20 },
 	{ 0, 0 }
@@ -87,23 +87,21 @@ void soft_irq_call( uint8_t id )
 void soft_irq_idle()
 {
 	wait_for_irq();
-//	test_timer_process();
-//	test_compare_process();
 }
 
 tick_t clock_timeout( tick_t dt )
 {
 	static uint8_t state = 0;
 
-	if( state )
+	++state;
+
+	if( state < 128 )
 	{
-		state = 0;
 		led_write( 0 );
 		return led_off;
 	}
 	else
 	{
-		state = 1;
 		led_write( 1 );
 		return led_on;
 	}
@@ -111,13 +109,13 @@ tick_t clock_timeout( tick_t dt )
 
 int main(void)
 {
-	led_init();
-	dbg_init();
+	hal_init();
 
 	clock_init();
 	console_init( 9600 );
 
-	soft_irq_run();
+	while(1)
+		hal_process();
 
 	return 0;
 }

@@ -35,8 +35,3 @@ void soft_irq_raise( uint8_t id );
  * @brief Process software IRQs
  */
 void soft_irq_process();
-
-/**
- * @brief Run software IRQ system
- */
-void soft_irq_run();
