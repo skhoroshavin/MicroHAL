@@ -28,6 +28,7 @@ enum
 
 #include <drivers/avr/avr_timer.h>
 AVR_BASIC_TIMER(clock_timer_base,256)
+AVR_TIMER_COMPARE(clock_timer_base_compare,uint8_t,0,A)
 
 #include <drivers/soft/soft_timer.h>
 SOFT_TIMER(clock_timer, clock_timer_base, uint16_t, clock_timer_base_freq/1000, 65536)

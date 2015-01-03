@@ -39,5 +39,4 @@ enum
 	void name##_irq();
 
 #define IMPLEMENT_AVR_TIMER_COMPARE(name,timer,comp) \
-	ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); } \
-	void __attribute__ ((weak)) name##_irq() { }
+	ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); }
