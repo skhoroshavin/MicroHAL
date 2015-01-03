@@ -27,14 +27,13 @@ enum
 \***********************************************************************/
 
 #include <drivers/avr/avr_timer.h>
-AVR_ADVANCED_TIMER(clock_timer,1,1024)
-AVR_TIMER_COMPARE(clock_compare,clock_timer_t,1,A)
+AVR_BASIC_TIMER(clock_timer_base,256)
 
 #include <drivers/soft/soft_timer.h>
-SOFT_TIMER(test_timer, clock_timer, uint16_t, 1, 65536)
+SOFT_TIMER(clock_timer, clock_timer_base, uint16_t, clock_timer_base_freq/1000, 65536)
 
 #include <drivers/soft/soft_timer_compare.h>
-SOFT_TIMER_COMPARE(test_compare, test_timer)
+SOFT_TIMER_COMPARE(clock_compare, clock_timer)
 
 /***********************************************************************\
  * GPIO                                                                *

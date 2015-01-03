@@ -4,10 +4,12 @@
 #include <drivers/common/timer.h>
 
 #define SOFT_TIMER(name, base, type, prescaler, period) \
-	TIMER_COMMON(name, type, base##_freq/prescaler, period) \
+	TIMER_COMMON(name, type, base##_freq/(prescaler), period) \
 	enum { name##_prescaler = prescaler }; \
 	name##_t name##_value(); \
 	void name##_set_value( name##_t value ); \
+	void name##_start(); \
+	void name##_stop(); \
 	void name##_init(); \
 	void name##_process();
 
@@ -15,6 +17,24 @@
 	static base##_t _##name##_base_value; \
 	static base##_t _##name##_base_remainder; \
 	static name##_t _##name##_data = 0; \
+	name##_t name##_value() \
+	{ \
+		name##_process(); \
+		return _##name##_data; \
+	} \
+	void name##_set_value( name##_t value ) \
+	{ \
+		_##name##_data = value; \
+		name##_init(); \
+	} \
+	void name##_start() \
+	{ \
+	 \
+	} \
+	void name##_stop() \
+	{ \
+	 \
+	} \
 	void name##_init() \
 	{ \
 		_##name##_base_value = base##_value(); \
@@ -45,14 +65,4 @@
 			_##name##_data += ticks; \
 		} \
 		_##name##_data %= name##_period; \
-	} \
-	name##_t name##_value() \
-	{ \
-		name##_process(); \
-		return _##name##_data; \
-	} \
-	void name##_set_value( name##_t value ) \
-	{ \
-		_##name##_data = value; \
-		name##_init(); \
 	}

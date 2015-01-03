@@ -4,14 +4,27 @@
 #include "soft_timer.h"
 
 #define SOFT_TIMER_COMPARE(name, timer) \
-	void name##_init(); \
-	void name##_process(); \
 	void name##_set_value( timer##_t value ); \
-	void name##_irq();
+	void name##_irq_enable(); \
+	void name##_irq_disable(); \
+	void name##_irq(); \
+	void name##_init(); \
+	void name##_process();
 
 #define IMPLEMENT_SOFT_TIMER_COMPARE(name, timer) \
 	static timer##_t _##name##_data = 0; \
 	static timer##_t _##name##_timer; \
+	void name##_set_value( timer##_t value ) \
+	{ \
+		_##name##_data = value; \
+		name##_init(); \
+	} \
+	void name##_irq_enable() \
+	{ \
+	} \
+	void name##_irq_disable() \
+	{ \
+	} \
 	void name##_init() \
 	{ \
 		_##name##_timer = timer##_value(); \
@@ -28,10 +41,5 @@
 		timeout %= timer##_period; \
 		if( dt > timeout ) \
 			name##_irq(); \
-	} \
-	void name##_set_value( timer##_t value ) \
-	{ \
-		_##name##_data = value; \
-		name##_init(); \
 	}
 
