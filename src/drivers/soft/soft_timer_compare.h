@@ -9,23 +9,17 @@
  * @param timer Base timer name
  */
 #define SOFT_TIMER_COMPARE(name, timer) \
-	timer##_t name##_value(); \
-	void name##_set_value( timer##_t value ); \
+	extern timer##_t _##name##_data; \
 	void name##_irq_enable(); \
 	void name##_irq_disable(); \
 	void name##_irq(); \
 	void name##_init(); \
-	void name##_process();
+	void name##_process(); \
+	DEFINE_DEVICE_RW(name, timer##_t, _##name##_data, none, name##_init)
 
 #define IMPLEMENT_SOFT_TIMER_COMPARE_COMMON(name, timer) \
-	static timer##_t _##name##_data = 0; \
+	timer##_t _##name##_data = 0; \
 	static timer##_t _##name##_timer; \
-	timer##_t name##_value() { return _##name##_data; } \
-	void name##_set_value( timer##_t value ) \
-	{ \
-		_##name##_data = value; \
-		name##_init(); \
-	} \
 	void name##_process() \
 	{ \
 		timer##_t value, timeout, dt; \
@@ -88,5 +82,5 @@
 			base_timeout = base_timer##_period*3/4; \
 		base_compare = base_timer##_counter() + base_timeout; \
 		base_compare %= base_timer##_period; \
-		base_compare##_set_value( base_compare ); \
+		base_compare##_set( base_compare ); \
 	}

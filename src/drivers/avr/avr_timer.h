@@ -26,12 +26,11 @@ enum
 	AVR_TIMER_COMMON(name, 0, prescaler)
 
 #define AVR_ADVANCED_TIMER(name, timer, prescaler) \
-	TIMER_COMMON(name, uint16_t, cpu_freq/prescaler, 65536) \
+	TIMER_COMMON(name, uint16_t, cpu_freq/(prescaler), 65536, TCNT##timer, none, none) \
 	AVR_TIMER_COMMON(name, timer, prescaler)
 
 #define AVR_TIMER_COMPARE(name, type, timer, comp) \
-	inline type name##_value() { return OCR##timer##comp; } \
-	inline void name##_set_value( type value ) { OCR##timer##comp = value; } \
+	DEFINE_DEVICE_RW(name, type, OCR##timer##comp, none, none) \
 	inline void name##_irq_enable() { TIMSK##timer |= (1 << OCIE##timer##comp); } \
 	inline void name##_irq_disable() { TIMSK##timer &= (uint8_t)(~(1 << OCIE##timer##comp)); } \
 	void name##_irq();

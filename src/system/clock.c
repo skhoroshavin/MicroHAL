@@ -23,7 +23,7 @@ void clock_set_timeout( tick_t timeout )
 	{
 		tick_t next_tick = clock_timer_counter() + timeout;
 		next_tick %= clock_timer_period;
-		clock_compare_set_value( next_tick );
+		clock_compare_set( next_tick );
 		clock_compare_irq_enable();
 	}
 	else
