@@ -1,0 +1,6 @@
+<map id="src/drivers/common/utils.h" name="src/drivers/common/utils.h">
+<area shape="rect" id="node2" href="$timer_8h.html" title="src/drivers/common\l/timer.h" alt="" coords="77,95,215,136"/>
+<area shape="rect" id="node3" href="$avr__timer_8h.html" title="src/drivers/avr/avr\l_timer.h" alt="" coords="5,184,132,225"/>
+<area shape="rect" id="node4" href="$soft__timer_8h.html" title="src/drivers/soft/soft\l_timer.h" alt="" coords="156,184,291,225"/>
+<area shape="rect" id="node5" href="$soft__timer__compare_8h.html" title="src/drivers/soft/soft\l_timer_compare.h" alt="" coords="156,273,291,315"/>
+</map>

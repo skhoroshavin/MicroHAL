@@ -1,5 +1,7 @@
 <map id="src/drivers/avr/avr_timer.h" name="src/drivers/avr/avr_timer.h">
-<area shape="rect" id="node2" href="$interrupts_8h.html" title="platform/interrupts.h" alt="" coords="5,95,144,121"/>
-<area shape="rect" id="node3" href="$bit__utils_8h.html" title="utils/bit_utils.h" alt="" coords="168,95,275,121"/>
-<area shape="rect" id="node4" href="$pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="299,95,405,121"/>
+<area shape="rect" id="node2" href="$timer_8h.html" title="drivers/common/timer.h" alt="" coords="5,95,164,121"/>
+<area shape="rect" id="node4" href="$interrupts_8h.html" title="platform/interrupts.h" alt="" coords="189,95,327,121"/>
+<area shape="rect" id="node5" href="$bit__utils_8h.html" title="utils/bit_utils.h" alt="" coords="351,95,458,121"/>
+<area shape="rect" id="node6" href="$pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="482,95,589,121"/>
+<area shape="rect" id="node3" href="$utils_8h.html" title="drivers/common/utils.h" alt="" coords="7,169,162,196"/>
 </map>

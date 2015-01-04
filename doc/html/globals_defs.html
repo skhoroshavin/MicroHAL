@@ -85,10 +85,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
       <li class="current"><a href="#index_w"><span>w</span></a></li>
     </ul>
   </div>
@@ -121,6 +123,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>array_size
 : <a class="el" href="pp__utils_8h.html#acd5ac1808615eaad7b947d5237070cba">pp_utils.h</a>
 </li>
+<li>AVR_ADVANCED_TIMER
+: <a class="el" href="avr__timer_8h.html#a7382a852bba26117fadd671835072bcf">avr_timer.h</a>
+</li>
+<li>AVR_BASIC_TIMER
+: <a class="el" href="avr__timer_8h.html#a39639be1296ea9b14e2b06a96080f553">avr_timer.h</a>
+</li>
 <li>AVR_GPIO_INPUT
 : <a class="el" href="avr__gpio_8h.html#a5d3ce4bbe57f03ded4377f6c7baa7e51">avr_gpio.h</a>
 </li>
@@ -130,11 +138,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>AVR_GPIO_OUTPUT
 : <a class="el" href="avr__gpio_8h.html#a716edf46122e79031a5afc35fd2bc254">avr_gpio.h</a>
 </li>
-<li>AVR_TIMER_8
-: <a class="el" href="avr__timer_8h.html#a92c76abd86e143f6c944a6cc07c8dc2c">avr_timer.h</a>
+<li>AVR_TIMER_COMMON
+: <a class="el" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">avr_timer.h</a>
 </li>
-<li>AVR_TIMER_COMP_8
-: <a class="el" href="avr__timer_8h.html#a631f8634c99206a9db580395c68d3144">avr_timer.h</a>
+<li>AVR_TIMER_COMPARE
+: <a class="el" href="avr__timer_8h.html#a95945d575bfa380da094060bf3e76f1b">avr_timer.h</a>
 </li>
 <li>AVR_UART
 : <a class="el" href="avr__uart_8h.html#a062d667a672524025caa3b785a259012">avr_uart.h</a>
@@ -232,8 +240,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DECLARE_RING_BUFFER
 : <a class="el" href="ring__buffer_8h.html#ac3b0883798a512cf2ef01d2b28f743f1">ring_buffer.h</a>
 </li>
+<li>DEFINE_DEVICE_RO
+: <a class="el" href="utils_8h.html#addf205929a27264c7e788e5cb5a0aa12">utils.h</a>
+</li>
+<li>DEFINE_DEVICE_RW
+: <a class="el" href="utils_8h.html#a212e74994586b3c6e8a1d3ba88116510">utils.h</a>
+</li>
+<li>DEFINE_DEVICE_WO
+: <a class="el" href="utils_8h.html#a7097525981de2bed42eb4e0a97027d42">utils.h</a>
+</li>
 <li>DEFINE_TASKLET
-: <a class="el" href="scheduler_8h.html#a3a7eede955c4f1a9cce846136b48901e">scheduler.h</a>
+: <a class="el" href="tasklets_8h.html#a3a7eede955c4f1a9cce846136b48901e">tasklets.h</a>
 </li>
 </ul>
 
@@ -249,8 +266,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
-<li>IMPLEMENT_TIMER_COMP
-: <a class="el" href="avr__timer_8h.html#ab0a338ed2d69da1f2728881033da6338">avr_timer.h</a>
+<li>IMPLEMENT_AVR_TIMER_COMPARE
+: <a class="el" href="avr__timer_8h.html#a6b20a18e6ecc674a8d7c877b6b778761">avr_timer.h</a>
+</li>
+<li>IMPLEMENT_SOFT_TIMER
+: <a class="el" href="soft__timer_8h.html#a5dc72dd038bb8494c8a2bd0d1d372b8a">soft_timer.h</a>
+</li>
+<li>IMPLEMENT_SOFT_TIMER_COMPARE_COMMON
+: <a class="el" href="soft__timer__compare_8h.html#a5cd16fed3d1ae1f94c8d89bd182971bd">soft_timer_compare.h</a>
+</li>
+<li>IMPLEMENT_SOFT_TIMER_COMPARE_IRQ
+: <a class="el" href="soft__timer__compare_8h.html#ab7427a53598288a562bc61697b32ceb1">soft_timer_compare.h</a>
+</li>
+<li>IMPLEMENT_SOFT_TIMER_COMPARE_POLL
+: <a class="el" href="soft__timer__compare_8h.html#a826a8f7398be70cc38a0c803a5859fb2">soft_timer_compare.h</a>
 </li>
 <li>input_process_stream
 : <a class="el" href="text__input_8h.html#ab1a80a3f645c80c2b57218517bb88db0">text_input.h</a>
@@ -273,6 +302,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>MASKED_WRITE
 : <a class="el" href="bit__utils_8h.html#af930fa845021b2b398008e839e05e250">bit_utils.h</a>
+</li>
+<li>ms2ticks
+: <a class="el" href="clock_8h.html#aee4484d4474b363a6a846a879693c8bd">clock.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>none
+: <a class="el" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">utils.h</a>
 </li>
 </ul>
 
@@ -325,6 +364,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>SOFT_TIMER
+: <a class="el" href="soft__timer_8h.html#adf096dfa863cf4a53e7b12cf3a559bd5">soft_timer.h</a>
+</li>
+<li>SOFT_TIMER_COMPARE
+: <a class="el" href="soft__timer__compare_8h.html#a4ede2afaa805b05564f038e6956e6d0d">soft_timer_compare.h</a>
+</li>
 <li>STATIC_ASSERT
 : <a class="el" href="pp__utils_8h.html#a2d2bb84e2148892a07b65b6858c8a8b1">pp_utils.h</a>
 </li>
@@ -338,6 +383,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>TEXT_INPUT_MAX_PARAMS
 : <a class="el" href="text__input_8h.html#a5f0670bf07548c3663d79be2e2c32ad6">text_input.h</a>
 </li>
+<li>TIMER_COMMON
+: <a class="el" href="timer_8h.html#ae293c5fb374f32ef5dce04a0209608aa">timer.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>us2ticks
+: <a class="el" href="clock_8h.html#a45913a9c38d776b5556ba58ed53dbcca">clock.h</a>
+</li>
 </ul>
 
 
@@ -349,7 +404,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 22:19:54 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

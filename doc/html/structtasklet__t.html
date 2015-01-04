@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Tasklet data structure.  
  <a href="structtasklet__t.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="scheduler_8h_source.html">scheduler.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="tasklets_8h_source.html">tasklets.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for tasklet_t:</div>
 <div class="dyncontent">
@@ -108,7 +108,7 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a877c75842ff778afbf230bf06290d3bf"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtasklet__t.html#a877c75842ff778afbf230bf06290d3bf">delay</a></td></tr>
 <tr class="memdesc:a877c75842ff778afbf230bf06290d3bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tasklet delay in ticks or periods (internal)  <a href="#a877c75842ff778afbf230bf06290d3bf">More...</a><br /></td></tr>
 <tr class="separator:a877c75842ff778afbf230bf06290d3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add8c559a8554f7dd166aa39f3b3e607d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtasklet__t.html#add8c559a8554f7dd166aa39f3b3e607d">func</a></td></tr>
+<tr class="memitem:add8c559a8554f7dd166aa39f3b3e607d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tasklets_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtasklet__t.html#add8c559a8554f7dd166aa39f3b3e607d">func</a></td></tr>
 <tr class="memdesc:add8c559a8554f7dd166aa39f3b3e607d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to tasklet function.  <a href="#add8c559a8554f7dd166aa39f3b3e607d">More...</a><br /></td></tr>
 <tr class="separator:add8c559a8554f7dd166aa39f3b3e607d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03b08560118e3d23205cb2c734a4a3ba"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtasklet__t.html#a03b08560118e3d23205cb2c734a4a3ba">data</a></td></tr>
@@ -118,7 +118,7 @@ Data Fields</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Tasklet data structure. </p>
 
-<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00022">22</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="tasklets_8h_source.html#l00019">19</a> of file <a class="el" href="tasklets_8h_source.html">tasklets.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="a03b08560118e3d23205cb2c734a4a3ba"></a>
 <div class="memitem">
@@ -132,7 +132,7 @@ Data Fields</h2></td></tr>
 
 <p>Pointer to tasklet data. </p>
 
-<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00027">27</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="tasklets_8h_source.html#l00024">24</a> of file <a class="el" href="tasklets_8h_source.html">tasklets.h</a>.</p>
 
 </div>
 </div>
@@ -148,7 +148,7 @@ Data Fields</h2></td></tr>
 
 <p>Tasklet delay in ticks or periods (internal) </p>
 
-<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00025">25</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="tasklets_8h_source.html#l00022">22</a> of file <a class="el" href="tasklets_8h_source.html">tasklets.h</a>.</p>
 
 </div>
 </div>
@@ -157,14 +157,14 @@ Data Fields</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="scheduler_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a> tasklet_t::func</td>
+          <td class="memname"><a class="el" href="tasklets_8h.html#a66adad818d9b9fdcc2cb58ae6658b884">tasklet_func_t</a> tasklet_t::func</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Pointer to tasklet function. </p>
 
-<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00026">26</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="tasklets_8h_source.html#l00023">23</a> of file <a class="el" href="tasklets_8h_source.html">tasklets.h</a>.</p>
 
 </div>
 </div>
@@ -180,17 +180,17 @@ Data Fields</h2></td></tr>
 
 <p>Pointer to next tasklet in list (internal) </p>
 
-<p>Definition at line <a class="el" href="scheduler_8h_source.html#l00024">24</a> of file <a class="el" href="scheduler_8h_source.html">scheduler.h</a>.</p>
+<p>Definition at line <a class="el" href="tasklets_8h_source.html#l00021">21</a> of file <a class="el" href="tasklets_8h_source.html">tasklets.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/system/<a class="el" href="scheduler_8h_source.html">scheduler.h</a></li>
+<li>src/system/<a class="el" href="tasklets_8h_source.html">tasklets.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 22:19:54 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

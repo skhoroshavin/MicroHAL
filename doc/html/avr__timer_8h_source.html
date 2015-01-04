@@ -91,53 +91,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="avr__timer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="interrupts_8h.html">platform/interrupts.h</a>&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bit__utils_8h.html">utils/bit_utils.h</a>&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="pp__utils_8h.html">utils/pp_utils.h</a>&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">enum</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">   10</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">_avr_timer_prescaler_bit_1</a>    = 1,</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">   11</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">_avr_timer_prescaler_bit_8</a>    = 2,</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">   12</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">_avr_timer_prescaler_bit_64</a>   = 3,</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">   13</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">_avr_timer_prescaler_bit_256</a>  = 4,</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">   14</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">_avr_timer_prescaler_bit_1024</a> = 5</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a92c76abd86e143f6c944a6cc07c8dc2c">   17</a></span>&#160;<span class="preprocessor">#define AVR_TIMER_8(name,prescaler,timer) \</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">    typedef uint8_t name##_value_t; \</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">    enum { \</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">        name##_prescaler = prescaler, \</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">        name##_prescaler_bit = _avr_timer_prescaler_bit_##prescaler, \</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">        name##_freq = cpu_freq/prescaler \</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    }; \</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    inline uint8_t name##_value() { return TCNT##timer; } \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    inline void name##_set_value( uint8_t value ) { TCNT##timer = value; } \</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">    inline void name##_start() { MASKED_WRITE( TCCR##timer##B, 0, 3, name##_prescaler_bit ); } \</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    inline void name##_stop()  { MASKED_WRITE( TCCR##timer##B, 0, 3, 0 ); }</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a631f8634c99206a9db580395c68d3144">   29</a></span>&#160;<span class="preprocessor">#define AVR_TIMER_COMP_8(name,timer,comp) \</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    inline uint8_t name##_value() { return OCR##timer##comp; } \</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">    inline void name##_set_value( uint8_t value ) { OCR##timer##comp = value; } \</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    inline void name##_irq_enable() { TIMSK##timer |= (1 &lt;&lt; OCIE##timer##comp); } \</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    inline void name##_irq_disable() { TIMSK##timer &amp;= (uint8_t)(~(1 &lt;&lt; OCIE##timer##comp)); } \</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">    void name##_irq();</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#ab0a338ed2d69da1f2728881033da6338">   36</a></span>&#160;<span class="preprocessor">#define IMPLEMENT_TIMER_COMP(name,timer,comp) \</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">    ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); } \</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">    void __attribute__ ((weak)) name##_irq() { }</span></div>
-<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">_avr_timer_prescaler_bit_64</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00012">avr_timer.h:12</a></div></div>
-<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">_avr_timer_prescaler_bit_1</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00010">avr_timer.h:10</a></div></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="timer_8h.html">drivers/common/timer.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="interrupts_8h.html">platform/interrupts.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bit__utils_8h.html">utils/bit_utils.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="pp__utils_8h.html">utils/pp_utils.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">enum</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">   12</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">_avr_timer_prescaler_bit_1</a>    = 1,</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">   13</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">_avr_timer_prescaler_bit_8</a>    = 2,</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">   14</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">_avr_timer_prescaler_bit_64</a>   = 3,</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">   15</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">_avr_timer_prescaler_bit_256</a>  = 4,</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">   16</a></span>&#160;    <a class="code" href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">_avr_timer_prescaler_bit_1024</a> = 5</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">   19</a></span>&#160;<span class="preprocessor">#define AVR_TIMER_COMMON(name, timer, prescaler) \</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">    enum { name##_prescaler_bit = _avr_timer_prescaler_bit_##prescaler }; \</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">    inline void name##_start() { MASKED_WRITE( TCCR##timer##B, 0, 3, name##_prescaler_bit ); } \</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    inline void name##_stop()  { MASKED_WRITE( TCCR##timer##B, 0, 3, 0 ); }</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a39639be1296ea9b14e2b06a96080f553">   24</a></span>&#160;<span class="preprocessor">#define AVR_BASIC_TIMER(name, prescaler) \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    TIMER_COMMON(name, uint8_t, cpu_freq/(prescaler), 256, TCNT0, none, none) \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">    AVR_TIMER_COMMON(name, 0, prescaler)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a7382a852bba26117fadd671835072bcf">   28</a></span>&#160;<span class="preprocessor">#define AVR_ADVANCED_TIMER(name, timer, prescaler) \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">    TIMER_COMMON(name, uint16_t, cpu_freq/(prescaler), 65536, TCNT##timer, none, none) \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    AVR_TIMER_COMMON(name, timer, prescaler)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a95945d575bfa380da094060bf3e76f1b">   32</a></span>&#160;<span class="preprocessor">#define AVR_TIMER_COMPARE(name, type, timer, comp) \</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    DEFINE_DEVICE_RW(name, type, OCR##timer##comp, none, none) \</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">    inline void name##_irq_enable() { TIMSK##timer |= (1 &lt;&lt; OCIE##timer##comp); } \</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">    inline void name##_irq_disable() { TIMSK##timer &amp;= (uint8_t)(~(1 &lt;&lt; OCIE##timer##comp)); } \</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">    void name##_irq();</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="avr__timer_8h.html#a6b20a18e6ecc674a8d7c877b6b778761">   38</a></span>&#160;<span class="preprocessor">#define IMPLEMENT_AVR_TIMER_COMPARE(name,timer,comp) \</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">    ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); }</span></div>
+<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba9731368fd08ff799a36107ec2f2f109b">_avr_timer_prescaler_bit_64</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00014">avr_timer.h:14</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac2a798e57de8544d0cc07e6e23b072a8">_avr_timer_prescaler_bit_1</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00012">avr_timer.h:12</a></div></div>
+<div class="ttc" id="timer_8h_html"><div class="ttname"><a href="timer_8h.html">timer.h</a></div></div>
 <div class="ttc" id="bit__utils_8h_html"><div class="ttname"><a href="bit__utils_8h.html">bit_utils.h</a></div></div>
-<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">_avr_timer_prescaler_bit_1024</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00014">avr_timer.h:14</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2b1c43232284905e2b49e1f012e7b4ac">_avr_timer_prescaler_bit_1024</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00016">avr_timer.h:16</a></div></div>
 <div class="ttc" id="interrupts_8h_html"><div class="ttname"><a href="interrupts_8h.html">interrupts.h</a></div></div>
-<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">_avr_timer_prescaler_bit_256</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00013">avr_timer.h:13</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba4d4bbe24c17afbd6d2485f921a393106">_avr_timer_prescaler_bit_256</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00015">avr_timer.h:15</a></div></div>
 <div class="ttc" id="pp__utils_8h_html"><div class="ttname"><a href="pp__utils_8h.html">pp_utils.h</a></div></div>
-<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">_avr_timer_prescaler_bit_8</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00011">avr_timer.h:11</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795"><div class="ttname"><a href="avr__timer_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba987de11c35e6cf0b4aae85de257ed795">_avr_timer_prescaler_bit_8</a></div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00013">avr_timer.h:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 22:19:54 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

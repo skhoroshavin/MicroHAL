@@ -91,7 +91,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">avr_timer.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="interrupts_8h_source.html">platform/interrupts.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="timer_8h_source.html">drivers/common/timer.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="interrupts_8h_source.html">platform/interrupts.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="bit__utils_8h_source.html">utils/bit_utils.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="pp__utils_8h_source.html">utils/pp_utils.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -99,19 +100,23 @@ Include dependency graph for avr_timer.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="avr__timer_8h__incl.png" border="0" usemap="#src_2drivers_2avr_2avr__timer_8h" alt=""/></div>
 <map name="src_2drivers_2avr_2avr__timer_8h" id="src_2drivers_2avr_2avr__timer_8h">
-<area shape="rect" id="node2" href="interrupts_8h.html" title="platform/interrupts.h" alt="" coords="5,95,144,121"/><area shape="rect" id="node3" href="bit__utils_8h.html" title="utils/bit_utils.h" alt="" coords="168,95,275,121"/><area shape="rect" id="node4" href="pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="299,95,405,121"/></map>
+<area shape="rect" id="node2" href="timer_8h.html" title="drivers/common/timer.h" alt="" coords="5,95,164,121"/><area shape="rect" id="node4" href="interrupts_8h.html" title="platform/interrupts.h" alt="" coords="189,95,327,121"/><area shape="rect" id="node5" href="bit__utils_8h.html" title="utils/bit_utils.h" alt="" coords="351,95,458,121"/><area shape="rect" id="node6" href="pp__utils_8h.html" title="utils/pp_utils.h" alt="" coords="482,95,589,121"/><area shape="rect" id="node3" href="utils_8h.html" title="drivers/common/utils.h" alt="" coords="7,169,162,196"/></map>
 </div>
 </div>
 <p><a href="avr__timer_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a92c76abd86e143f6c944a6cc07c8dc2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a92c76abd86e143f6c944a6cc07c8dc2c">AVR_TIMER_8</a>(name, prescaler, timer)</td></tr>
-<tr class="separator:a92c76abd86e143f6c944a6cc07c8dc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a631f8634c99206a9db580395c68d3144"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a631f8634c99206a9db580395c68d3144">AVR_TIMER_COMP_8</a>(name, timer, comp)</td></tr>
-<tr class="separator:a631f8634c99206a9db580395c68d3144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a338ed2d69da1f2728881033da6338"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#ab0a338ed2d69da1f2728881033da6338">IMPLEMENT_TIMER_COMP</a>(name, timer, comp)</td></tr>
-<tr class="separator:ab0a338ed2d69da1f2728881033da6338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2013a7a4a11e75aa98c674d16cacb2fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">AVR_TIMER_COMMON</a>(name, timer, prescaler)</td></tr>
+<tr class="separator:a2013a7a4a11e75aa98c674d16cacb2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39639be1296ea9b14e2b06a96080f553"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a39639be1296ea9b14e2b06a96080f553">AVR_BASIC_TIMER</a>(name, prescaler)</td></tr>
+<tr class="separator:a39639be1296ea9b14e2b06a96080f553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7382a852bba26117fadd671835072bcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a7382a852bba26117fadd671835072bcf">AVR_ADVANCED_TIMER</a>(name, timer, prescaler)</td></tr>
+<tr class="separator:a7382a852bba26117fadd671835072bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95945d575bfa380da094060bf3e76f1b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a95945d575bfa380da094060bf3e76f1b">AVR_TIMER_COMPARE</a>(name, type, timer, comp)</td></tr>
+<tr class="separator:a95945d575bfa380da094060bf3e76f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b20a18e6ecc674a8d7c877b6b778761"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="avr__timer_8h.html#a6b20a18e6ecc674a8d7c877b6b778761">IMPLEMENT_AVR_TIMER_COMPARE</a>(name, timer, comp)&#160;&#160;&#160;ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); }</td></tr>
+<tr class="separator:a6b20a18e6ecc674a8d7c877b6b778761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -127,12 +132,12 @@ Enumerations</h2></td></tr>
 <tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a92c76abd86e143f6c944a6cc07c8dc2c"></a>
+<a class="anchor" id="a7382a852bba26117fadd671835072bcf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AVR_TIMER_8</td>
+          <td class="memname">#define AVR_ADVANCED_TIMER</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">name, </td>
@@ -141,13 +146,13 @@ Enumerations</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">prescaler, </td>
+          <td class="paramname">timer, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">timer&#160;</td>
+          <td class="paramname">prescaler&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -156,31 +161,102 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">typedef</span> uint8_t name##_value_t; \</div>
-<div class="line">    enum { \</div>
-<div class="line">        name##_prescaler = prescaler, \</div>
-<div class="line">        name##_prescaler_bit = _avr_timer_prescaler_bit_##prescaler, \</div>
-<div class="line">        name##_freq = cpu_freq/prescaler \</div>
-<div class="line">    }; \</div>
-<div class="line">    inline uint8_t name##_value() { <span class="keywordflow">return</span> TCNT##timer; } \</div>
-<div class="line">    inline <span class="keywordtype">void</span> name##_set_value( uint8_t value ) { TCNT##timer = value; } \</div>
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="timer_8h.html#ae293c5fb374f32ef5dce04a0209608aa">TIMER_COMMON</a>(name, uint16_t, cpu_freq/(prescaler), 65536, TCNT##timer, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>) <a class="code" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">\</a></div>
+<div class="line"><a class="code" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">	AVR_TIMER_COMMON</a>(name, timer, prescaler)</div>
+<div class="ttc" id="timer_8h_html_ae293c5fb374f32ef5dce04a0209608aa"><div class="ttname"><a href="timer_8h.html#ae293c5fb374f32ef5dce04a0209608aa">TIMER_COMMON</a></div><div class="ttdeci">#define TIMER_COMMON(name, type, freq, period, reg, pre_get, post_set)</div><div class="ttdef"><b>Definition:</b> <a href="timer_8h_source.html#l00006">timer.h:6</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a2013a7a4a11e75aa98c674d16cacb2fd"><div class="ttname"><a href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">AVR_TIMER_COMMON</a></div><div class="ttdeci">#define AVR_TIMER_COMMON(name, timer, prescaler)</div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00019">avr_timer.h:19</a></div></div>
+<div class="ttc" id="utils_8h_html_a657da91b88391a282c6f0bf01e871e3a"><div class="ttname"><a href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a></div><div class="ttdeci">#define none()</div><div class="ttdoc">Empty function. </div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00007">utils.h:7</a></div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00028">28</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a39639be1296ea9b14e2b06a96080f553"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AVR_BASIC_TIMER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prescaler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="timer_8h.html#ae293c5fb374f32ef5dce04a0209608aa">TIMER_COMMON</a>(name, uint8_t, cpu_freq/(prescaler), 256, TCNT0, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>) <a class="code" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">\</a></div>
+<div class="line"><a class="code" href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">	AVR_TIMER_COMMON</a>(name, 0, prescaler)</div>
+<div class="ttc" id="timer_8h_html_ae293c5fb374f32ef5dce04a0209608aa"><div class="ttname"><a href="timer_8h.html#ae293c5fb374f32ef5dce04a0209608aa">TIMER_COMMON</a></div><div class="ttdeci">#define TIMER_COMMON(name, type, freq, period, reg, pre_get, post_set)</div><div class="ttdef"><b>Definition:</b> <a href="timer_8h_source.html#l00006">timer.h:6</a></div></div>
+<div class="ttc" id="avr__timer_8h_html_a2013a7a4a11e75aa98c674d16cacb2fd"><div class="ttname"><a href="avr__timer_8h.html#a2013a7a4a11e75aa98c674d16cacb2fd">AVR_TIMER_COMMON</a></div><div class="ttdeci">#define AVR_TIMER_COMMON(name, timer, prescaler)</div><div class="ttdef"><b>Definition:</b> <a href="avr__timer_8h_source.html#l00019">avr_timer.h:19</a></div></div>
+<div class="ttc" id="utils_8h_html_a657da91b88391a282c6f0bf01e871e3a"><div class="ttname"><a href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a></div><div class="ttdeci">#define none()</div><div class="ttdoc">Empty function. </div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00007">utils.h:7</a></div></div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00024">24</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2013a7a4a11e75aa98c674d16cacb2fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AVR_TIMER_COMMON</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">timer, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prescaler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">enum</span> { name##_prescaler_bit = _avr_timer_prescaler_bit_##prescaler }; \</div>
 <div class="line">    inline <span class="keywordtype">void</span> name##_start() { <a class="code" href="bit__utils_8h.html#af930fa845021b2b398008e839e05e250">MASKED_WRITE</a>( TCCR##timer##B, 0, 3, name##_prescaler_bit ); } \</div>
 <div class="line">    inline <span class="keywordtype">void</span> name##_stop()  { <a class="code" href="bit__utils_8h.html#af930fa845021b2b398008e839e05e250">MASKED_WRITE</a>( TCCR##timer##B, 0, 3, 0 ); }</div>
 <div class="ttc" id="bit__utils_8h_html_af930fa845021b2b398008e839e05e250"><div class="ttname"><a href="bit__utils_8h.html#af930fa845021b2b398008e839e05e250">MASKED_WRITE</a></div><div class="ttdeci">#define MASKED_WRITE(reg, offset, size, value)</div><div class="ttdef"><b>Definition:</b> <a href="bit__utils_8h_source.html#l00006">bit_utils.h:6</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00017">17</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00019">19</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a631f8634c99206a9db580395c68d3144"></a>
+<a class="anchor" id="a95945d575bfa380da094060bf3e76f1b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define AVR_TIMER_COMP_8</td>
+          <td class="memname">#define AVR_TIMER_COMPARE</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -201,22 +277,23 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">inline</span> uint8_t name##_value() { <span class="keywordflow">return</span> OCR##timer##comp; } \</div>
-<div class="line">    inline <span class="keywordtype">void</span> name##_set_value( uint8_t value ) { OCR##timer##comp = value; } \</div>
+<b>Value:</b><div class="fragment"><div class="line"><a class="code" href="utils_8h.html#a212e74994586b3c6e8a1d3ba88116510">DEFINE_DEVICE_RW</a>(name, type, OCR##timer##comp, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>, <a class="code" href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a>) \</div>
 <div class="line">    inline <span class="keywordtype">void</span> name##_irq_enable() { TIMSK##timer |= (1 &lt;&lt; OCIE##timer##comp); } \</div>
 <div class="line">    inline <span class="keywordtype">void</span> name##_irq_disable() { TIMSK##timer &amp;= (uint8_t)(~(1 &lt;&lt; OCIE##timer##comp)); } \</div>
 <div class="line">    void name##_irq();</div>
+<div class="ttc" id="utils_8h_html_a212e74994586b3c6e8a1d3ba88116510"><div class="ttname"><a href="utils_8h.html#a212e74994586b3c6e8a1d3ba88116510">DEFINE_DEVICE_RW</a></div><div class="ttdeci">#define DEFINE_DEVICE_RW(name, type, reg, pre_get, post_set)</div><div class="ttdoc">Define read-write device. </div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00037">utils.h:37</a></div></div>
+<div class="ttc" id="utils_8h_html_a657da91b88391a282c6f0bf01e871e3a"><div class="ttname"><a href="utils_8h.html#a657da91b88391a282c6f0bf01e871e3a">none</a></div><div class="ttdeci">#define none()</div><div class="ttdoc">Empty function. </div><div class="ttdef"><b>Definition:</b> <a href="utils_8h_source.html#l00007">utils.h:7</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00029">29</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00032">32</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab0a338ed2d69da1f2728881033da6338"></a>
+<a class="anchor" id="a6b20a18e6ecc674a8d7c877b6b778761"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define IMPLEMENT_TIMER_COMP</td>
+          <td class="memname">#define IMPLEMENT_AVR_TIMER_COMPARE</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">name, </td>
@@ -236,14 +313,12 @@ Enumerations</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td>&#160;&#160;&#160;ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); }</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">ISR(TIMER##timer##_COMP##comp##_vect) { name##_irq(); } \</div>
-<div class="line">    void __attribute__ ((weak)) name<span class="preprocessor">##_irq() { }</span></div>
-</div><!-- fragment -->
-<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00036">36</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00038">38</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
 
 </div>
 </div>
@@ -270,14 +345,14 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00008">8</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
+<p>Definition at line <a class="el" href="avr__timer_8h_source.html#l00010">10</a> of file <a class="el" href="avr__timer_8h_source.html">avr_timer.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 30 2014 00:38:57 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 4 2015 22:19:54 for MicroHAL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['write_5fint16',['write_int16',['../int__to__string_8h.html#a7c0afe2805748bfe2d7f191416a1e140',1,'int_to_string.h']]],
-  ['write_5fint32',['write_int32',['../int__to__string_8h.html#a327de80a1b8eecf942d9a6b1c5c7f8d0',1,'int_to_string.h']]],
-  ['write_5fint8',['write_int8',['../int__to__string_8h.html#aa037ce86992d762c2f54179705817f85',1,'int_to_string.h']]],
-  ['write_5fuint16',['write_uint16',['../int__to__string_8h.html#ab958dbc1c51dd4bf4d6e8f7f054f1193',1,'int_to_string.h']]],
-  ['write_5fuint32',['write_uint32',['../int__to__string_8h.html#a32ccee1d89ee68eab42eb964e911a5e0',1,'int_to_string.h']]],
-  ['write_5fuint8',['write_uint8',['../int__to__string_8h.html#a07d4f2ecd84d66c0539c497fc250b498',1,'int_to_string.h']]]
+  ['tasklets_5fadd',['tasklets_add',['../tasklets_8h.html#ae6ce0965586f7611a0a27edea8d925ae',1,'tasklets.h']]],
+  ['tasklets_5fdelay',['tasklets_delay',['../tasklets_8h.html#a747242085338fd987126a3d6f088e236',1,'tasklets.h']]],
+  ['tasklets_5finit',['tasklets_init',['../tasklets_8h.html#a0f81184e186b931ecbbcd71592fde089',1,'tasklets.h']]],
+  ['tasklets_5fprocess',['tasklets_process',['../tasklets_8h.html#a47305424ace0d6a80825384a3879500a',1,'tasklets.h']]]
 ];
