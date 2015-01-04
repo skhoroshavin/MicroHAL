@@ -12,7 +12,7 @@ void clock_compare_irq()
 
 void clock_init()
 {
-	_last_tick = clock_timer_value();
+	_last_tick = clock_timer_counter();
 	clock_soft_irq();
 	clock_timer_start();
 }
@@ -21,7 +21,7 @@ void clock_set_timeout( tick_t timeout )
 {
 	if( timeout )
 	{
-		tick_t next_tick = clock_timer_value() + timeout;
+		tick_t next_tick = clock_timer_counter() + timeout;
 		next_tick %= clock_timer_period;
 		clock_compare_set_value( next_tick );
 		clock_compare_irq_enable();
@@ -35,7 +35,7 @@ void clock_set_timeout( tick_t timeout )
 void clock_soft_irq()
 {
 	tick_t cur_tick, dt;
-	cur_tick = clock_timer_value();
+	cur_tick = clock_timer_counter();
 	dt = cur_tick - _last_tick;
 	dt %= clock_timer_period;
 	_last_tick = dt;

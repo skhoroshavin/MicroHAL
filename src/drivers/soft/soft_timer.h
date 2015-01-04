@@ -3,30 +3,32 @@
 
 #include <drivers/common/timer.h>
 
+/**
+ * @brief Software timer definition
+ * @param name Timer name
+ * @param base Base timer name
+ * @param type Timer counter type
+ * @param prescaler Timer prescaler
+ * @param period Timer period
+ */
 #define SOFT_TIMER(name, base, type, prescaler, period) \
-	TIMER_COMMON(name, type, base##_freq/(prescaler), period) \
+	extern type _##name##_data; \
 	enum { name##_prescaler = prescaler }; \
-	name##_t name##_value(); \
-	void name##_set_value( name##_t value ); \
 	void name##_start(); \
 	void name##_stop(); \
 	void name##_init(); \
-	void name##_process();
+	void name##_process(); \
+	TIMER_COMMON(name, type, base##_freq/(prescaler), period, _##name##_data, name##_process, name##_init)
 
+/**
+ * @brief Software timer implementation
+ * @param name Timer name
+ * @param base Base timer name
+ */
 #define IMPLEMENT_SOFT_TIMER(name,base) \
+	name##_t _##name##_data = 0; \
 	static base##_t _##name##_base_value; \
 	static base##_t _##name##_base_remainder; \
-	static name##_t _##name##_data = 0; \
-	name##_t name##_value() \
-	{ \
-		name##_process(); \
-		return _##name##_data; \
-	} \
-	void name##_set_value( name##_t value ) \
-	{ \
-		_##name##_data = value; \
-		name##_init(); \
-	} \
 	void name##_start() \
 	{ \
 	 \
@@ -37,13 +39,13 @@
 	} \
 	void name##_init() \
 	{ \
-		_##name##_base_value = base##_value(); \
+		_##name##_base_value = base##_counter(); \
 		_##name##_base_remainder = 0; \
 	} \
 	void name##_process() \
 	{ \
 		base##_t dt, value; \
-		value = base##_value(); \
+		value = base##_counter(); \
 		dt = value - _##name##_base_value; \
 		if( !dt ) return; \
 		dt %= base##_period; \

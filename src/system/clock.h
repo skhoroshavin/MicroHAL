@@ -39,7 +39,7 @@ void clock_init();
  * @brief Current system clock value
  * @return Current system clock value
  */
-inline tick_t clock_value() { return clock_timer_value(); }
+inline tick_t clock_value() { return clock_timer_counter(); }
 
 /**
  * @brief Set system clock timeout
