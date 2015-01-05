@@ -8,17 +8,18 @@
  * @param name Timer name
  * @param base Base timer name
  * @param type Timer counter type
- * @param prescaler Timer prescaler
+ * @param freq Timer frequency
  * @param period Timer period
  */
-#define SOFT_TIMER(name, base, type, prescaler, period) \
+#define SOFT_TIMER(name, base, type, freq, period) \
 	extern type _##name##_data; \
-	enum { name##_prescaler = prescaler }; \
+	enum { name##_prescaler = base##_freq/(freq) }; \
+	STATIC_ASSERT( name##_prescaler*(freq) == base##_freq, soft_timer ); \
 	void name##_start(); \
 	void name##_stop(); \
 	void name##_init(); \
 	void name##_process(); \
-	TIMER_COMMON(name, type, base##_freq/(prescaler), period, _##name##_data, name##_process, name##_init)
+	TIMER_COMMON(name, type, freq, period, _##name##_data, name##_process, name##_init)
 
 /**
  * @brief Software timer implementation
