@@ -30,7 +30,7 @@ enum
 	AVR_TIMER_COMMON(name, timer, prescaler)
 
 #define AVR_TIMER_COMPARE(name, type, timer, comp) \
-	DEFINE_DEVICE_RW(name, type, OCR##timer##comp, none, none) \
+	PROPERTY_REG_RW(name, type, OCR##timer##comp, none, none) \
 	inline void name##_irq_enable() { TIMSK##timer |= (1 << OCIE##timer##comp); } \
 	inline void name##_irq_disable() { TIMSK##timer &= (uint8_t)(~(1 << OCIE##timer##comp)); } \
 	void name##_irq();

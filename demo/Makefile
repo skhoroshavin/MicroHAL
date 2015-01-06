@@ -1,13 +1,13 @@
 
 PLATFORM = AVR
-MCU      = atmega328p
+MCU      = atmega168p
 OSDIR   = ../src
 TARGET   = demo
 
-INCLUDES = -Iarduino
+INCLUDES = -Ipinboard-atmega168
 
 SOURCES  = main.c \
-	arduino/hal.c \
+	pinboard-atmega168/hal.c \
 	utils/string_utils.c \
 	utils/text_input.c \
 	utils/text_output.c \
@@ -20,4 +20,5 @@ include $(OSDIR)/platform/build.mk
 flash: build/$(TARGET)
 #	avr-objdump -d build/$(TARGET)
 	avr-size build/$(TARGET)
-	avrdude -c arduino -b 57600 -p m328p -P /dev/ttyUSB0 -u -U $<
+	avrdude -c avrftdi -b 57600 -p m168p -P /dev/ttyUSB0 -u -U $<
+#	avrdude -c arduino -b 57600 -p m328p -P /dev/ttyUSB0 -u -U $<

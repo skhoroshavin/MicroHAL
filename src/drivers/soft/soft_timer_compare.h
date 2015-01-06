@@ -15,7 +15,7 @@
 	void name##_irq(); \
 	void name##_init(); \
 	void name##_process(); \
-	DEFINE_DEVICE_RW(name, timer##_t, _##name##_data, none, name##_init)
+	PROPERTY_REG_RW(name, timer##_t, _##name##_data, none, name##_init)
 
 #define IMPLEMENT_SOFT_TIMER_COMPARE_COMMON(name, timer) \
 	timer##_t _##name##_data = 0; \

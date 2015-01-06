@@ -1,39 +1,41 @@
 
 #pragma once
 
+#include <utils/bit_utils.h>
+
 /**
  * @brief Empty function
  */
 #define none()
 
 /**
- * @brief Define read-only device
- * @param name Device name
- * @param type Device data type
- * @param reg Device data register
- * @param pre_get Device function to update register
+ * @brief Define register-based read only property
+ * @param name Property name
+ * @param type Property data type
+ * @param reg Register name
+ * @param update Function to update register before reading
  */
-#define DEFINE_DEVICE_RO(name, type, reg, pre_get) \
-	inline type name() { pre_get(); return reg; }
+#define PROPERTY_REG_RO(name, type, reg, update) \
+	inline type name() { update(); return reg; }
 
 /**
- * @brief Define write-only device
- * @param name Device name
- * @param type Device data type
- * @param reg Device data register
- * @param post_set Device function to update internal state
+ * @brief Define register-based write only property
+ * @param name Property name
+ * @param type Property data type
+ * @param reg Register name
+ * @param apply Function to apply register changes after writing
  */
-#define DEFINE_DEVICE_WO(name, type, reg, post_set) \
-	inline void name##_set( type value ) { reg = value; post_set(); }
+#define PROPERTY_REG_WO(name, type, reg, apply) \
+	inline void name##_set( type value ) { reg = value; apply(); }
 
 /**
- * @brief Define read-write device
- * @param name Device name
- * @param type Device data type
- * @param reg Device data register
- * @param pre_get Device function to update register
- * @param post_set Device function to update internal state
+ * @brief Define register-based read write property
+ * @param name Property name
+ * @param type Property data type
+ * @param reg Register name
+ * @param update Function to update register before reading
+ * @param apply Function to apply register changes after writing
  */
-#define DEFINE_DEVICE_RW(name, type, reg, pre_get, post_set) \
-	DEFINE_DEVICE_RO(name, type, reg, pre_get) \
-	DEFINE_DEVICE_WO(name, type, reg, post_set)
+#define PROPERTY_REG_RW(name, type, reg, update, apply) \
+	PROPERTY_REG_RO(name, type, reg, update) \
+	PROPERTY_REG_WO(name, type, reg, apply)
