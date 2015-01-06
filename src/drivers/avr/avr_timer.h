@@ -7,6 +7,10 @@
 #include <utils/bit_utils.h>
 #include <utils/pp_utils.h>
 
+#ifndef TIMER0_COMPA_vect
+#define TIMER0_COMPA_vect TIM0_COMPA_vect
+#endif /* TIMER0_COMPA_vect */
+
 enum
 {
 	_avr_timer_prescaler_bit_1    = 1,

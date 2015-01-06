@@ -14,7 +14,7 @@
 #define SOFT_TIMER(name, base, type, freq, period) \
 	extern type _##name##_data; \
 	enum { name##_prescaler = base##_freq/(freq) }; \
-	STATIC_ASSERT( name##_prescaler*(freq) == base##_freq, soft_timer ); \
+	STATIC_ASSERT( (unsigned long long)name##_prescaler*(freq) == base##_freq, soft_timer ); \
 	void name##_start(); \
 	void name##_stop(); \
 	void name##_init(); \
