@@ -23,3 +23,33 @@
  * @return Pointer to parent structure
  */
 #define container_of(ptr,type,member) ((type*)((char*)(ptr)-offsetof(type,member)))
+
+/**
+ * @brief Swap two values
+ * @param type Type of values
+ * @param a First value to swap
+ * @param b Second value to swap
+ */
+#define swap(type, a, b) \
+	do { type tmp = a; a = b; b = tmp; } while(0)
+
+/**
+ * @brief Bubble sort small array (<256 elements)
+ * @param type Type of values
+ * @param data Array data
+ * @param size Array size
+ * @param less Array elements comparator
+ */
+#define sort_bubble(type, data, size, less) \
+	do \
+	{ \
+		uint8_t i, j; \
+		for( i = 0; i < (size); ++i ) \
+		{ \
+			for( j = i+1; j < (size); ++j ) \
+			{ \
+				if( less( data[j], data[i] ) ) \
+					swap( type, data[i], data[j] ); \
+			} \
+		} \
+	} while(0)

@@ -11,15 +11,14 @@
  * @param freq Timer frequency
  * @param period Timer period
  */
-#define SOFT_TIMER(name, base, type, freq, period) \
+#define SOFT_TIMER(name, base, type, prescaler, period) \
 	extern type _##name##_data; \
-	enum { name##_prescaler = base##_freq/(freq) }; \
-	STATIC_ASSERT( (unsigned long long)name##_prescaler*(freq) == base##_freq, soft_timer ); \
+	enum { name##_prescaler = prescaler }; \
 	void name##_start(); \
 	void name##_stop(); \
 	void name##_init(); \
 	void name##_process(); \
-	TIMER_COMMON(name, type, freq, period, _##name##_data, name##_process, name##_init)
+	TIMER_COMMON(name, type, base##_freq/(prescaler), period, _##name##_data, name##_process, name##_init)
 
 /**
  * @brief Software timer implementation
