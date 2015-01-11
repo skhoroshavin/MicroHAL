@@ -1,6 +1,8 @@
 
-Interrupts!
-Implement more timers
+Improve software timers framework
+Improve command line interface
+Make UART interrupt driven
+
 AVR SPI
 Separate virtual timer and task system?
 Refactor text I/O
